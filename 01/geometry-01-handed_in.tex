@@ -106,11 +106,56 @@ mapping.
 
 \subsection{Bijective and continuous}
 
+$\alpha_1^+$ is surjective.
+
+\begin{proof}
+    We have to show that
+    \[
+        \forall \vec y \in D_1^2 \colon \exists \vec x \in U_1^+ \colon
+        \alpha_1^+(\vec x) = \vec y.
+    \]
+    We insert $\alpha_1^+$ and write out the vectors:
+    \[
+        \forall \vec y \in D_1^2 \colon \exists \vec x \in U_1^+ \colon
+        (x_1, x_2, x_3)|_{x_1 = 0} = (0, y_2, y_3).
+    \]
+    The vector $\vec y$ is written as a $\R^3$-vector since the image seems to
+    be embedded in that space for convenience. We apply the mapping completely
+    and obtain:
+    \[
+        \forall \vec y \in D_1^2 \colon \exists \vec x \in U_1^+ \colon
+        (0, x_2, x_3) = (0, y_2, y_3).
+    \]
+    From here, we think it should be clear that such a $\vec x$ exists and
+    therefore $\alpha_1^+$ is surjective.
+\end{proof}
+
 $\alpha_1^+$ is injective.
 
 \begin{proof}
-    
+    We have to show that
+    \[
+        \forall \vec x, \vec y \in U_1^+ \colon \sbr{
+            \alpha_i^+(\vec x) = \alpha_i^+(\vec y)
+            \implies
+            \vec x = \vec y
+        }.
+    \]
+    We again carry out the mapping and write the vectors with components:
+    \[
+        \forall \vec x, \vec y \in U_1^+ \colon \sbr{
+            (0, x_2, x_3) = (0, y_2, y_3)
+            \implies
+            (x_1, x_2, x_3) = (y_1, y_2, y_3)
+        }.
+    \]
+    Since the mapping is surjective, for any given $y_2$ and $y_3$, the missing
+    $y_1$ such that $|\vec y| = 1$ can be found by $x_1 = \sqrt{1 - x_2^2 -
+    x_3^2}$. Therefore, the equality in the second and third component is
+    sufficient to assert that the first component must be same.
 \end{proof}
+
+Taking both facts together, we have shown that the mapping is bijective.
 
 \section{Equivalence relations}
 
