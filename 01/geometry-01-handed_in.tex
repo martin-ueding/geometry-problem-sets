@@ -183,6 +183,45 @@ still have to show that it is continuous.
     mapping is continuous.
 \end{proof}
 
+\subsection{Inverses}
+
+The inverses are functions from $D^2 \to U_i^\pm$. The first inverse is:
+\[
+    [\alpha_1^+]^{-1} \colon
+    (0, x_2, x_3) \mapsto \del{\sqrt{1 - x_2^2 - x_3^2}, x_2, x_3}.
+\]
+And the second one is:
+\[
+    [\alpha_3^-]^{-1} \colon
+    (x_1, x_2, 0) \mapsto \del{x_1, x_2, -\sqrt{1 - x_1^2 - x_2^2}}.
+\]
+
+The $\alpha$s are bijective and continuous. I think it should then follow that
+the inverse is also continuous. Is that so? Either way, it can be shown as
+well. It has to be shown that:
+\[
+    \forall \vec x \in U_1^+ \colon
+    \exists \vec y \in D^2 \colon
+    [\alpha_i^\pm]^{-1}(\vec y) = \vec x.
+\]
+Inserting the derived formulas, we think that it is apparent that such a $\vec
+y$ can be found. Therefore, the inverses are surjective. We think that we have
+used this property intuitively already in the second of this problem where we
+had to show that $\alpha_1^+$ is bijective.
+
+The injectiveness is shown even faster. One has to show that
+\[
+    \forall \vec x, \vec y \in D^2 \colon
+    \sbr{
+        \del{x_1, x_2, -\sqrt{1 - x_1^2 - x_2^2}}
+        =
+        \del{y_1, y_2, -\sqrt{1 - y_1^2 - y_2^2}}
+        \implies
+        \vec x = \vec y
+    }
+\]
+holds, which looks straightforwardly true.
+
 \section{Equivalence relations}
 
 \subsection{Show that it is one}
