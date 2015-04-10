@@ -155,7 +155,33 @@ $\alpha_1^+$ is injective.
     sufficient to assert that the first component must be same.
 \end{proof}
 
-Taking both facts together, we have shown that the mapping is bijective.
+Taking both facts together, we have shown that the mapping is bijective. We
+still have to show that it is continuous.
+
+\begin{proof}
+    To show that a mapping is continuous, it usually is easier to use the
+    $\epsilon$-$\delta$ formulation. In our case we have to show that
+    \[
+        \forall \epsilon > 0 \colon
+        \forall \vec x \in U_1^+ \colon
+        \exists \delta(\vec x) > 0 \colon
+        \forall \vec x' \in U_1^+ \colon
+        |\vec x - \vec x'| < \delta
+        \implies
+        \abs{\alpha_1^+(\vec x) - \alpha_1^+(\vec x')} < \epsilon.
+    \]
+    Having the $\epsilon$ in front of the $\vec x$ ($\epsilon$ independent of
+    $\vec x$) means something even stronger than continuity, but we even get
+    that here. We now put in our mapping and omit the quantifiers since they
+    stay the same. We get:
+    \[
+        \abs{(x_1 - x_1', x_2 - x_2', x_3 - x_3')} < \delta
+        \implies
+        \abs{(0, x_2 - x_2', x_3 - x_3')} < \epsilon.
+    \]
+    Using $\delta := \epsilon$, this certainly is fulfilled. Therefore, the
+    mapping is continuous.
+\end{proof}
 
 \section{Equivalence relations}
 
