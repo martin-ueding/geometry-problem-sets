@@ -1,0 +1,140 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend, color]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{1}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1}
+\ofoot{Group 1}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem number & achieved points & possible points \\
+        \midrule
+        1 & & \punkte{30} \\
+        2 & & \punkte{20} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{5ex}
+
+I, Martin Ueding, would like to scan and upload the problem sets with your
+corrections to my website \href{http://martin-ueding.de}{martin-ueding.de}.
+There, the original problem set as well as the reviewed one will be licensed
+under the “\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative
+Commons Attribution-ShareAlike 4.0 International License}”. Is that okay with
+you?
+
+Yes $\Box$ \hspace{2cm} No $\Box$
+
+\newpage
+
+\section{Differentiable Structure of $S^2$}
+
+
+\section{Equivalence relations}
+
+\subsection{Show that it is one}
+
+\renewcommand\mod{\operatorname{mod}}
+
+The \textbf{reflectivity} is shown quickly.
+\[
+    x \sim x \iff x \mod n = x \mod n
+\]
+is fulfilled since the equality itself obeys reflectivity.
+
+Since the equality itself is symmetric, the \textbf{symmetry} of the
+equivalence relation is shown as quick as the previous property:
+\[
+    x \sim y
+    \iff
+    x \mod n = y \mod n
+    \iff
+    y \mod n = x \mod n
+    \iff
+    y \sim x.
+\]
+
+For the \textbf{transitivity}, let $x \sim y$ and $y \sim z$. Then we use the
+transitivity of the equality to show:
+\begin{align*}
+    x \sim y \land y \sim z
+    &\iff
+    x \mod n = y \mod n
+    \land
+    y \mod n = z \mod n \\
+    &\iff
+    x \mod n = y \mod n = z \mod n \\
+    &\iff
+    x \mod n = z \mod n \\
+    &\iff
+    x \sim z.
+\end{align*}
+
+\subsection{Cardinality of quotient set}
+
+If $x \in [a]$, then by the definition of the equivalence class, we have
+\[
+    [a] = \set{x \in \Z \colon x \sim a}
+    = \set{x \in \Z \colon x \mod n = a \mod n}.
+\]
+We choose the representative $a$ of the equivalence class such that
+\[
+    a \mod n = a
+    \iff
+    0 \leq a < n.
+\]
+Now we have
+\[
+    [a]
+    = \set{x \in \Z \colon x \mod n = a}
+    = \set{a + kn \colon k \in Z}.
+\]
+The only unique $a$ are $a = 0, \ldots, n-1$ such that the number of those sets
+is just $n$.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
