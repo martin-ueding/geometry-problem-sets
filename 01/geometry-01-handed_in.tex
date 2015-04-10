@@ -1,6 +1,6 @@
 % Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
 
-\documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
 
 \usepackage[bibatend, color]{../header}
 
@@ -40,6 +40,8 @@
 
 \ohead{\rightmark}
 
+\usepackage{multicol}
+
 \begin{document}
 
 \maketitle
@@ -72,6 +74,43 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 
 \section{Differentiable Structure of $S^2$}
 
+\subsection{Domain and image}
+
+The domains and images are shown in Figure~\ref{fig:domains}. They have to be
+open, so the boundary must not be included. The image is always the open unit
+disk, which is just a unit circle. The unit circle itself is a subset of
+$\R^2$, we show it embedded in $\R^3$ because the definition given in
+Equation~(1) on the problem set writes the mapping as a $\R^3 \to \R^3$
+mapping.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.3\linewidth]{x-plus.pdf}
+    \includegraphics[width=.3\linewidth]{x-minus.pdf}
+    \includegraphics[width=.3\linewidth]{domain-x.pdf}
+    \includegraphics[width=.3\linewidth]{y-plus.pdf}
+    \includegraphics[width=.3\linewidth]{y-minus.pdf}
+    \includegraphics[width=.3\linewidth]{domain-y.pdf}
+    \includegraphics[width=.3\linewidth]{z-plus.pdf}
+    \includegraphics[width=.3\linewidth]{z-minus.pdf}
+    \includegraphics[width=.3\linewidth]{domain-z.pdf}
+    \caption{%
+        Domains and images of the charts $(\alpha_i^\pm, U_i^\pm)$. Top is $i =
+        1$, middle $i = 2$ and bottom $i = 3$. The left column shows the domain
+        of the “$+$” branch, the middle column shows the image of the “$-$”
+        branch. The right column shows the image, which is the same for both
+        branches.
+    }
+    \label{fig:domains}
+\end{figure}
+
+\subsection{Bijective and continuous}
+
+$\alpha_1^+$ is injective.
+
+\begin{proof}
+    
+\end{proof}
 
 \section{Equivalence relations}
 
@@ -107,7 +146,7 @@ transitivity of the equality to show:
     y \mod n = z \mod n \\
     &\iff
     x \mod n = y \mod n = z \mod n \\
-    &\iff
+    &\implies
     x \mod n = z \mod n \\
     &\iff
     x \sim z.
