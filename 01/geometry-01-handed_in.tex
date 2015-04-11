@@ -222,6 +222,51 @@ The injectiveness is shown even faster. One has to show that
 \]
 holds, which looks straightforwardly true.
 
+\subsection{Inverses and transition maps}
+
+Differentiable means that all the partial derivatives exist. We have
+\[
+    t := a_2^- \circ [a_1^+]^{-1} \colon
+    (x_2, x_3) \mapsto \del{\sqrt{1-x_2^2 - x_3^3}, x_3}
+\]
+for the transition map. The derivatives with respect to $x_2$ and $x_3$ are:
+\[
+    t_{,2} := \pd{t}{x_2} = \del{\frac{-x_2}{\sqrt{1 - x_2^2 - x_3^3}}, 0}
+    \eqnsep
+    t_{,3} = \del{\frac{-x_3}{\sqrt{1 - x_2^2 - x_3^3}}, 1}.
+\]
+Only at the boundary, this derivatives becomes singular. Since the maps are
+only defined on open sets, this is not a problem: the singular points are not
+included in the domain.
+
+The other transition map is very similar:
+\[
+    a_2^+ \circ [a_3^-]^{-1} \colon
+    (x_1, x_2) \mapsto \del{x_1, - \sqrt{1 - x_1^2 - x_2^2}}.
+\]
+Taking the derivatives will be very similar to the previous one and we
+therefore just say that it will turn out to be differentiable as well by a
+similar calculation.
+
+\subsection{Same differential structure}
+
+A differential structure is an equivalence class of compatible atlases. Two
+atlases are compatible if the union of them them is an atlas again. To be an
+atlas, $\cup_i U_i = M$ has to hold. Since both given manifolds are
+submanifolds, this is easy, right? All the points of $S^2$ are accounted for in
+each atlas.
+
+Do we still need to show that the transition maps in the union atlas are
+meaningful? One of them looks like this:
+\[
+    h^+ \circ [\alpha_2^+]^{-1} \colon
+    (x_1, x_3) \mapsto \frac{1}{1-x_3} \del{x_1, \sqrt{1 - x_1^2 - x_3^2}}
+\]
+The domain is $x_1^2 + x_3^1 < 1$ as it is the image of the $\alpha$ charts.
+The image of the transition maps seems to be a half plane. The image of $h^+$
+is a full plane, but $\alpha_2^+$ only covers a, say left, (almost) half of the
+manifold. Therefore, a half plane seems reasonable.
+
 \section{Equivalence relations}
 
 \subsection{Show that it is one}
