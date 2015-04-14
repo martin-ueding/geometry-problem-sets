@@ -2,7 +2,7 @@
 
 \documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
 
-\usepackage[bibatend]{../header}
+\usepackage[bibatend, color]{../header}
 
 \usepackage{tikz}
 
@@ -28,8 +28,8 @@
 
 \title{Problem Set \arabic{problemset}}
 
-\publishers{Group 1}
-\ofoot{Group 1}
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
 
 \author{
     Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
@@ -42,7 +42,7 @@
 
 \usepackage{multicol}
 
-\renewcommand\thesubsection{\thesection.\roman{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
 
 \begin{document}
 
@@ -63,6 +63,41 @@
 \end{center}
 
 \section{Linear algebra}
+
+\subsection{Dual vector space}
+
+The dual space $V^*$ is defined as the space of all mappings from the vector
+space $V$ to the underlying field, here the reals $\R$:
+\[
+    V^* = \operatorname{hom}(V, \R).
+\]
+
+For $V^*$ to be a vector space, it has to be a group under “$+$” and a group
+under “$\cdot$” (except for zero) as well has have two laws of distributivity.
+The space of linear maps is a group under “$+$” since it has a neutral element
+that maps everything to zero, there is an additive inverse and the addition is
+associative. The scalar multiplication is a group on the set except for the
+zero vector. Since all the maps are linear, they fulfill linearity and
+therefore distributivity.
+
+\subsection{Dual basis}
+
+A basis is defined as a set of linear independent vectors that span the
+complete space. The basis $\{\ev_i\}$ of $V$ is already given, so we know that
+they are linearly independent and that they generate all of $V$. The dual space
+$V^*$ has the same dimension as $V$ since every dimension in $V$ means another
+degree of freedom in the mappings $V\to\R$. The basis of $V^*$ is given with
+the $\{\ev^i\}$ which fulfill $\ev^i(\ev_j) = \deltaup^i_j$.
+
+We now have to show that this dual basis consists of linear independent
+elements and that it spans the whole space. Since we only have $n$ of them,
+they are linear independent if they span the whole $n$-dimensional space.
+
+\subsection{Change of basis}
+
+\subsection{Isomorphism}
+
+\subsection{Dual dual space}
 
 \section{Inner product}
 
