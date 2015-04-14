@@ -91,7 +91,33 @@ the $\{\ev^i\}$ which fulfill $\ev^i(\ev_j) = \deltaup^i_j$.
 
 We now have to show that this dual basis consists of linear independent
 elements and that it spans the whole space. Since we only have $n$ of them,
-they are linear independent if they span the whole $n$-dimensional space.
+they are linearly independent if they span the whole $n$-dimensional space. If
+they are linearly independent and we have $n$ of them, they must span an
+$n$-dimensional space. Showing either will imply the other and therefore imply
+that they are the basis of the dual space.
+
+Linear independence of vectors $\ev_i$ means:
+\[
+    \forall \vec v \in V \colon 
+    \sbr{
+        v^i \ev_i = \vec 0 \iff \vec v = \vec 0
+    }
+\]
+In the dual space, the vectors are the linear mappings. We take $\vec v \in V$
+and $\vec w \in V^*$. Then
+\[
+    \vec w(\vec v) = w_i v^j \ev^i(\ev_j) = w_i v^j.
+\]
+Since those act on $V$, this has to be work out for any $\vec v \in V$. For the
+$\ev^i$ to be linearly independent, we have to have
+\[
+    \forall \vec v, \vec w \colon
+    \sbr{
+        w_i v^j = 0 \iff \vec w = 0
+    }.
+\]
+Since this has to work out for any $\vec v$, this statement is true.
+Therefore, the given dual vectors are a basis.
 
 \subsection{Change of basis}
 
@@ -103,6 +129,229 @@ they are linear independent if they span the whole $n$-dimensional space.
 
 \section{Isomorphy of $S^2$}
 
+\subsection{Parameterization}
+
+To begin with, we do not know anything about the matrix and write
+\[
+    \tens A = \begin{pmatrix}
+        a & c \\ b & d
+    \end{pmatrix}
+    \eqnsep
+    a, b, c, d \in \C.
+\]
+The non-standard order of the letters is chosen such that it will work out
+nicely in the end.
+
+Now a unitary matrix has to fulfill $\tens A^\dagger \tens A = \tens 1$. This
+gives us the following condition:
+\[
+    \tens A^\dagger \tens A
+    =
+    \begin{pmatrix}
+        a^* & b^* \\ c^* & d^*
+    \end{pmatrix}
+    \begin{pmatrix}
+        a & c \\ b & d
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        |a|^2 + |b|^2 & a^*c + b^*d \\
+        c ^*a + d^*b & |c|^2 + |d|^2
+    \end{pmatrix}
+    \overset !=
+    \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+    \end{pmatrix}.
+\]
+The unit determinant gives us $ad-bc=1$ as an additional constraint. The two
+off-diagonal equations are the complex conjugates of each other and therefore
+do not give any new information. Combining one of them with the determinant
+equation gives us:
+\begin{align*}
+    - aa^*c - bb^*c &= b^* \\
+    \iff -c \sbr{|a|^2 + |b|^2} &= b^* \\
+    \iff c = - b^*.
+\end{align*}
+We put that back into the determinant equation and see that $d = a^*$. The end
+resulting matrix then is
+\[
+    \tens A = \begin{pmatrix}
+        a & -b^* \\ b & a^*
+    \end{pmatrix}.
+\]
+
+This leaves three real degrees of freedom: $|a|$, $\arg(a)$ and $\arg(b)$.
+Since the algebra $\mathfrak{su}(2)$ has three generators, this seems correct.
+
+\subsection{Generator expression}
+
+The three $S_i(\alpha)$ look like exponentiated generator expressions. The
+generators used here are:
+\[
+    T_i = - \iup \eval{\od{S_i}{\alpha}}_{\alpha = 0}.
+\]
+We use the physicist's convention of hermitian generators. The mathematician's
+convention does not have the $- \iup$ and no $\iup$ later on in the
+exponential. The generators are then:
+\[
+    T_1 = \frac12
+    \begin{pmatrix}
+        0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    \eqnsep
+    T_2 = \frac12
+    \begin{pmatrix}
+        0 & \iup \\ - \iup & 0
+    \end{pmatrix}
+    \eqnsep
+    T_3 = \frac12
+    \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+    \end{pmatrix}.
+\]
+They are closely related to the Pauli matrices $\sigma_i$ and the spin
+operators $\hat s_i$. Now the $S_i(\alpha)$ can be written as
+\[
+    S_i(\alpha) = \exp(\iup \alpha T_i)
+\]
+in the physicist's convention. Apart from the factor of 2, these coincide with
+the generators of the algebra $\mathfrak{su}(2)$.
+
+The $\alpha$, $\beta$ and $\gamma$ play a role like the Euler angles in
+$\mathrm{SO(3)}$. This has to do with the double cover of $\mathrm{SO(3)}$
+which is $\mathrm{SU(2)}$, but that will be shown later on.
+
+Now the actual task we ought to do:
+\begin{align*}
+    S_3(\alpha) S_2(\beta) S_3(\gamma)
+    &=
+    \begin{pmatrix}
+        \exp\del{\frac\iup2 \alpha} & 0 \\
+        0 & \exp\del{-\frac\iup2 \alpha}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos\del{\frac\beta2} & - \sin\del{\frac\beta2} \\
+        \sin\del{\frac\beta2} & \cos\del{\frac\beta2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \exp\del{\frac\iup2 \gamma} & 0 \\
+        0 & \exp\del{-\frac\iup2 \gamma}
+    \end{pmatrix} \\
+    \intertext{%
+        We will not typeset the matrix calculations, but we did them by hand.
+    }
+    &=
+    \begin{pmatrix}
+        \cos\del{\frac\beta2} \exp\del{\frac\iup2 [\alpha + \gamma]} &
+        -\sin\del{\frac\beta2} \exp\del{\frac\iup2 [\alpha - \gamma]} \\
+        \sin\del{\frac\beta2} \exp\del{\frac\iup2 [- \alpha + \gamma]} &
+        \cos\del{\frac\beta2} \exp\del{- \frac\iup2 [\alpha + \gamma]}
+    \end{pmatrix}
+    \intertext{%
+        Now identify
+        \[
+            a := \cos\del{\frac\beta2} \exp\del{\frac\iup2 [\alpha + \gamma]}
+            \eqnsep
+            b := \sin\del{\frac\beta2} \exp\del{\frac\iup2 [- \alpha + \gamma]}
+        \]
+        and it can be seen that this indeed is
+    }
+    &=
+    \begin{pmatrix}
+        a & - b^* \\
+        b & a^*
+    \end{pmatrix}.
+\end{align*}
+This also fulfills $|a|^2 + |b|^2 = 1$. The angle $\beta$ is needed to get the
+modulus of $a$ and $b$ set up, the angles $\alpha$ and $\gamma$ tune the
+argument of $a$ and $b$.
+
+There is some redundancy, though. If we add $2\piup$ to $\beta$ and $\gamma$
+(or $\alpha$) at the same time, nothing is changed. So although it is true that
+every element in $\mathrm{SU(2)}$ can be written with some $\alpha, \beta,
+\gamma \in [0, 4\pi)$, it is not true that every element in the group can be
+written \emph{uniquely} with some $\alpha, \beta, \gamma$ combination. We think
+that this another hint at the double cover.
+
+\subsection{Similarity transformed elements}
+
+\begin{align*}
+    U^\dagger \sigma_3 U
+    &=
+    \begin{pmatrix}
+        a^* & b^* \\ -b & a
+    \end{pmatrix}
+    \sigma_3
+    \begin{pmatrix}
+        a & -b^* \\ b & a^*
+    \end{pmatrix} \\
+    &=
+    \begin{pmatrix}
+        a^* & b^* \\ -b & a
+    \end{pmatrix}
+    \begin{pmatrix}
+        a & -b^* \\ -b & -a^*
+    \end{pmatrix} \\
+    &=
+    \begin{pmatrix}
+        a^*a - b^*b & -2 a^* b^* \\
+        -2 a b & - a^*a + b^*b
+    \end{pmatrix}
+    \intertext{%
+        This matrix is hermitian as expected. Now we can insert $a$ and $b$
+        again.
+    }
+    &=
+    \begin{pmatrix}
+        \cos\del{\frac\beta2}^2 - \sin\del{\frac\beta2}^2 &
+        - 2 \cos\del{\frac\beta2}\sin\del{\frac\beta2}\exp(-\iup \gamma) \\
+        -2 \cos\del{\frac\beta2}\sin\del{\frac\beta2}\exp(\iup\gamma) &
+        - \cos\del{\frac\beta2}^2 + \sin\del{\frac\beta2}^2
+    \end{pmatrix}
+    \intertext{%
+        We introduce
+        \[
+            e := \cos\del{\frac\beta2}^2 - \sin\del{\frac\beta2}^2
+            \eqnsep
+            f := 2 \cos\del{\frac\beta2}\sin\del{\frac\beta2}\exp(\iup\gamma)
+        \]
+        and write the matrix more compact as
+    }
+    &=
+    \begin{pmatrix}
+        e(\beta) & -f(\beta, \gamma)^* \\ -f(\beta, \gamma) & -e(\beta)
+    \end{pmatrix}
+\end{align*}
+
+\subsection{Isomorphism to $S^2$}
+
+The set $\mathscr A$ only contains unique matrices, since it is a set. That
+way, the parameter ranges of the three angles do not matter since only unique
+matrices are kept. The two-sphere is two-dimensional, and therefore two
+parameters are sufficient to describe a point on the $S^2$. Sensible parameter
+ranges are $\beta \in [0, 2\piup)$ and $\gamma \in [0, \piup)$ to get all
+possible values for $e$ and $f$. A point on $S^2$ can be described but the two
+angles $\theta$ and $\phi$.
+
+So we could give the following mapping:
+\begin{gather*}
+    S^2 \subset \R^3 \to \mathscr A, \\
+    \begin{pmatrix}
+        \sin(\theta) \cos(\phi) \\
+        \sin(\theta) \sin(\phi) \\
+        \cos(\theta)
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        \cos\del{\frac\phi2}^2 - \sin\del{\frac\phi2}^2 &
+        - 2 \cos\del{\frac\phi2}\sin\del{\frac\phi2}\exp(-\iup \theta) \\
+        -2 \cos\del{\frac\phi2}\sin\del{\frac\phi2}\exp(\iup\theta) &
+        - \cos\del{\frac\phi2}^2 + \sin\del{\frac\phi2}^2
+    \end{pmatrix}
+\end{gather*}
+
+This is a $1:1$ mapping, but does that suffice to show that $\mathscr A \simeq
+S^2$?
 
 \end{document}
 
