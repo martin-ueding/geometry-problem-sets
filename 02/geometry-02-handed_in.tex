@@ -121,11 +121,135 @@ Therefore, the given dual vectors are a basis.
 
 \subsection{Change of basis}
 
+The vectors must not change when the basis changes. The components of the
+vectors must change accordingly. If $e^i(e_j) = \deltaup^i_j$ in one basis, it
+has to hold that $f^i(f_j) = \deltaup^i_j$ as well. This is sort of a scalar
+product, and those scalars must be basis independent.
+\begin{align*}
+    f^j(f_i)
+    &= A^j{}_k e^k\del{\sbr{\sbr{A^{-1}}^\text T}_i{}^m e_m}
+    \intertext{%
+        That matrix element is a scalar and can be pulled out by the linearity
+        of the map.
+    }
+    &= A^j{}_k \sbr{\sbr{A^{-1}}^\text T}_i{}^m e^k(e_m)
+    \intertext{%
+        The last part is the Kronecker symbol again, which then sets $m := k$
+        in the sum.
+    }
+    &= A^j{}_k \sbr{\sbr{A^{-1}}^\text T}_i{}^k
+    \intertext{%
+        This is a matrix times its inverse, which by definition is the unit
+        matrix. In components this is
+    }
+    \deltaup^j_i
+\end{align*}
+So the scalar product is conserved in this particular choice of transformation
+for the dual basis. Any other linear transformation would not conserve the
+scalar product for all vectors and dual vectors.
+
 \subsection{Isomorphism}
+
+This isomorphism is probably given by the metric tensor:
+\[
+    x^i \mapsto x_i = x^j g_{ij}
+    \eqnsep
+    x_i \mapsto x^i = x_j g^{ij}
+\]
+
+The metric tensor depends on the basis and therefore this while expression
+depends on the basis.
 
 \subsection{Dual dual space}
 
+A vector from $V$ can be transformed into a vector in $V^*$:
+\[
+    y_i = x^j g_{ij}.
+\]
+This can be transformed into a vector into the dual of the dual space:
+\[
+    z^i = y_k g^{ik} = x^j g_{jk} g^{ik}
+\]
+The metric tensor contraction $g^{ik} g_{kj}$ gives a $\deltaup^i_j$ in any
+basis since all the transforming $\tens A$ will cancel out. Therefore, the dual
+dual space is isomorphic to the space itself in any choice of basis.
+
+\subsection{Space of bilinear functionals}
+
+All the functions in $\{f \colon V^* \otimes V \to \R\}$ take on covariant and
+one contravariant vector as arguments and produce a scalar. The linear
+functionals in $\{h \colon V \to V\}$ each take one contravariant vector and
+produce another one. We can explicitly write the things down. Let $f$ and $h$
+be from the respective function spaces, $u$ and $v$ from $V$ and $w$ from
+$V^*$ as well as $\lambda \in \R$. Then
+\[
+    f(w, v) = \lambda
+    \eqnsep
+    h(v) = u.
+\]
+This is the action of a matrix. One can either let it act on a vector and
+obtain another vector or let it act on a covector and a vector and get a
+scalar. This matrix is implicitly defined by
+\[
+    f(w, v) = w A v
+    \eqnsep
+    h(v) = A v.
+\]
+Now one can connect the two:
+\[
+    f(w, v) = w \cdot h(v)
+\]
+
+\subsection{Tensor of type (1, 1)}
+
+The dimension of $V$ and $W$ is not given, and they might be different. A A
+tensor is built up from a space and its dual, so $V$ and $V^*$. A tensor of
+valence $(1, 1)$ is an element from $V^* \otimes V$. So $W$ must be $V$ with
+perhaps a different basis. If the dimensions do not match, the linear mapping
+cannot be written as a square matrix. So we have to assume that the dimensions
+match to proceed. If we take a vector $\ket v$ from $V$ and a covector $u$ from
+$V^*$, we can then construct a tensor that provides this mapping as $\ket v
+\bra u$. When we apply this to a vector $\ket a$ we get $\ket b = \ket v
+\braket{u | a}$ which is a vector in $V \simeq W$.
+
+
+\subsection{Trace}
+
+The transformation of the matrix $A$ with a transformation $U$
+works like so:
+\[
+    \tilde A = U^{-1} A U
+\]
+Now to the trace:
+\begin{align*}
+    \tr(\tilde A)
+    &= \tr(U^{-1} A U) \\
+    &= [U^{-1}]^i_j A^j_k U^k_i
+    \intertext{%
+        One can see here that the trace is cyclic.
+    }
+    &= U^k_i [U^{-1}]^i_j A^j_k \\
+    &= \tr(U U^{-1} A) \\
+    &= \tr(A)
+\end{align*}
+
 \section{Inner product}
+
+\subsection{Definitions}
+
+A non-degenerate tensor provides an isomorphism and can be inverted. It also
+means that the provided mapping has a trivial kernel. A symmetric tensor simply
+is symmetric in its arguments. And a bilinear tensor is of rank 2.
+
+An example for \emph{all} those classes is any metric tensor, especially the
+identity. Non-degenerate tensors are unitary and orthogonal transformations,
+symmetric tensors are the Einstein tensor $\tens G$, the energy-stress tensor
+$\tens T$. Bilinear tensors are all linear transformations.
+
+\subsection{Canonical isomorphism}
+
+We have used/shown this in 1.d.\ already. The mapping is canonical since it
+does not explicitly depend on the basis.
 
 \section{Isomorphy of $S^2$}
 
