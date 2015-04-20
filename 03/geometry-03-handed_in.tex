@@ -1,0 +1,157 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend, color]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{3}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem number & achieved points & possible points \\
+        \midrule
+        1 & & \punkte{20} \\
+        2 & & \punkte{20} \\
+        3 & & \punkte{10} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Alternating forms}
+
+\subsection{Vector space}
+
+The forms we consider here are still linear by the definition on the problem
+set. Since $\phi$ is linear in all of its arguments, the definition of
+addition and scalar multiplication is straightforward. Since we consider the
+whole space of those alternating forms, the space is also closed under
+those operations. It must be a vector space.
+
+\subsection{Small $p$}
+
+In the definition of the space of alternating forms, the number $p$ said
+how many elements of $V$ are needed for the from to produce a real value from
+the field $\R$. So for $p = 0$, the resulting space is $\Lambda^0(V^*)$
+which contains all the forms that do not take any element from $V$ to produce a
+scalar. These are all the elements of $\R$ itself.
+
+Now for $p = 1$ one needs to give the 1-form $\phi$ one element from $V$
+to get a scalar. Since it only has one argument, it cannot be not
+antisymmetric in it. So \emph{any} 1-form is antisymmetric in this sense.
+Therefore all of $V^*$ is allowed and we have $\Lambda^1(V^*) = V^*$.
+
+\subsection{Large $p$}
+
+Here we have an $n$-dimensional vector space and consider $p$-forms with $p >
+n$ on that. The problem is that there are only $n$ independent vectors in an
+$n$-dimensional space. Since it is multilinear the whole thing can be expressed
+in terms of the basis vectors $\{\ev_i\}$ of the vector space. The action of
+$\phi$ on a set of $p$ vectors can be expanded in terms of basis vectors. We
+start with expression the vectors in the basis:
+\begin{align*}
+    \phi(\vec v_1, \ldots, \vec v_p)
+    &= \phi(v_1^i \ev_i, \ldots, v_p^k \ev_k).
+    \intertext{%
+        Now we can use the linearity in each argument of $\phi$ and pull all
+        the scalars out.
+    }
+    &= v_1^{i} \ldots v_p^k \phi(\ev_i, \ldots, \ev_k).
+\end{align*}
+The only way a summand in the implied sum can give a non-zero contribution is
+that all the indices $i, \ldots, k$ are pairwise different. Since $i, \ldots, k
+\in \N \cap [1, n]$, this is not possible! The only \emph{alternating} form
+that could be defined is zero.
+
+\subsection{Dimensionality}
+
+The dimensionality of a space is equal to the number of basis vectors. We will
+show here that the number of basis vectors of the space of alternating forms is
+$\binom np$. We want $p$-forms, they therefore need to take $p$ vectors as
+arguments and generate a scalar from them. Since they form a vector space,
+every form can be written as a linear combination of basis elements. The forms
+are contained in the space $\otimes^p V$. The basis elements of this tensor
+space can be
+written as
+\[
+    \bigotimes_{k=0}^p \ev^{i_k}.
+\]
+where the $\{i_k\}$ are out of $\N \cap [1, n]$ but not necessarily unique at
+this point. In other words, one has an $n$-dimensional space where one wants to
+create a linear mapping that takes $p$ vectors as arguments. Those multilinear
+mappings can be written as products of simple linear mappings. To illustrate
+this with $p = 2$ here: Let $\phi(\vec u, \vec v) = \lambda$ be such a bilinear
+mapping. Then we can write this as
+\[
+    \phi(\vec u, \vec v) = u^i v^j \phi(\ev_i, \ev_j).
+\]
+The $n^2$ components $\phi(\ev_i, \ev_j)$ completely describe the mapping. We
+can write $\phi$ in components as
+\[
+    \phi = \phi_{ij} \ev^i \otimes \ev^j.
+\]
+Now $\phi$ can be thought of as a (0, 2) tensor which has $n^2$ components. Now
+comes the restriction part: Since this tensor has to be completely
+antisymmetric in all its indices, there is just one degree of freedom left, the
+magnitude of the $\phi_{12}$ component. Therefore, with $n = p = 2$, it
+actually is $\binom 22$. To generalize this to $n = 3$ but keeping $p = 2$ the
+basis vectors are now the following:
+\[
+    \ev^1 \otimes \ev^2
+    \eqnsep
+    \ev^2 \otimes \ev^3
+    \eqnsep
+    \ev^3 \otimes \ev^1
+\]
+So there are three basis elements for two-forms in a three dimensional space.
+This is because there are $\binom np$ ways of selecting $p$ unique elements of
+a set with cardinality $n$. The $\phi_{ij\ldots k}$ does not introduce any more
+degrees of freedom as shown above.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
