@@ -274,7 +274,15 @@ We have
         1 \\ 0
     \end{pmatrix}
 \]
-and the function $f(x, y) = \frac12 [x^2 + y^2]$.
+and the function $f(\vec p) = \frac12 \vec p \cdot \vec p$. We first compute
+the partial derivatives of the function $f$:
+\[
+    f_{,i}(\vec p) = p_i.
+\]
+Now contract this with the vector $\vec v$ and get
+\[
+    \Dif_{\vec p, \vec v}(f) = v^i p_i.
+\]
 
 \subsection{Sketches}
 
