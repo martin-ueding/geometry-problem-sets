@@ -152,6 +152,174 @@ This is because there are $\binom np$ ways of selecting $p$ unique elements of
 a set with cardinality $n$. The $\phi_{ij\ldots k}$ does not introduce any more
 degrees of freedom as shown above.
 
+\section{Exterior algebra}
+
+\subsection{Maximum order}
+
+\begin{small}
+    $n$ is not defined again in this problem, but we will just assume it is the
+    dimensionality of $V$ just like before. And the second $\phi$ probably is a
+    $\psi$, otherwise it would be defined twice.
+\end{small}
+
+$\psi$ already is an alternating form with maximum order on the space $V$.
+Adding another order to it (and this is going to happen since $p > 0$) will
+make it identical to zero since there is no alternating form with $p > n$ as
+shown earlier.
+
+This can also be shown in index notation. we use antisymmetrization notation by
+\textcite{penrose-road_to_reality} in the idempotent form which looks like
+this:
+\[
+    \phi_{[ij]k} = \frac{1}{2!} \sbr{ \phi_{ijk} - \phi_{jik} }.
+\]
+Now Equation~(3) from the problem set becomes:
+\begin{align*}
+    [\phi \wedge \psi](\vec v_1, \ldots, \vec v_p, \vec v_{p+1}, \ldots, \vec v_{p + n})
+    &= \frac{[p + n]!}{p!n!}
+    \phi(\vec v_{[1}, \ldots, \vec v_p) \psi(\vec v_{p+1}, \ldots, \vec v_{p+n]}).
+    \intertext{%
+        The factor $[p+q]!$ is needed by my choice of idempotent
+        antisymmetrization. Now we can expand each vector $\vec v_i$ in terms of
+        its components and basis vectors and define each form in terms of its
+        basis elements as well. This needs the introduction of another set of
+        indices to sum over. The antisymmetrization stays at the vector
+        components in this step.
+    }
+    &= \frac{[p + n]!}{p!n!}
+    \phi_{i\ldots j} \psi_{k \ldots l}
+    \vec v_{[1}^i \ldots \vec v_p^j \vec v_{p+1}^k \ldots \vec v_{p+n]}^l
+    \intertext{%
+        We can now move the antisymmetrization to the forms $\phi$ and $\psi$.
+        Here we have a notational challenge: The indices are now multiple
+        symbols, so we could delimit them with commas. But commas in indices
+        denote partial derivatives. We will just leave it like this and hope
+        the intent is clear.
+    }
+    &= \frac{[p + n]!}{p!n!}
+    \phi_{[1\ldots p} \psi_{p+1\ldots p+n]}
+    \vec v_{1}^i \ldots \vec v_p^j \vec v_{p+1}^k \ldots \vec v_{p+n}^l
+    \intertext{%
+        The expression $\phi_{[1\ldots p} \psi_{p+1\ldots p+n]}$ now denotes a
+        completely antisymmetric $p+q$ dimensional form. The problem is that
+        this is in an $n$ dimensional vector space which does not work: The
+        antisymmetrization will pick up at least one index twice and therefore
+        create pairs of terms with opposing signs. Those cancel each other and
+        all is left is
+    }
+    &= 0.
+\end{align*}
+
+Once the forms are expressed with indices, the Equation~(3) from the problem
+set can be written shorter as:
+\[
+    [\phi \wedge \psi]_{i\ldots kl \ldots m} = \frac{[p + n]!}{p!n!}
+    \phi_{[i\ldots k} \psi_{l \ldots m]}.
+\]
+
+\subsection{Bilinearity}
+
+In the above equation, there is a simple product of two quantities, so it has
+to be bilinear:
+\begin{align*}
+    \sbr{[\phi + c \tilde \phi] \wedge \psi}_{i\ldots kl \ldots m}
+    &= \frac{[p + n]!}{p!n!}
+    [\phi + c \tilde \phi]_{[i\ldots k} \psi_{l \ldots m]}
+    \intertext{%
+        Since the forms themselves are in a vector space, we can assign the
+        indices to each one. The antisymmetrization notation breaks there,
+        though. So we then also expand the product and obtain
+    }
+    &= \frac{[p + n]!}{p!n!}
+    \phi_{[i\ldots k} \psi_{l \ldots m]}
+    + c \tilde \phi_{[i\ldots k} \psi_{l \ldots m]}.
+    \intertext{%
+        Now we can pick up the shards and write this more compactly as
+    }
+    &= \phi \wedge \psi + c \tilde\phi \wedge \psi.
+\end{align*}
+
+\subsection{Associativity}
+
+We have just shown the bilinearity by reducing the wedge product to a product
+of two simple numbers. For those, the associativity also holds.
+
+\subsection{Graded commutativity}
+
+Look at
+\[
+    [\phi \wedge \psi]_{i\ldots kl \ldots m} = \frac{[p + n]!}{p!n!}
+    \phi_{[i\ldots k} \psi_{l \ldots m]}
+\]
+again. In order to swap them both, we need to swap the indices $i \ldots k$
+with the set $l \ldots m$. For each index of the last set ($q$ of them) we need
+to swap them through all the indices of the first set ($p$ of them). Each
+swapping will change the sign because the forms are antisymmetric. In total
+there are $pq$ swappings needed, therefore the total sign change is
+$[-1]^{pq}$.
+
+\section{Directional derivative}
+
+\subsection{Concrete values}
+
+We have
+\[
+    \vec p(t) =
+    \begin{pmatrix}
+        \cos(t) \\ \sin(t)
+    \end{pmatrix}
+    \eqnsep
+    \vec v =
+    \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}
+\]
+and the function $f(x, y) = \frac12 [x^2 + y^2]$.
+
+\subsection{Sketches}
+
+The plots of $f$ are shown in Figure~\ref{fig:f}.
+Figure~\ref{fig:vector-fields} shows the gradient $\dif f$ and $\vec v = \vec
+p(0)$.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.45\linewidth]{headmap.pdf}
+    \hfill
+    \includegraphics[width=.45\linewidth]{3dplot.pdf}
+    \caption{%
+        Visualizations of $f(x, y)$. The left one shows a good representation
+        of $f$ as a member $C^\infty(\R^2, \R)$ since it the value at each
+        point is a scalar and the domain is a two dimensional surface. The
+        right side shows a 3D plot of the same function. The problem with this
+        visualization is that it suggests that $f$ embedded in $\R^3$ or
+        something similarly. It is better to think intrinsically to get beyond
+        submanifolds. Created with \emph{Mathematica} 10.
+    }
+    \label{fig:f}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.45\linewidth]{gradient.png}
+    \hfill
+    \includegraphics[width=.45\linewidth]{v.png}
+    \caption{%
+        The left side shows $\vec\partial f$. Either the coordinates are
+        $(\ev^1, \ev^2)$ and this is the actual gradient $\dif f$, which is a
+        1-form. Or the axes show $(\ev_1, \ev_2)$ and the plot shows 
+        the vector field $[\dif f]^\sharp$. Since we are working in $\R^2$,
+        there probably is an Euclidean metric and this can be done trivially.
+        The right side visualizes $\vec v$, which is an actual vector. It is a
+        rather boring vector field since it is constant everywhere. $\vec p(t)$
+        looks just the same, except that it is rotated by the angle $t$ (in
+        radians, of course).
+        Sorry for the rastered images, \emph{Mathematica 10} had some problem
+        exporting those as PDF or EPS files.
+    }
+    \label{fig:vector-fields}
+\end{figure}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
