@@ -328,6 +328,56 @@ p(0)$.
     \label{fig:vector-fields}
 \end{figure}
 
+\subsection{Geometric interpretation}
+
+A geometric quantity does not depend on the basis. So the quantity interpreted
+must also be basis independent. With the notation usually used we would write
+\[
+    \Dif_{\vec p, \vec v}(f) = \vec v \cdot [\vnabla f](\vec p).
+\]
+So $\Dif_{\vec p, \vec v}(f)$ is the rate of change of $f$ along $\vec v$ at
+the point $\vec p$.
+
+\subsection{Derivation}
+
+\paragraph{Linearity}
+
+The linearity in the argument of $\Dif$ is inherited from the linearity of the
+partial derivative and the linearity of $\vec v$.
+
+\paragraph{Leibniz law}
+
+This one is more interesting. It follows from the Leibniz law of the partial
+derivative itself. By definition we have
+\begin{align*}
+    \Dif_{\vec p, \vec v}(f g)
+    &= v^i [fg]_{,i}(\vec p). \\
+    \intertext{%
+        Now the partial derivative obeys the Leibniz law.
+    }
+    &= v^i [f_{,i}g + fg_{,i}](\vec p) \\
+    \intertext{%
+        The function evaluation (at $\vec p$) has to be applied to every single
+        function.
+    }
+    &= v^i \sbr{f_{,i}(\vec p) g(\vec p) + f(\vec p) g_{,i}(\vec p)} \\
+    \intertext{%
+        We expand the bracket and let $\vec v$ act on each term individually.
+    }
+    &= v^i f_{,i}(\vec p) g(\vec p) + v^i f(\vec p) g_{,i}(\vec p) \\
+    \intertext{%
+        Since $f$ and $g$ produce scalars, we can move the terms around like we
+        wish.
+    }
+    &= v^i f_{,i}(\vec p) g(\vec p) + f(\vec p) v^i g_{,i}(\vec p) \\
+    \intertext{%
+        Now we can recognize the definition of the derivation and insert it
+        back again.
+    }
+    &= \Dif_{\vec p, \vec v}(f) g(\vec p) + f(\vec p) \Dif_{\vec p, \vec v}(g)
+\end{align*}
+Then we are done.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
