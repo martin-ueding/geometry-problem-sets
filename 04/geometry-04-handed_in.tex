@@ -71,26 +71,72 @@
 The forms can be visualized in the dual space. In the dual space, there should
 not be a problem by visualizing them with vectors. Vectors are translationally
 invariant, so we can draw them anywhere, just like it is done on the problem
-set. All four forms are shown in Figure~\ref{fig:forms}.
+set. All four forms are shown in Figure~\ref{fig:forms-dual}.
 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=2]
         \draw[->] (-.3, 0) -- (2, 0) node[right] {$\dif x^1$};
         \draw[->] (0, -.3) -- (0, 2) node[above] {$\dif x^1$};
-
+        %
         \draw (1, .1) -- (1, -.1) node[below] {$1$};
         \draw (.1, 1) -- (-.1, 1) node[left] {$1$};
-
+        %
         \draw[very thick, ->] (2.2, .4) -- ++(1, 0) node[midway, sloped, above] {$\dif x^1$};
         \draw[very thick, ->] (3, 1) -- ++(0, 1) node[midway, sloped, above] {$\dif x^2$};
-
+        %
         \draw[very thick, ->] (0, 0) -- ++(30:2) node[midway, sloped, above] {$\dif r$};
         \draw[very thick, ->] (30:2) -- ++(120:.5) node[midway, sloped, above] {$\dif \phi$};
     \end{tikzpicture}
     \caption{%
         Visualization of $\dif x^1$, $\dif x^2$, $\dif r$ and $\dif \phi$ in
         the dual space.
+    }
+    \label{fig:forms-dual}
+\end{figure}
+
+Using the metric, which we probably have in standard $\R^2$, the arrows in
+Figure~\ref{fig:forms-dual} could also be interpreted as the vectors $[\dif
+x^1]^\sharp$. The Hodge dual is another way to visualize these. In components,
+this is defined as
+\[
+    [\hodge \omega]^{i\ldots k} := \epsilon^{i\ldots kl\ldots n} \omega_{l
+    \ldots n}.
+\]
+In the case of two dimensions this is just
+\[
+    [\hodge \omega]^i = \epsilon^{ij} \omega_j.
+\]
+Since $\epsilon^{12} = 1$ and $\epsilon^{21} = -1$, this is means that
+\[
+    [\hodge \omega]^1 = \omega_2
+    \eqnsep
+    [\hodge \omega]^2 = - \omega_1
+\]
+which corresponds to a rotation by $-\piup/2$.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[->] (-.3, 0) -- (2, 0) node[right] {$x^1$};
+        \draw[->] (0, -2) -- (0, .3) node[above] {$x^1$};
+        %
+        \draw (1, .1) -- (1, -.1) node[below] {$1$};
+        \draw (.1, -1) -- (-.1, -1) node[left] {$-1$};
+        %
+        \draw[very thick, ->] (2.2, -.4) -- ++(0, -1) node[midway, sloped, above]
+        {$\hodge \dif x^1$};
+        \draw[very thick, ->] (3, -1) -- ++(1, 0) node[midway, sloped, above]
+        {$\hodge \dif x^2$};
+        %
+        \draw[very thick, ->] (0, 0) -- ++(-60:2) node[midway, sloped, above]
+        {$\hodge \dif r$};
+        \draw[very thick, ->] (-60:2) -- ++(30:.5) node[midway, sloped, above]
+        {$\hodge \dif \phi$};
+    \end{tikzpicture}
+    \caption{%
+        Visualization of $\hodge \dif x^1$, $\hodge \dif x^2$, $\hodge \dif r$
+        and $\hodge \dif \phi$ in the regular space.
     }
     \label{fig:forms}
 \end{figure}
