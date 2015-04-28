@@ -95,17 +95,16 @@ set. All four forms are shown in Figure~\ref{fig:forms}.
     \label{fig:forms}
 \end{figure}
 
-\paragraph{Transformation into Cartesian coordinates}
+\paragraph{Transformation of $\dif r$ into Cartesian coordinates}
 
 The forms given in polar coordinates have to be transformed into Cartesian
 coordinates to draw them into the Cartesian plot. Although the representation
-in Cartesian coordinates seems “obvious”, we would like to engage the full
-machinery of pullbacks and pushforwards in order to see whether we understood
-the concepts correctly.
+of $\dif r$ in Cartesian coordinates seems “obvious”, we would like to engage
+the full machinery of pullbacks and pushforwards in order to see whether we
+understood the concepts correctly.
 
-So we have $\omega^3 = \dif r$ given. We write the index 3 as an upper index
-since this 1-form itself has one lower covariant index. The transformation
-which brings us from Cartesian to polar coordinates is given by
+The transformation which brings us from Cartesian to polar coordinates is given
+by
 \begin{align*}
     \varphi \colon &\R^2_\text{Cartesian} \to \R^2_\text{polar} \\
                 &x \ev_x + y \ev_y \mapsto \sqrt{x^2 + y^2} \, \ev_r + \arccos\del{\frac xr}
@@ -119,7 +118,8 @@ a diffeomorphism.
 Now we use a pullback which will let us bring tensors the other way around.
 This is best expressed more formally:
 \[
-    \varphi^* \colon T_{\varphi(\xi)}\R^2_\text{polar} \to T_{\xi}\R^2_\text{Cartesian}
+    \varphi^* \colon T_{\varphi(\xi)}\R^2_\text{polar} \to
+    T_{\xi}\R^2_\text{Cartesian}
 \]
 $\xi$ is a point given in Cartesian coordinates. The components of a tensor
 $\tens\omega$ then transform like the following:
@@ -134,8 +134,8 @@ $\tens\omega$ then transform like the following:
 
 With our given 1-form, this collapses to a single lower index:
 \begin{align*}
-    [\varphi^* \omega^3]_i(\xi)
-    &= \omega^3_j(\varphi(\xi)) \pd{\varphi^j}{x^i}(\xi).
+    [\varphi^* \omega]_i(\xi)
+    &= \omega_j(\varphi(\xi)) \pd{\varphi^j}{x^i}(\xi).
     \intertext{%
         $\omega$ is just $\dif r$, so we have the components $\omega_r = 1$ and
         $\omega_\phi = 0$. $r$ is not an index which takes on numbers, but we
@@ -154,13 +154,10 @@ With our given 1-form, this collapses to a single lower index:
 This is now expressed in terms of Cartesian coordinates. It simplifies
 to use the polar coordinates to write this more compact. Then we have
 \[
-    [\varphi^* \omega^3]_i \dif x^i
-    = \omega^3
+    [\varphi^* \dif r]_i \dif x^i
+    = \dif r
     = \cos(\phi) \dif x + \sin(\phi) \dif y.
 \]
-
-This result seems “obvious” but this derivation should hold for arbitrary
-diffeomorphisms.
 
 \paragraph{Conversion of $\dif \phi$}
 
