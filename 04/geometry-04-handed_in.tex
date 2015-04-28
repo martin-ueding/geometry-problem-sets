@@ -191,6 +191,11 @@ The vectors given in the image are:
     \vec v_3 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}
 \]
 
+The form $\omega_3$ needs a step of preparation.
+\[
+    \omega_3 = \dif r^2 = 2 r \dif r
+\]
+
 Then we can compute:
 \begin{gather*}
     \omega_1(\vec v_1) = \dif x^1 (\partial_2) = 0 \\
@@ -199,9 +204,11 @@ Then we can compute:
     \omega_2(\vec v_1) = x^1 \, \dif x^2 (\partial_2) = x^1 \\
     \omega_2(\vec v_2) = x^1 \, \dif x^2 (-\partial_1-\partial_2) = -x^1 \\
     \omega_2(\vec v_3) = x^1 \, \dif x^2 (\partial_1-\partial_2) = - x^1  \\
-    \omega_3(\vec v_1) = \dif r (-\partial_1-\partial_2) = \sin(\phi) \\
-    \omega_3(\vec v_2) = \dif r (\partial_1-\partial_2) = -\cos(\phi) - \sin(\phi) \\
-    \omega_3(\vec v_3) = \dif r (\partial_1-\partial_2) = \cos(\phi) - \sin(\phi)
+    \omega_3(\vec v_1) = 2 r \dif r (-\partial_1-\partial_2) = 2 r \sin(\phi) \\
+    \omega_3(\vec v_2) = 2 r \dif r (\partial_1-\partial_2) = - 2 r
+    \sbr{\cos(\phi) + \sin(\phi)} \\
+    \omega_3(\vec v_3) = 2 r \dif r (\partial_1-\partial_2) = 2 r
+    \sbr{\cos(\phi) - \sin(\phi)}
 \end{gather*}
 
 Everything is summarized in Table~\ref{tab:values}.
@@ -213,7 +220,9 @@ Everything is summarized in Table~\ref{tab:values}.
         \midrule
         $\omega_1$ & $0$ & $-1$ & $1$ \\
         $\omega_2$ & $x^1$ & $- x^1$ & $- x^1$ \\
-        $\omega_3$ & $\sin(\phi)$ & $-\cos(\phi) - \sin(\phi)$ & $\cos(\phi) - \sin(\phi)$ \\
+        $\omega_3$ & $2 r \sin(\phi)$ & $- 2 r
+        \sbr{\cos(\phi) + \sin(\phi)}$ & $2 r
+        \sbr{\cos(\phi) - \sin(\phi)}$ \\
     \end{tabular}
     \caption{%
         Summary of value of the 1-forms on the vectors.
