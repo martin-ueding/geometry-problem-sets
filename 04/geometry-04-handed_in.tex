@@ -107,8 +107,8 @@ So we have $\omega^3 = \dif r$ given. We write the index 3 as an upper index
 since this 1-form itself has one lower covariant index. The transformation
 which brings us from Cartesian to polar coordinates is given by
 \begin{align*}
-    \varphi \colon &\R^2_\text{Cartesian} \mapsto \R^2_\text{polar} \\
-                &x \ev_x + y \ev_y \to \sqrt{x^2 + y^2} \, \ev_r + \arctan\del{\frac yx}
+    \varphi \colon &\R^2_\text{Cartesian} \to \R^2_\text{polar} \\
+                &x \ev_x + y \ev_y \mapsto \sqrt{x^2 + y^2} \, \ev_r + \arccos\del{\frac xr}
     \ev_\phi,
 \end{align*}
 although it is not well defined for all angles $\phi$. As long as we restrict
@@ -119,7 +119,7 @@ a diffeomorphism.
 Now we use a pullback which will let us bring tensors the other way around.
 This is best expressed more formally:
 \[
-    \varphi^* \colon T_{\varphi(\xi)}\R^2_\text{polar} \mapsto T_{\xi}\R^2_\text{Cartesian}
+    \varphi^* \colon T_{\varphi(\xi)}\R^2_\text{polar} \to T_{\xi}\R^2_\text{Cartesian}
 \]
 $\xi$ is a point given in Cartesian coordinates. The components of a tensor
 $\tens\omega$ then transform like the following:
@@ -162,7 +162,28 @@ to use the polar coordinates to write this more compact. Then we have
 This result seems “obvious” but this derivation should hold for arbitrary
 diffeomorphisms.
 
-\subsection{Value of forms on vectors}
+\paragraph{Conversion of $\dif \phi$}
+
+Using the same derivation we can derive an expression for $\dif \phi$:
+\begin{align*}
+    [\varphi^* \dif \phi]_i(\xi)
+    &= \dif \phi_j(\varphi(\xi)) \pd{\varphi^j}{x^i}(\xi) \\
+    &= 1 \cdot \pd{\varphi^\phi}{x^i}(\xi)
+\end{align*}
+The derivatives are given by:
+\[
+    \pd{\varphi^\phi}{x} = - \frac{y}{r^2} = - \frac{\sin(\phi)}r
+    \eqnsep
+    \pd{\varphi^\phi}{y} = \frac{x}{r^2} = \frac{\cos(\phi)}r
+\]
+Therefore
+\[
+    \dif \phi = - \frac{\sin(\phi)}r \, \dif x + \frac{\cos(\phi)}r \, \dif y.
+\]
+
+\subsection{Values of 1-forms on vectors}
+
+\paragraph{Values}
 
 The vectors given in the image are:
 \[
@@ -173,6 +194,19 @@ The vectors given in the image are:
     \vec v_3 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}
 \]
 
+Then we can compute:
+\begin{gather*}
+    \omega_1(\vec v_1) = \dif x^1 (\partial_2) = 0 \\
+    \omega_1(\vec v_2) = \dif x^1 (-\partial_1-\partial_2) = -1 \\
+    \omega_1(\vec v_3) = \dif x^1 (\partial_1-\partial_2) = 1 \\
+    \omega_2(\vec v_1) = x^1 \, \dif x^2 (\partial_2) = x^1 \\
+    \omega_2(\vec v_2) = x^1 \, \dif x^2 (-\partial_1-\partial_2) = -x^1 \\
+    \omega_2(\vec v_3) = x^1 \, \dif x^2 (\partial_1-\partial_2) = - x^1  \\
+    \omega_3(\vec v_1) = \dif r (-\partial_1-\partial_2) = \sin(\phi) \\
+    \omega_3(\vec v_2) = \dif r (\partial_1-\partial_2) = -\cos(\phi) - \sin(\phi) \\
+    \omega_3(\vec v_3) = \dif r (\partial_1-\partial_2) = \cos(\phi) - \sin(\phi)
+\end{gather*}
+
 Everything is summarized in Table~\ref{tab:values}.
 
 \begin{table}[htbp]
@@ -180,15 +214,144 @@ Everything is summarized in Table~\ref{tab:values}.
     \begin{tabular}{c|ccc}
         & $\vec v_1$ & $\vec v_2$ & $\vec v_3$ \\
         \midrule
-        $\omega_1$ & 0 & & \\
-        $\omega_2$ & & & \\
-        $\omega_3$ & & & \\
+        $\omega_1$ & $0$ & $-1$ & $1$ \\
+        $\omega_2$ & $x^1$ & $- x^1$ & $- x^1$ \\
+        $\omega_3$ & $\sin(\phi)$ & $-\cos(\phi) - \sin(\phi)$ & $\cos(\phi) - \sin(\phi)$ \\
     \end{tabular}
     \caption{%
-        Summary of value of the forms on the vectors.
+        Summary of value of the 1-forms on the vectors.
     }
     \label{tab:values}
 \end{table}
+
+\paragraph{Geometric interpretation}
+
+1-forms are densities in one dimension. Examples are the force $\vec F$ or the
+electric field $\vec E$. So the value $\omega(\vec v)$ then gives the amount of
+“work” done along the tangential vector $\vec v$ against the “force” $\omega$.
+
+If one uses the metric and computes the vector which are dual to the 1-forms,
+this is a scalar product. But we think that this is exactly what is \emph{not}
+wanted here.
+
+\subsection{Values of 2-forms on parallelograms}
+
+For your convenience, all the results are aggregated in
+Table~\ref{tab:values2}. The derivations are following, of course.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c|ccc}
+        & $(\vec v_1, \vec w_1)$ & $(\vec v_2, \vec w_2)$ & $(\vec v_3, \vec w_3)$ \\
+        \midrule
+        $\eta_1$ & $1$ & $2$ & $-1$ \\
+        $\eta_2$ & $x^1+x^2$ & $2\sbr{x^1+x^2}$ & $-\sbr{x^1+x^2}$ \\
+        $\eta_3$ & $1$ & $2$ & $-1$
+    \end{tabular}
+    \caption{%
+        Summary of value of the 2-forms on the vector pairs.
+    }
+    \label{tab:values2}
+\end{table}
+
+\paragraph{First form}
+
+The first value is given by
+\begin{align*}
+    \eta_1(\vec v_1, \vec w_1)
+    &= \sbr{\dif x^1 \wedge \dif x^2}(\vec v_1, \vec w_1) \\
+    &= \sbr{\dif x^1 \wedge \dif x^2} \del{
+        \begin{pmatrix}
+            1 \\ 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            1 \\ 1
+        \end{pmatrix}
+    } \\
+    &= \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1, \ev_1 + \ev_2} \\
+    &= \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1, \ev_1}
+    + \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1, \ev_2}. \\
+    \intertext{%
+        The first part is zero. The differential form must be antisymmetric in
+        its arguments. The second summand is 1.
+    }
+    &= 1.
+\end{align*}
+
+The second one:
+\begin{align*}
+    \eta_1(\vec v_2, \vec w_2)
+    &= \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1 - \ev_2, 2 \ev_2} \\
+    &= 2 \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1, \ev_2}
+    - 2 \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_2, \ev_2}
+    \intertext{%
+        Here the first term is one, the second term is zero.
+    }
+    &= 2
+\end{align*}
+
+And the last one with $\eta_1$.
+\begin{align*}
+    \eta_1(\vec v_3, \vec w_3)
+    &= \sbr{\dif x^1 \wedge \dif x^2} \del{- \ev_1, \ev_2} \\
+    &= - \sbr{\dif x^1 \wedge \dif x^2} \del{\ev_1, \ev_2} \\
+    &= - 1
+\end{align*}
+
+\paragraph{Second form}
+
+For 2-forms, there is just one basis element, namely $\dif x^1 \wedge \dif
+x^2$. So all 2-forms are just scalar densities and cannot depend on the
+direction. 2-forms are also Hodge dual to scalars, which also do not depend on
+the direction. Therefore, all those 2-forms are scalar multiples of each other.
+This makes it really easy to compute the remaining values.
+
+First we have to rewrite $\eta_2$ in terms of this \emph{one} basis value. We
+think that this form of $\eta_2$ is just given this way to encourage people to
+think before doing a lot of calculations. The wedge product is antisymmetric,
+so this can be written more compact as
+\[
+    \eta_2
+    = \sbr{x^1 \, \dif x^1 \wedge \dif x^2 - x^2 \, \dif x^2 \wedge \dif x^1}
+    = \sbr{ x^1 + x^2} \sbr{\dif x^1 \wedge \dif x^2}
+    = \sbr{ x^1 + x^2} \eta_1.
+\]
+Therefore, the values are all the same, just multiplied with that factor.
+
+\paragraph{Third form}
+
+The third form is a 2-form as well, so it must be a scalar multiple of $\dif
+x^1 \wedge \dif x^2$.
+\begin{align*}
+    \eta_3
+    &= r \, \dif r \wedge \dif \phi
+    \intertext{%
+        Now we use the expressions in the Cartesian dual basis that we have
+        derived previously.
+    }
+    &= r \sbr{\cos(\phi) \dif x + \sin(\phi) \dif y} \wedge
+    \sbr{-\frac{\sin(\theta)}r \dif x + \frac{\cos(\phi)}r \dif y}
+    \intertext{%
+        We would get four terms in the multiplication. There are only two
+        nonzero ones since the wedge product is antisymmetric and the first and
+        last terms would cancel then. We only keep the inner and outer terms.
+    }
+    &= \cos(\phi)^2 \dif x \wedge \dif y - \sin(\phi)^2 \dif y \wedge
+    \dif x \\
+    \intertext{%
+        Here we use the antisymmetry of the wedge product.
+    }
+    &= \cos(\phi)^2 \dif x \wedge \dif y + \sin(\phi)^2 \dif x \wedge
+    \dif y \\
+    \intertext{%
+        Now we can factor out the basis element of the 2-forms.
+    }
+    &= \sbr{\cos(\phi)^2 + \sin(\phi)^2} \dif x \wedge \dif y \\
+    &= \dif x \wedge \dif y
+\end{align*}
+So this is exactly $\eta_1$ and since the 2-forms cannot depend on direction in
+$\R^2$, the values when acting on the vector pairs are exactly the as for
+$\eta_1$.
 
 \section{Straight forward calculations}
 \label{homework:2}
