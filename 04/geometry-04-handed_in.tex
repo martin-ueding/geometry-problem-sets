@@ -169,7 +169,7 @@ This is best expressed more formally:
     T_{\xi}\R^2_\text{Cartesian}
 \]
 $\xi$ is a point given in Cartesian coordinates. The components of a tensor
-$\tens\omega$ then transform like the following:
+$\tens\omega$ then transform like the following: \parencite[(A.1.16)]{Metsch/physics754}
 \[
     [\varphi^* \omega]^{\nu_1 \ldots}{}_{\mu_1\ldots}(\xi) =
     \omega^{\alpha_1 \ldots}{}_{\beta_1\ldots} (\varphi(\xi))
@@ -713,7 +713,76 @@ is only one basis vector, $\dif x^1 \wedge \dif x^2$. This means that the
 \section{Pullback}
 \label{homework:4}
 
+\subsection{Linearity}
 
+\begin{align*}
+    F^*[\omega + k \theta](\vec v_1, \ldots, \vec v_p)
+    &= [\omega + k \theta] \del{F(\vec v_1), \ldots, F(\vec v_p)}
+    \intertext{%
+        Now we use the linearity in the addition of forms.
+    }
+    &= \omega\del{F(\vec v_1), \ldots, F(\vec v_p)}
+    + k \theta \del{F(\vec v_1), \ldots, F(\vec v_p)}
+\end{align*}
+And that shows the linearity of the pullback.
+
+\subsection{Product rule}
+
+The pullback is defined by
+\begin{align*}
+    \sbr{F^*(\omega \wedge \theta)}_{\alpha\ldots\beta\ldots}
+    &= [\omega \wedge \theta]_{\gamma\ldots\delta\ldots}
+    \pd{F^\gamma}{x^\alpha} \ldots
+    \pd{F^\delta}{x^\beta} \ldots.
+    \intertext{%
+        Using the definition of the wedge product together with the idempotent
+        antisymmetrization notation, this can be written explicitly as
+    }
+    &= \frac{[p+q]!}{p!q!} \omega_{[\gamma\ldots} \theta_{\delta\ldots]}
+    \pd{F^\gamma}{x^\alpha} \ldots
+    \pd{F^\delta}{x^\beta} \ldots.
+    \intertext{%
+        The partial derivatives are just plain numbers and commute with
+        everything else. It breaks the antisymmetrization notation, but it will
+        look like this:
+    }
+    &= \frac{[p+q]!}{p!q!} \omega_{[\gamma\ldots}
+    \pd{F^\gamma}{x^\alpha} \ldots
+    \theta_{\delta\ldots]}
+    \pd{F^\delta}{x^\beta} \ldots.
+    \intertext{%
+        Now there are two individual pullbacks. Here the notation works again.
+    }
+    &= \frac{[p+q]!}{p!q!} [F^*\omega]_{[\gamma\ldots}
+    [F^*\theta]_{\delta\ldots]}
+    \intertext{%
+        This is the definition of the wedge product again. So we can write this
+        as the desired form,
+    }
+    &= \sbr{F^*\omega \wedge F^*\theta}_{\gamma\ldots\delta\ldots}.
+\end{align*}
+Omitting the indices will give the form given on the problem set.
+
+\subsection{Chain rule}
+
+The definition of the pullback gives
+\begin{align*}
+    \sbr{[G \circ F]^* \omega}_{\alpha\ldots}
+    &= \omega_{\gamma\ldots} \pd{[G \circ F]^\gamma}{x^\alpha} \ldots.
+    \intertext{%
+        Then we apply the chain rule to the linear maps.
+    }
+    &= \underbrace{\omega_{\gamma\ldots}
+    \pd{G^\gamma}{F^\mu}}_{[G^*\omega]_{\mu\ldots}} \pd{F^\mu}{x^\alpha} \ldots.
+    \intertext{%
+        We identify the pullback with $G$ there. The whole expression then is
+    }
+    &= \sbr{F^*[G^*\omega]}_{\alpha\ldots}
+    \intertext{%
+        or
+    }
+    &= \sbr{[F^* \circ G^*] \omega}_{\alpha\ldots}.
+\end{align*}
 
 \end{document}
 
