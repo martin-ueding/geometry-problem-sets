@@ -409,6 +409,126 @@ $\eta_1$.
 \section{Straight forward calculations}
 \label{homework:2}
 
+\subsection{Forms and inner derivative}
+
+\paragraph{Exterior derivative}
+
+The exterior derivative of $\theta$ can be computed using the graded Leibniz
+rule.
+\begin{align*}
+    \dif \theta
+    &= \dif \sbr{\exp(x^1 x^2) \dif x^1 - \dif x^2} \\
+    \intertext{%
+        We use the linearity of the exterior derivative.
+    }
+    &= \dif \, \big[\underbrace{\exp(x^1 x^2)}_\text{0-form} \underbrace{\dif
+    x^1}_\text{1-form} \big] - \dif \sbr{\dif x^2} \\
+    \intertext{%
+        Now we can use the graded Leibniz rule.
+    }
+    &= \dif \exp(x^1 x^2) \wedge \dif x^1 + [-1]^0 \exp(x^1 x^2) \wedge \dif^2
+    x^1
+    \intertext{%
+        The $[-1]^0$ comes from the graded Leibniz rule. The $\dif^2 x^1 = 0$,
+        so we can drop the second summand. We now have to apply the chain rule
+        for the exponential function.
+    }
+    &= \exp(x^1 x^2) \dif[x^1 x^2] \wedge \dif x^1
+    \intertext{%
+        The square bracket now contains a product of two 0-forms. We apply the
+        graded Leibniz rule again.
+    }
+    &= \exp(x^1 x^2) \sbr{\dif x^1 \wedge x^2 + [-1]^0 x^1 \wedge \dif x^2}
+    \wedge \dif x^1 \\
+    &= \exp(x^1 x^2) \sbr{x^2 \dif x^1 + x^1 \dif x^2} \wedge \dif x^1 \\
+    \intertext{%
+        The only non-zero term is the product of $\dif x^2$ with $\dif x^1$. We
+        are left with a single term.
+    }
+    &= \exp(x^1 x^2) x^1 \dif x^2 \wedge \dif x^1 \\
+    \intertext{%
+        As a last step we use the antisymmetry of the wedge product.
+    }
+    &= - \exp(x^1 x^2) x^1 \dif x^1 \wedge \dif x^2
+\end{align*}
+
+\paragraph{Wedge product}
+
+\begin{align*}
+    \omega \wedge \theta
+    &= \sbr{2x^1 x^2 \dif x^1 + \sbr{[x^1]^2 + 3} \dif x^2} \wedge
+    \sbr{\exp(x^1 x^2) \dif x^1 - \dif x^2}
+    \intertext{%
+        Again, there are only two interesting terms.
+    }
+    &= - 2x^1 x^2 \dif x^1 \wedge \dif x^2 + \sbr{[x^1]^2 + 3} \exp(x^1 x^2) \dif
+    x^2 \wedge \dif x^1
+    \intertext{%
+        Using the antisymmetry, this can be written as a scalar multiple of the
+        one basis element.
+    }
+    &= \sbr{- 2x^1 x^2 - \sbr{[x^1]^2 + 3} \exp(x^1 x^2)} \dif x^1 \wedge \dif x^2
+\end{align*}
+
+\paragraph{Inner derivative}
+
+First we need to have the components of our 2-form $\dif \theta$:
+\[
+    [\dif \theta]_{12} = - [\dif \theta]_{21} =
+    - \exp(x^1 x^2) x^1
+    \eqnsep
+    [\dif \theta]_{11} = [\dif \theta]_{22} = 0.
+\]
+Now we can apply the inner derivative:
+\[
+    [i_{\vec X}(\dif \theta)]_k = X^j [\dif \theta]_{jk}
+\]
+In order to get a 1-form out, we need to contract the components with the basis
+elements of the dual space again.
+\begin{align*}
+    i_{\vec X}(\dif \theta)
+    &= X^j [\dif \theta]_{jk} \dif x^k
+    \intertext{%
+        The only nonzero components are then:
+    }
+    &= X^1 [\dif \theta]_{12} \dif x^2 + X^2 [\dif \theta]_{21} \dif x^1
+    \intertext{%
+        We use the antisymmetry of the 2-form.
+    }
+    &= X^1 [\dif \theta]_{12} \dif x^2 - X^2 [\dif \theta]_{12} \dif x^1
+    \intertext{%
+        Now we can extract the components of the 2-form.
+    }
+    &= [\dif \theta]_{12} \sbr{X^1 \dif x^2 - X^2 \dif x^1}
+    \intertext{%
+        Now we insert the explicit form of the components.
+    }
+    &= - \exp(x^1 x^2) x^1 \sbr{\dif x^2 - [x^1]^2 x^2 \dif x^1}
+\end{align*}
+
+\subsection{Pullback}
+
+We have a map which maps from polar coordinates to Cartesian coordinates. This
+is exactly the other way around compared to the first problem on this sheet. We
+have
+\begin{align*}
+    \sbr{F^*[\dif x^1 \wedge \dif x^2]}_{ij}(y)
+    &= [\dif x^1 \wedge \dif x^2]_{ab} \del{F(y)} \pd{F^a}{y^i} \pd{F^b}{y^j}.
+    \intertext{%
+        The components of $\dif x^1 \wedge \dif x^2$ are the same as
+        $\epsilon_{ab}$, so this simply becomes
+    }
+    &= \pd{F^1}{y^i} \pd{F^2}{y^j} - \pd{F^2}{y^i} \pd{F^1}{y^j}.
+\end{align*}
+The only interesting components are $(ij) = (12)$ and $(ij) = (21)$. The pulled
+back form is also antisymmetric. Since the coordinates here are $r$ and $\phi$,
+the result is
+\[
+    F^*[\dif x^1 \wedge \dif x^2] = r \dif r \wedge \dif \theta.
+\]
+This is not surprising at all. This is the surface element one has used in
+integration in polar coordinates all along.
+
 \section{Hyperbolid coordinates}
 \label{homework:3}
 
