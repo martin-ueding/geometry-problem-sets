@@ -412,6 +412,183 @@ $\eta_1$.
 \section{Hyperbolid coordinates}
 \label{homework:3}
 
+\subsection{Inverses and domains}
+
+The functions given are:
+\[
+    u := \frac12 \sbr{\ln(x^1) - \ln(x^2)}
+    \eqnsep
+    v := \sqrt{x^1 x^2}.
+\]
+
+\paragraph{Inverses}
+
+The inverses can be computed by solving $v$ for $x^i$ and inserting that into
+the definition of $u$. For $x^1$ we start with the defining equations.
+\begin{align*}
+    u &= \frac12 \sbr{\ln(x^1) - \ln(x^2)}
+    &
+    v &= \sqrt{x^1 x^2} \\
+    %
+    u &= \frac12 \sbr{\ln(x^1) - \ln(x^2)}
+    &
+    \frac{v^2}{x^1} &= x^2 \\
+    %
+    u &= \frac12 \sbr{\ln(x^1) - \ln\del{\frac{v^2}{x^1}}}
+    &
+    \frac{v^2}{x^1} &= x^2 \\
+    %
+    u &= \frac12 \ln\del{\frac{[x^1]^2}{v^2}}
+    &
+    \frac{v^2}{x^1} &= x^2 \\
+    %
+    u &= \ln\del{\frac{x^1}{v}}
+    &
+    \frac{v^2}{x^1} &= x^2 \\
+    %
+    v \exp(u) &= x^1
+    &
+    \frac{v^2}{x^1} &= x^2
+\end{align*}
+
+We start exactly the same for the second equation.
+\begin{align*}
+    u &= \frac12 \sbr{\ln(x^1) - \ln(x^2)}
+    &
+    v &= \sqrt{x^1 x^2} \\
+    %
+    u &= \frac12 \sbr{\ln(x^1) - \ln(x^2)}
+    &
+    \frac{v^2}{x^2} &= x^1 \\
+    %
+    u &= \frac12 \sbr{\ln\del{\frac{v^2}{x^2}} - \ln(x^2)}
+    &
+    \frac{v^2}{x^2} &= x^1 \\
+    %
+    u &= \ln\del{\frac{v}{x^1}}
+    &
+    \frac{v^2}{x^2} &= x^1 \\
+    %
+    v \exp(-u) &= x^2
+    &
+    \frac{v^2}{x^2} &= x^1
+\end{align*}
+
+So altogether we have
+\[
+    x^1 = v \exp(u)
+    \eqnsep
+    x^2 = v \exp(-u).
+\]
+
+\paragraph{Domains}
+
+We have $x^1 \in (0, \infty)$ and $x^2 \in (0, \infty)$. We insert this into the
+formulas and have that $x^1/x^2 \in (0, \infty)$ and therefore $u \in (-\infty,
+\infty)$. For $v$, it simply is $(0, \infty)$.
+
+\subsection{Compute and visualize forms}
+
+\paragraph{Compute $\dif u$}
+
+\begin{align*}
+    \dif u
+    &= \frac12 \dif \sbr{\ln(x^1) - \ln(x^2)} \\
+    &= \frac12 \sbr{\frac{1}{x^1} \dif x^1 - \frac{1}{x^2} \dif x^2}
+\end{align*}
+
+\paragraph{Compute $\dif v$}
+
+\begin{align*}
+    \dif v
+    &= \dif \sqrt{x^1 x^2} \\
+    &= \frac{1}{2 \sqrt{x^1 x^2}} \dif \sbr{x^1 x^2} \\
+    &= \frac{1}{2 \sqrt{x^1 x^2}} \sbr{\dif x^1 \wedge x^2 + x^1 \wedge \dif x^2} \\
+    \intertext{%
+        The wedge with scalars (0-forms) does not differ from ordinary
+        multiplication.
+    }
+    &= \frac{1}{2 \sqrt{x^1 x^2}} \sbr{x^2 \dif x^1 + x^1 \dif x^2}
+\end{align*}
+
+\paragraph{Compute $\dif u \wedge \dif v$}
+
+Now we have to compute the wedge product of the two 1-forms.
+\begin{align*}
+    \dif u \wedge \dif v
+    &= \sbr{\frac12 \sbr{\frac{1}{x^1} \dif x^1 - \frac{1}{x^2} \dif x^2}}
+    \wedge \sbr{\frac{1}{2 \sqrt{x^1 x^2}} \sbr{x^2 \dif x^1 + x^1 \dif x^2}}
+    \\
+    \intertext{%
+        We move all the free scalars to the front of the expression.
+    }
+    &= \frac14 \frac{1}{\sqrt{x^1 x^2}} \sbr{\frac{1}{x^1} \dif x^1 - \frac{1}{x^2} \dif x^2}
+    \wedge \sbr{x^2 \dif x^1 + x^1 \dif x^2}
+    \\
+    \intertext{%
+        Only the inner and outer terms will give non-zero 2-forms. Therefore we
+        only get two terms out of this multiplication.
+    }
+    &= \frac14 \frac{1}{\sqrt{x^1 x^2}} \sbr{\dif x^1 \wedge \dif x^2 - \dif
+    x^2 \wedge \dif x^1} \\
+    \intertext{%
+        Using the antisymmetry of the wedge product we can write this as a
+        simple 2-form.
+    }
+    &= \frac12 \frac{1}{\sqrt{x^1 x^2}} \dif x^1 \wedge \dif x^2
+\end{align*}
+
+\paragraph{Visualizations}
+
+\Textcite[189]{penrose-road_to_reality} writes “A good geometrical way to think
+of $\dif \Phi$ is in terms of a system of \emph{contour lines} on $\mathscr
+S$.” where $\mathscr S$ (script “S”) is is the domain surface of the scalar
+field $\Phi$. So the first visualization we choose is such a set of contour
+lines, see Figure~\ref{fig:contour}. The two sets of contour lines are
+orthogonal at every point.
+
+We can also show the 1-forms as a covector field in the dual space, this is
+done in Figure~\ref{fig:covector}. The two covector fields are orthogonal to
+each other at every point. The covector fields are also orthogonal to the
+contour lines they correspond to.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.45\linewidth]{contour_u.pdf}
+    \hfill
+    \includegraphics[width=.45\linewidth]{contour_v.pdf}
+    \caption{%
+        Visualization of $\dif u$ and $\dif v$ as a set of contour lines on
+        $\R^2$.
+    }
+    \label{fig:contour}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.45\linewidth]{vec_u.pdf}
+    \hfill
+    \includegraphics[width=.45\linewidth]{vec_v.pdf}
+    \caption{%
+        Visualization of $\dif u$ and $\dif v$ as a covector field on
+        $[\R^2]^*$.
+    }
+    \label{fig:covector}
+\end{figure}
+
+The 2-form $\dif u \wedge \dif v$ can also be visualized. Since the manifold is
+$\R^2$, the space $\Lambda^2 \R^2$ only has one dimension at each point, there
+is only one basis vector, $\dif x^1 \wedge \dif x^2$. This means that the
+2-form can be visualized as an area density, see Figure~\ref{fig:density}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.45\linewidth]{density_uv.pdf}
+    \caption{%
+        Visualization of $\dif u \wedge \dif v$ as an area density.
+    }
+    \label{fig:density}
+\end{figure}
 
 \section{Pullback}
 \label{homework:4}
