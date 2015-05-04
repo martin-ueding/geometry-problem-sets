@@ -65,6 +65,105 @@
 \section{Winding form}
 \label{homework:1}
 
+We will use $x := x^1$ and $y := x^2$ to ease the notation of squared.
+
+\subsection{Closed}
+
+We have
+\[
+    \omega := \frac{1}{x^2 + y^2} \sbr{x \dif y - y \dif x}.
+\]
+Computation of the exterior derivative does not involve any new principles.
+First the product rule:
+\begin{align*}
+    \dif \omega
+    &= \dif \sbr{\frac{1}{x^2 + y^2}} \wedge \sbr{x \dif y - y \dif x}
+    + \frac{1}{x^2 + y^2} \dif \sbr{x \dif y - y \dif x} \\
+    \intertext{%
+        We use the chain rule next:
+    }
+    &= -\frac{1}{[x^2 + y^2]^2} [2 x \dif x + 2 y \dif y] \wedge \sbr{x \dif y - y \dif x}
+    + \frac{1}{x^2 + y^2} [\dif x \wedge \dif y - \dif y \wedge \dif x] \\
+    \intertext{%
+        We expand the brackets in the first summand and use the antisymmetry in
+        the second.
+    }
+    &= -\frac{1}{[x^2 + y^2]^2} [2 x^2 \dif x \wedge \dif y - 2 y^2 \dif y
+    \wedge \dif x]
+    + \frac{2}{x^2 + y^2} \dif x \wedge \dif y \\
+    \intertext{%
+        Using the antisymmetry in the first term, we can factor out $[x^2 +
+        y^2]$.
+    }
+    &= -\frac{2}{x^2 + y^2} \dif x \wedge \dif y + \frac{2}{x^2 + y^2} \dif x \wedge \dif y \\
+    &= 0
+\end{align*}
+So $\omega$ is a closed form.
+
+\subsection{Pullback}
+
+$\omega$ is defined on $U$. It is a 1-form. On $\gamma$ it still is a 1-form,
+but the basis there is just $\dif t$.
+The pullback is generally given by
+\begin{align*}
+    [\gamma^*\omega](\tau) \dif t
+    &= \omega_i(\gamma(\tau)) \pd{\gamma^i}{t}(\tau) \dif t.
+    \intertext{%
+        Since the domain of $\gamma$ only has one dimension, there is no
+        summation over $t$ as there would be in case of multiple basis
+        elements. The partial derivatives of $\gamma$ are:
+        \[
+            \dot{\vec \gamma}(t) = n
+            \begin{pmatrix}
+                - \sin(nt) \\ \cos(nt)
+            \end{pmatrix}.
+        \]
+        We therefore have
+    }
+    &= \sbr{
+        \frac{1}{x^2+y^2} \sbr{y n \sin(nt) + x n \cos(nt)} \dif t
+    }_{\vec x = \vec\gamma(\tau)} \\
+    &= \sbr{
+        \frac{n}{x^2+y^2} \sbr{x \cos(nt) + y \sin(nt)} \dif t
+    }_{\vec x = \vec\gamma(\tau)} \\
+    \intertext{%
+        We now evaluate this form at the position $\vec\gamma(t)$.
+    }
+    &= \frac{n}{\cos(nt)^2+\sin(nt)^2} \sbr{\cos(nt)^2 + \sin(nt)^2} \dif t \\
+    &= n \dif t
+\end{align*}
+
+\subsection{Integral}
+
+The integral is given by
+\[
+    \intop_\gamma \omega
+    = \intop_{(0, 2\piup)} \gamma^*\omega
+    = n \intop_{(0, 2\piup)} \dif t
+    \overset{\text{FT}}= n \intop_{\partial(0, 2\piup)} t
+    = n [- 0 + 2\piup]
+    = 2 n \piup,
+\]
+where we have used the fundamental theorem of exterior calculus for the third
+equality.
+
+\subsection{Not exact}
+
+If $\omega$ was exact, then there would be an $\alpha$ such that $\omega = \dif
+\alpha$ would hold globally. If that was the case, the integral would have
+vanished since a closed curve has no boundary.
+\[
+    \intop_\gamma \dif \alpha \overset{\text{FT}}= \intop_{\partial \gamma}
+    \alpha = 0
+\]
+This curve $\gamma$ can also be thought as the boundary of the unit disk. The
+boundary of a boundary is zero, so $\partial^2 = 0$ ($\partial$ is nilpotent),
+just like $\dif^2 = 0$. This is a hint at the duality of integration domains
+and forms.
+
+The integral over a closed curve (around a hole in the domain) does not vanish.
+Therefore, the form $\omega$ cannot be exact.
+
 \section{Pullback and exterior derivative}
 \label{homework:2}
 
