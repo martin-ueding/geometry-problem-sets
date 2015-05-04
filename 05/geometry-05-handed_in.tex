@@ -167,6 +167,35 @@ Therefore, the form $\omega$ cannot be exact.
 \section{Pullback and exterior derivative}
 \label{homework:2}
 
+The pullback of the exterior derivative is given by:
+\[
+    [F^* \dif \omega]_{ij\ldots l}(x) = [\dif \omega]_{ab\ldots d} (F(x))
+    \pd{F^a}{x^i}
+    \pd{F^b}{x^j}
+    \ldots
+    \pd{F^d}{x^l}
+    .
+\]
+The other direction requires a few more steps. We first apply the exterior
+derivative onto the pullback and add another index since we go from a p-form to
+a $(p+1)$-form.
+\begin{align*}
+    \sbr{\dif [F^*\omega]_{j\ldots l}}_{i}(x)
+    &= \dif \sbr{\omega_{b\ldots d} (F(x))
+        \pd{F^b}{x^j}
+        \ldots
+        \pd{F^d}{x^l}
+    }_i
+    \intertext{%
+        Now we can apply the chain rule to the $\omega$ and get another
+        $\partial F/\partial x$ out which needs to be summed over.
+    }
+    &= [\dif \omega]_{ab\ldots d} (F(x)) \pd{F^a}{x^i} \pd{F^b}{x^j} \ldots
+    \pd{F^d}{x^l}
+\end{align*}
+The exterior derivatives of the partial derivatives of $F$ vanish since the
+partial derivatives commute whereas the exterior derivative is antisymmetric.
+
 \section{Poincaré lemma}
 
 \label{homework:3}
