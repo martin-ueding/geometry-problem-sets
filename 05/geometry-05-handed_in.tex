@@ -13,6 +13,8 @@
     splittopskip=\topskip,
 ]{theorem}{Theorem}[section]
 
+\usepackage{../my-boxes}
+
 \hypersetup{
     pdftitle=
 }
@@ -254,11 +256,94 @@ We write the pullback in its general form here:
     \pd{j_T^a}{x^i}(\vec x)
     \ldots
     \pd{j_T^c}{x^k}(\vec x).
+    \intertext{%
+        Now there are only Latin indices and it condenses nicely to
+    }
+    &= \phi(T, \vec x)_{a \ldots c}
+    \deltaup^a_i \ldots \deltaup^c_k.
+    \intertext{%
+        Contracting the now unneeded indices, we have the final form:
+    }
+    \sbr{j_T^* \phi}_{i\ldots k}(\vec x)
+    &= \phi(T, \vec x)_{i \ldots k}.
 \end{align*}
 
 Using this general form, we know that $\omega$ transform as one would expect,
 and $j_T^* \psi = 0$ since the $\dif t$ component of $\phi$ did not get summed
 over.
+
+In summary: $j_T^*$ either sets the time to $T$ when $\phi$ does not contain
+$\dif t$, else it is mapped to zero.
+
+\subsection{Linear map}
+
+\paragraph{Exterior derivatives}
+
+The exterior derivative of the general $\phi$ is
+\[
+    \dif \phi = a_{,\lambda} \del{\{x^\mu\}} \dif x^\lambda \wedge \bigwedge_{n = 1}^{p} \dif x^{\nu_n}.
+\]
+Not all summands in $\sum_\lambda$ contribute. In the case $\lambda \in
+\{\nu_n\}$ the antisymmetry of the wedge product will set this term to zero.
+
+There are no terms with $a$ (without derivatives) since the application of the
+exterior derivative on any of the forms gives zero, $\dif^2 = 0$.
+
+\begin{question}
+    One writes $\dif^2 = 0$ but also $\int \dif^3x \, f(\vec x)$. How does that
+    fit together?
+\end{question}
+
+There is an additional remark we can make for $\omega$ and $\psi$ since we know
+that do not and do contain a $\dif t = \dif x^0$ term. In $\omega$, we can be
+sure there will not be another $\dif t$ term and therefore we can write it like
+so:
+\[
+    \dif \omega = \sbr{a_{,0}(\tens x) \dif t +  a_{,l}(\tens x) \dif x^l} \wedge
+    \bigwedge_{n = 1}^{p} \dif x^{i_n}.
+\]
+
+For $\psi$ we know that there is a $\dif t$ term and that this will cancel.
+$\dif \psi$ therefore is simpler than $\dif \omega$:
+\[
+    \dif \psi = a_{,l}(\tens x) \dif x^l \wedge
+    \bigwedge_{n = 1}^{p} \dif x^{i_n}.
+\]
+
+\paragraph{Case without $\dif t$}
+
+We have seen in the previous subsection that these kinds of forms, $\omega$,
+transform in the pullback as usual. The linear mapping $K$ acts on those with
+$K(\omega) = 0$. This also tells us that $\dif(K \omega) = 0$ as well.
+
+$\dif \omega$ consists of two parts, one that contains $\dif t$ and one which
+does not. The application of $K$ to it looks like this:
+\begin{align*}
+    K(\dif \omega)
+    &= K\del{\sbr{a_{,0}(\tens x) \dif t + a_{,l}(\tens x) \dif x^l} \wedge
+    \bigwedge_{n = 1}^{p} \dif x^{i_n}} \\
+    \intertext{%
+        $K$ looks linear, so the part without $\dif t$ will give zero.
+    }
+    &= K\del{a_{,0}(\tens x) \dif t \wedge \bigwedge_{n = 1}^{p} \dif x^{i_n}}
+    \intertext{%
+        Now we insert the definition of $K$.
+    }
+    &= \sbr{\intop_{[0,1]} a_{,0}(\tens x) \dif t} \bigwedge_{n = 1}^{p} \dif x^{i_n}
+    \intertext{%
+        We could regard $a$ as being defined on $I$ only and then use the
+        fundamental theorem of exterior calculus and rewrite this as
+    }
+    &= \sbr{\intop_{\partial[0,1]} a(\tens x)} \bigwedge_{n = 1}^{p} \dif x^{i_n}
+    \intertext{%
+        which is fancy for
+    }
+    &= \sbr{a(1, \vec x) - a(0, \vec x)} \bigwedge_{n = 1}^{p} \dif x^{i_n}
+    \intertext{%
+        Since the pullback with $j_T^*$ is rather simple, we can write this as
+    }
+    &= j_1^*(\omega) - j_0^*(\omega).
+\end{align*}
 
 \end{document}
 
