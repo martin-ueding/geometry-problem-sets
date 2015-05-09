@@ -199,8 +199,58 @@ partial derivatives commute whereas the exterior derivative is antisymmetric.
 This show that the pullback and the exterior derivative commute.
 
 \section{Poincaré lemma}
-
 \label{homework:3}
+
+\subsection{Two pullbacks}
+
+\paragraph{Monomials}
+
+First we want to define the monomials that we use. Let $\{i_n\}$ be an index
+set with $p$ elements. Then we can define a $p$-form which does not contain
+$\dif t$:
+\[
+    \omega := a\del{\{x^i\}} \bigwedge_{n = 1}^p \dif x^{i_n}.
+\]
+Similarly, we can define a $p$-form that does contain $\dif t$. Here we index
+set must have one element less in order to still give a $p$-form.
+\[
+    \psi := a\del{t, \{x^i\}} \dif t \wedge \bigwedge_{n = 1}^{p-1} \dif x^{i_n}
+\]
+We can also use the index 0 to denote the time as usual in SR and GR.
+
+\paragraph{Pullback without $\dif t$}
+
+The pullback then is, for $T \in \{0, 1\}$:
+\[
+    \sbr{j_T^* \omega}_{i\ldots k}(\vec x)
+    = \omega(T, \vec x)_{a\ldots c}
+    \pd{j_T^a}{x^i}(\vec x)
+    \ldots
+    \pd{j_T^c}{x^k}(\vec x).
+\]
+
+\paragraph{Pullback with $\dif t$}
+
+And for the form including $\dif t$ we have the following. We need Greek
+indices to include the $t$-component of the differential forms here.
+\begin{align*}
+    \sbr{j_T^* \psi}_{i\ldots k}(\vec x)
+    &= \psi(T, \vec x)_{\alpha\ldots \gamma}
+    \pd{j_T^\alpha}{x^i}(\vec x)
+    \ldots
+    \pd{j_T^\gamma}{x^k}(\vec x).
+    \intertext{%
+        When one of $\alpha\ldots\gamma$ is 0, we have $j_T^0(\vec x) = T$.
+        Those functions are constant with respect to any $x^i$, so those
+        derivative vanish. This means that we can go back to Latin indices for
+        the contracted ones.
+    }
+    &= \psi(T, \vec x)_{a \ldots c}
+    \pd{j_T^a}{x^i}(\vec x)
+    \ldots
+    \pd{j_T^c}{x^k}(\vec x).
+\end{align*}
+
 
 \end{document}
 
