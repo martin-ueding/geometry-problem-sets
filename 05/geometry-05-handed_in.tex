@@ -413,6 +413,50 @@ Now we can look at the second part.
 This is the exact negative of the previous term. Summed together, they give
 zero, just like was required for the left hand side.
 
+\subsection{Forms on contractible set}
+
+\begin{question}
+    When I took a GR lecture, the requirement for the Poincaré lemma was that
+    the domain of the closed form is star shaped. The example $\R^2 \setminus
+    \{ \vec 0 \}$ considered in the problem “\nameref{homework:1}” is an
+    example of a domain which is not star shaped. Therefore it is not
+    surprising that the closed form is not exact.
+
+    The first impression I had from the definition was that it simply meant
+    that every point is path-connected to $x_0$. So what I read is
+    \[
+        \exists x_0 \in U \colon
+        \forall x \in U \colon
+        \exists \phi \colon I \times U \to U \colon
+        \phi(1, x) = x \land \phi(0, x) = x_0.
+    \]
+    Reading more closely I noticed the actual order of the quantifiers:
+    \[
+        \exists x_0 \in U \colon
+        \exists \phi \colon I \times U \to U \colon
+        \forall x \in U \colon
+        \phi(1, x) = x \land \phi(0, x) = x_0.
+    \]
+
+    Since there is \emph{a single} map $\phi$ that has to work for all the
+    points simultaneously, this restricts the topology of the set a lot more,
+    right? I tried to come up with a map to show that $\R^2 \setminus \{ \vec 0
+    \}$ is contractible to a point to see whether this definition excludes one
+    example of domain which is is not star shaped. My mapping is the innocent
+    looking
+    \[
+        \phi(t, x) = [1-t] \, x + t x_0.
+    \]
+    This fulfils the boundary conditions and it is smooth since it is just a
+    linear interpolation between the two points. If I take $\vec x_0 = (1,
+    0)^\text T$ then I will have the problem that although the boundary
+    conditions are met, the image of $\phi(0.5, U)$ will contain the point
+    $\vec 0$ which is excluded from $U$. So I have $\phi(0.5, (-1, 0)^\text T)
+    = \vec 0$ which is against the definition of the domain of the map $\phi$.
+    Is that the point where my counterexample breaks and the $\R^2 \setminus \{
+    \vec 0 \}$ is not contractible to a point?
+\end{question}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
