@@ -273,7 +273,9 @@ and $j_T^* \psi = 0$ since the $\dif t$ component of $\phi$ did not get summed
 over.
 
 In summary: $j_T^*$ either sets the time to $T$ when $\phi$ does not contain
-$\dif t$, else it is mapped to zero.
+$\dif t$, else it is mapped to zero. This also makes sense if $\dif t$ is
+thought of as a density in time. Considering a density to a fixed time point
+(zero measure), the value of that form there will be zero.
 
 \subsection{Linear map}
 
@@ -303,11 +305,14 @@ so:
     \bigwedge_{n = 1}^{p} \dif x^{i_n}.
 \]
 
-For $\psi$ we know that there is a $\dif t$ term and that this will cancel.
-$\dif \psi$ therefore is simpler than $\dif \omega$:
+For $\psi$ we know that there is a $\dif t$ term and that this will cancel with
+the $\dif t$ we get with the time derivative of $a$. There is a $\dif t$ from
+the other derivatives, however. We have the $\dif t$ in the front of the other
+basis forms without loss of generality, one could have it anywhere and
+introduce a constant number of minus signs.
 \[
-    \dif \psi = a_{,l}(\tens x) \dif x^l \wedge
-    \bigwedge_{n = 1}^{p} \dif x^{i_n}.
+    \dif \psi = a_{,l}(\tens x) \dif x^l \wedge \dif t \wedge
+    \bigwedge_{n = 1}^{p-1} \dif x^{i_n}
 \]
 
 \paragraph{Case without $\dif t$}
@@ -344,6 +349,69 @@ does not. The application of $K$ to it looks like this:
     }
     &= j_1^*(\omega) - j_0^*(\omega).
 \end{align*}
+Recalling that $K(\omega) = 0$, the Equation~(9) on the problem set is shown
+for the case that the form does not contain $\dif t$.
+
+\paragraph{Case with $\dif t$}
+
+Now we look at this again for the form $\psi$ which contains $\dif t$. We know
+that the pullback of this will be zero. So the right hand side of Equation~(9)
+will be zero already. Now we have to show that the left hand side is also zero.
+We begin with the first part.
+\begin{align*}
+    K(\dif \psi)
+    &= K\del{a_{,l}(\tens x) \dif x^l \wedge \dif t \wedge
+    \bigwedge_{n = 1}^{p-1} \dif x^{i_n}}
+    \intertext{%
+        In order to apply the definition, we need to move the $\dif t$ to the
+        front, this introduces a minus sign. Using the alleged linearity of
+        $K$, we pull this out.
+    }
+    &= - K\del{a_{,l}(\tens x) \dif t \wedge \dif x^l \wedge
+    \bigwedge_{n = 1}^{p-1} \dif x^{i_n}}
+    \intertext{%
+        Now we can apply the definition. In order to perform the integration we
+        write $\tens x = t \oplus \vec x$ as two arguments.
+    }
+    &= - \sbr{\int_0^1 a_{,l}(t, \vec x) \dif t} \dif x^l \wedge
+    \bigwedge_{n = 1}^{p-1} \dif x^{i_n}
+    \intertext{%
+        Since we do not know anything about $a$, we will just denote the
+        indefinite integral by $A$ and assume that it a reasonable function
+        such that we can interchange integration and differentiation.
+    }
+    &= \sbr{A_{,l}(0, \vec x) - A_{,l}(1, \vec x)} \dif x^l \wedge
+    \bigwedge_{n = 1}^{p-1} \dif x^{i_n}
+\end{align*}
+
+Now we can look at the second part.
+\begin{align*}
+    K(\psi)
+    &= K\del{a(t, \vec x) \dif t \wedge \bigwedge_{n = 1}^{p-1} \dif x^{i_n}}
+    \intertext{%
+        This is straightforward to apply since the $\dif t$ is right up front.
+    }
+    &= \sbr{A(1, \vec x) - A(0, \vec x)} \bigwedge_{n = 1}^{p-1} \dif x^{i_n}
+    \intertext{%
+        Now we take the exterior derivative of both sides.
+    }
+    \dif \del{K(\psi)}
+    &= \dif \del{\sbr{A(1, \vec x) - A(0, \vec x)} \bigwedge_{n = 1}^{p-1}
+    \dif x^{i_n}}
+    \intertext{%
+        Due to the nilpotency of the exterior derivative, the only non-zero
+        terms are the one where the derivative acts on the $A$.
+    }
+    &= \sbr{\dif A(1, \vec x) - \dif A(0, \vec x)} \bigwedge_{n = 1}^{p-1}
+    \dif x^{i_n}
+    \intertext{%
+        We can write the exterior derivative of $A$ in components:
+    }
+    &= \sbr{A_{,l}(1, \vec x) - A_{,l}(0, \vec x)} \dif x^l \wedge \bigwedge_{n = 1}^{p-1}
+    \dif x^{i_n}
+\end{align*}
+This is the exact negative of the previous term. Summed together, they give
+zero, just like was required for the left hand side.
 
 \end{document}
 
