@@ -415,6 +415,22 @@ zero, just like was required for the left hand side.
 
 \subsection{Forms on contractible set}
 
+On an earlier problem set we have shown that $f^* \circ g^* = [g \circ f]^*$.
+We can now use that:
+\[
+    j^*_T\del{\phi^*(\omega)}
+    = [j^*_T \circ \phi^*](\omega)
+    = [\phi \circ j_T]^* (\omega)
+\]
+The map $j_T$ just maps $x \mapsto (T, x)$. The map $\phi$ then in turn maps
+$(1, x) \mapsto x$ and $(0, x) \mapsto x_0$. The first one is the identity. The
+pullback of the identity leaves the tangent space invariant and therefore does
+not change the form. The second one maps everything to a constant. In order to define
+a tangent space one needs curves defined in a neighborhood of the point. A
+mapping that maps everything to a constant does not allow for any sensible
+curves. Therefore all the forms transported by this pullback have their basis
+set to zero and therefore vanish.
+
 \begin{question}
     When I took a GR lecture, the requirement for the Poincaré lemma was that
     the domain of the closed form is star shaped. The example $\R^2 \setminus
