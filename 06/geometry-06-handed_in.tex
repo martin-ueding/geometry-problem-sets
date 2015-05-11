@@ -1,0 +1,136 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{6}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{10} \\
+        \nameref{homework:2} & & \punkte{24} \\
+        \nameref{homework:3} & & \punkte{16} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Gauss theorem}
+\label{homework:1}
+
+\subsection{Stokes' theorem}
+
+\begin{align*}
+    \int_{\partial\sigma} \phi
+    &= \int_{\partial [0,1]^3} Q^* \phi
+    \intertext{%
+        We replace $\phi$ with $\hodge \vec v$:
+        \[
+            v^k := \frac 12 \epsilon^{ijk} \phi_{ij}.
+        \]
+        Using this, we get:
+    }
+    &= \int_{\partial [0,1]^3} Q^*[\hodge \vec v].
+    \intertext{%
+        Then we can write out the pullback.
+    }
+    &= \int_{\partial [0,1]^3} [\hodge \vec v]_{ab}\del{Q(\vec x)}
+    Q^a_{,i}(\vec x)
+    Q^b_{,j}(\vec x)
+    \dif x^i \wedge \dif x^j
+    \intertext{%
+        We write the component form for $\hodge \vec v$.
+    }
+    &= \int_{\partial [0,1]^3} \frac12 \epsilon_{abc} v^c\del{Q(\vec x)}
+    Q^a_{,i}(\vec x)
+    Q^b_{,j}(\vec x)
+    \dif x^i \wedge \dif x^j
+    \intertext{%
+        The wedge product is antisymmetric in the indices $(ij)$, the Jacobians
+        provide a $1:1$ mapping from $(ab)$ to $(ij)$. The Levi-Civita symbol
+        antisymmetrizes in $(ab)$. Therefore we can drop the wedge product, get
+        a factor of two and arrive at
+    }
+    &= \int_{\partial [0,1]^3} \epsilon_{abc} v^c\del{Q(\vec x)}
+    Q^a_{,i}(\vec x)
+    Q^b_{,j}(\vec x)
+    \dif x^i \dif x^j.
+    \intertext{%
+        We identify the Jacobians and the coordinate surface element $\dif x^i
+        \dif x^j$ with the surface element on the manifold $\dif S$. The
+        Levi-Civita symbol gives a cross product and a contraction with $v$. We
+        therefore have:
+    }
+    &= \int_{\partial [0,1]^3} \vec v\del{Q(\vec x)} \cdot \sbr{
+    \sbr{
+        \vec Q^a_{,i}(\vec x)
+        \dif x^j
+    }
+    \times
+    \sbr{
+        \vec Q^b_{,j}(\vec x)
+        \dif x^j
+    }} \\
+    &= \int_{\partial [0,1]^3} \vec v \cdot \dif S
+\end{align*}
+
+\subsection{Gauss' theorem}
+
+\section{Solid angle two-form in $\R^2$}
+\label{homework:2}
+
+\section{Simplices}
+\label{homework:3}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
