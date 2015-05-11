@@ -24,6 +24,7 @@
 
 \newcounter{problemset}
 \setcounter{problemset}{5}
+\date{2015-05-11}
 
 \subject{Geometry in Physics}
 \ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
@@ -485,7 +486,11 @@ know that
     }
     K\del{\dif(\phi^*\omega)} + \dif\del{K(\phi^*\omega)} &= \omega.
 \end{align*}
-In order to get the desired result, the first summand has to be zero.
+In order to get the desired result, the first summand has to be zero. $\omega$
+is only defined on $U$, so there is no “time” component that it depends on.
+Taking the exterior derivative of the pullback will not generate anything with
+$\dif t$. Therefore the application of $K$ will give zero.
+
 
 \end{document}
 
