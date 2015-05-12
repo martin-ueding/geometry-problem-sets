@@ -415,11 +415,42 @@ how this should give $4 \piup$, even when trying to use polar coordinates.
 
 \subsection{Cartesian coordinates}
 
+There is a new pullback $Q$ in this problem. The partial derivatives are easy
+compared to the previous problem:
+\begin{align*}
+    Q^1_{,1} &= \cos\theta \cos\phi & Q^1_{,2} &= - \sin\theta \sin\phi \\
+    Q^2_{,1} &= \cos\theta \sin\phi & Q^2_{,2} &= \sin\theta \cos\phi \\
+    Q^3_{,1} &= - \sin\theta & Q^3_{,2} &= 0
+\end{align*}
+
+Two of the summands will be zero because $Q^3_{,2}$ is. Taking the same six
+summands as before, we will get powers of sine and cosine of both angles. Using
+trigonometric identities it will all boil down to
+\[
+    \sbr{Q*\omega}_{12} = \frac 12 \sin(\theta).
+\]
+Then the integral is quickly calculated:
+\[
+    \int_0^\piup \int_0^{2\piup} \sin(\theta) \dif \theta \dif \phi = 4 \piup.
+\]
+
 \subsection{Closed form}
 
 It has to be a closed form on $S^2$ since $\omega$ is a 2-form and the space
 only has two dimensions. There is no way to add another index since $\dif
 \omega$ would have to be a 3-form.
+
+If $\omega$ was exact, we would globally have an $\alpha$ such that $\omega =
+\dif\alpha$. Then the following application of the fundamental theorem of
+exterior calculus would not give a false statement:
+\[
+    4 \piup = \int_{S^2} \omega = \int_{S^2} \dif \alpha = \int_{\partial S^2}
+    \alpha = \int_\emptyset \alpha = 0
+\]
+Therefore, $\omega = \dif\alpha$ cannot hold globally.
+
+If we take $\alpha = - \cos(\theta) \dif \phi$, then $\dif \alpha =
+\sin(\theta) \dif \theta \wedge \dif \phi$, which is $\omega$.
 
 \section{Simplices}
 \label{homework:3}
