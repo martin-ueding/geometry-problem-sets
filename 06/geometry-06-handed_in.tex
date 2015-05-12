@@ -167,11 +167,13 @@ The inverse stereographic projection from the south pole is given by:
 
 We need the partial derivatives of the map for pullback. They are:
 \[
-    \sbr{h_+\inv}^i_{,j} = \frac{2 y_j}{\sbr{|\vec y|^2 + 1}^2}
-    (2 y_1, \ldots, 2y_n, |\vec y|^2 - 1)
+    \sbr{h_+\inv}^i_{,j} =
+    \frac{2y_j}{\sbr{|\vec y|^2 + 1}^2} (2y_1, 2y_2, |\vec y|^2 - 1)^i
     + \frac{2}{|\vec y^2| + 1} \deltaup^i_j
     \eqnsep
-    \sbr{h_+\inv}^{n+1}_{,j} = \frac{2 y_j}{\sbr{|\vec y|^2 + 1}^2}.
+    \sbr{h_+\inv}^{3}_{,j} =
+    \frac{2y_j}{\sbr{|\vec y|^2 + 1}^2}
+    .
 \]
 The indices $i$ and $j$ are from the index set $\{1, 2\}$.
 
@@ -184,8 +186,128 @@ constrained to the unit sphere $S^2$, we have
 \]
 We can therefore simplify the form to the following:
 \[
-    \omega_{ij} = \frac12 \epsilon_{ijk} x^k.
+    \omega_{ab} = \frac12 \epsilon_{abc} x^c.
 \]
+The indices $a$, $b$ and $c$ range from 1 to 3 since they describe quantities
+in $\R^3$.
+
+\paragraph{Pullback}
+
+Now we have the needed parts to assemble the pullback of the solid angle form.
+We omit some of the functional dependencies to make it fit onto the page. Every
+term has to be evaluated at $(y^1, y^2)$ in some fashion.
+\begin{align*}
+    \sbr{\sbr{h_+\inv}^* \omega}_{ij}
+    &= \omega_{ab} \del{h_+\inv(y^1, y^2)}
+    \sbr{h_+\inv}^{a}_{,i}(y^1, y^2)
+    \sbr{h_+\inv}^{b}_{,j}(y^1, y^2)
+    \intertext{%
+        We can explicitly insert $\omega$ here.
+    }
+    &= \frac12 \frac{1}{\sbr{[y^1]^2 + [y^2]^2} + 1} \epsilon_{abc} \set{2 y^1, 2y^2,
+    |\vec y|^2 -1}^c
+    \sbr{h_+\inv}^{a}_{,i}
+    \sbr{h_+\inv}^{b}_{,j}
+    \intertext{%
+        The only interesting element is $(ij) = (12)$ since it has to be
+        antisymmetric and the indices only go up to 2.
+    }
+    \sbr{\sbr{h_+\inv}^* \omega}_{12}
+    &= \frac12 \frac{1}{\sbr{[y^1]^2 + [y^2]^2} + 1} \epsilon_{abc} \set{2 y^1, 2y^2,
+    |\vec y|^2 -1}^c
+    \sbr{h_+\inv}^{a}_{,1}
+    \sbr{h_+\inv}^{b}_{,2}
+\end{align*}
+
+Now we have to carry out the summation over $(abc)$, which is a pain. Only the
+terms starting from $\epsilon$ to the right are considered. The fraction is the
+exact same for all the summands, so we ignore that for now
+
+We start
+with the first summand: $(abc) = (123)$.
+\begin{align*}
+    S_{123}
+    &:= \epsilon_{123} \set{2 y^1, 2y^2, |\vec y|^2 -1}^3
+    \sbr{h_+\inv}^{1}_{,1}
+    \sbr{h_+\inv}^{2}_{,2} \\
+    &=
+    \sbr{\frac{2 y^1}{\sbr{|\vec y|^2 + 1}^2} 2y^1 + \frac{2}{|\vec y^2| + 1}}
+    \sbr{\frac{2 y^2}{\sbr{|\vec y|^2 + 1}^2} 2y^2 + \frac{2}{|\vec y^2| + 1}}
+    \sbr{|\vec y|^2 - 1}
+    \intertext{%
+        We can simplify this a tiny bit.
+    }
+    &=
+    \frac{4 [y^1]^2 + 2 \sbr{|\vec y|^2 + 1}}{\sbr{|\vec y|^2 + 1}^2}
+    \frac{4 [y^2]^2 + 2 \sbr{|\vec y|^2 + 1}}{\sbr{|\vec y|^2 + 1}^2}
+    \sbr{|\vec y|^2 - 1} \\
+    &=
+    \frac{16 [y^1]^2 [y^2]^2 + 8 \sbr{[y^1]^2 + [y^2]^2} \sbr{|\vec y|^2 + 1}
+    + \sbr{|\vec y|^2 + 1}^2}{\sbr{|\vec y|^2 + 1}^4}
+    \sbr{|\vec y|^2 - 1} \\
+    &=
+    \sbr{
+        16 \frac{[y^1]^2 [y^2]^2}{\sbr{|\vec y|^2 + 1}^4}
+        + 8 \frac{|\vec y|^2}{\sbr{|\vec y|^2 + 1}^3}
+        + \frac{1}{\sbr{|\vec y|^2 + 1}^2}
+    }
+    \sbr{|\vec y|^2 - 1}
+\end{align*}
+
+Now we go to the second summand, $(abc) = (231)$.
+\begin{align*}
+    S_{231}
+    &:= \epsilon_{231} \set{2 y^1, 2y^2, |\vec y|^2 -1}^1
+    \sbr{h_+\inv}^{2}_{,1}
+    \sbr{h_+\inv}^{3}_{,2} \\
+    &= 2 y^1 
+    \frac{2 y^1}{\sbr{|\vec y|^2 + 1}^2} 2 y^2
+    \frac{2 y^2}{\sbr{|\vec y|^2 + 1}^2} \\
+    &= 16 \frac{[y^1]^2 [y^2]^2}{\sbr{|\vec y|^2 + 1}^4}
+\end{align*}
+
+The third summand, $(abc) = (312)$.
+\begin{align*}
+    S_{312}
+    &:= \epsilon_{312} \set{2 y^1, 2y^2, |\vec y|^2 -1}^2
+    \sbr{h_+\inv}^{3}_{,1}
+    \sbr{h_+\inv}^{1}_{,2} \\
+    &= 2 y^2
+    \frac{2 y^2}{\sbr{|\vec y|^2 + 1}^2}
+    \frac{2 y^1}{\sbr{|\vec y|^2 + 1}^2} 2y^1 \\
+    &= 
+    16 \frac{[y^1]^2 [y^2]^2}{\sbr{|\vec y|^2 + 1}^2}
+\end{align*}
+
+The fourth summand, $(abc) = (321)$.
+\begin{align*}
+    S_{321}
+    &:= \epsilon_{321} \set{2 y^1, 2y^2, |\vec y|^2 -1}^1
+    \sbr{h_+\inv}^{3}_{,1}
+    \sbr{h_+\inv}^{2}_{,2} \\
+    &= - 2y^1
+    \frac{2 y^1}{\sbr{|\vec y|^2 + 1}^2}
+    \sbr{\frac{2 y^2}{\sbr{|\vec y|^2 + 1}^2} 2y^2
+    + \frac{2}{|\vec y^2| + 1}} \\
+    &= - \frac{4 [y^1]^2}{\sbr{|\vec y|^2 + 1}^3}
+    \sbr{\frac{4 [y^2]^2}{|\vec y|^2 + 1} + 2} \\
+    &= - \frac{16 [y^1]^2 [y^2]^2}{\sbr{|\vec y|^2 + 1}^4}
+    - \frac{8 [y^1]^2}{\sbr{|\vec y|^2 + 1}^3}
+\end{align*}
+
+This seems like a lot of brute force calculations. Anyway, the fifth summand,
+$(abc) = (213)$.
+\begin{align*}
+    S_{213}
+    &:= \epsilon_{213} \set{2 y^1, 2y^2, |\vec y|^2 -1}^3
+    \sbr{h_+\inv}^{2}_{,1}
+    \sbr{h+\inv}^{1}_{,2} \\
+    &= - \sbr{|\vec y|^2 -1}
+    \frac{2 y^1}{\sbr{|\vec y|^2 + 1}^2} 2y^2
+    \frac{2 y^2}{\sbr{|\vec y|^2 + 1}^2} 2y^1 \\
+    &= - 16 \sbr{|\vec y|^2 -1}
+    \frac{[y^1]^2 [y^2]^2}{\sbr{|\vec y|^2 + 1}^4}
+\end{align*}
 
 \section{Simplices}
 \label{homework:3}
