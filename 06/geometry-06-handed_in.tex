@@ -69,6 +69,7 @@
 
 \subsection{Stokes' theorem}
 
+We start by applying the pullback.
 \begin{align*}
     \int_{\partial\sigma} \phi
     &= \int_{\partial [0,1]^3} Q^* \phi
@@ -79,7 +80,7 @@
         \]
         Using this, we get:
     }
-    &= \int_{\partial [0,1]^3} Q^*[\hodge \vec v].
+    &= \int_{\partial [0,1]^3} Q^*(\hodge \vec v).
     \intertext{%
         Then we can write out the pullback.
     }
@@ -124,6 +125,26 @@
 \end{align*}
 
 \subsection{Gauss' theorem}
+
+We did not get the desired result, only something in the neighborhood of it:
+\begin{align*}
+    \int_\sigma \dif \phi
+    &= \int_\sigma Q^*(\dif \phi) \\
+    &= \int_\sigma Q^*(\dif \hodge \vec v) \\
+    &= \frac 12 \int_\sigma Q^*\del{\dif \del{\epsilon_{ijk} v^k \dif x^i \wedge \dif
+    x^j}} \\
+    &= \frac12 \int_\sigma Q^*\del{\partial_{[l} \del{\epsilon_{ij]k} v^k \dif x^i \wedge \dif
+    x^j} \dif x^l} \\
+    &= \int_\sigma Q^*\del{\epsilon_{ijk} v^k_{,l} \dif x^i \wedge \dif
+    x^j \wedge \dif x^l} \\
+    \intertext{%
+        The pullback can then be applied to the free indices.
+    }
+    &= \int_\sigma \epsilon_{abk} v^k_{,c} \underbrace{Q^a_{,i} Q^b_{,j} Q^c_{,k} \dif x^i
+    \dif x^j \dif x^k}_{\dif V}
+\end{align*}
+The problem is that it would need to be $\epsilon_{abc} v^l_{,l}$ to give the
+right antisymmetrization and a divergence.
 
 \section{Solid angle two-form in $\R^2$}
 \label{homework:2}
