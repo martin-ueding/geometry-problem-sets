@@ -464,6 +464,77 @@ with an arbitrary 0-form $\chi$.
 \section{Simplices}
 \label{homework:3}
 
+\subsection{Draw and compute}
+
+A simple drawing of the 3-simplex is shown in Figure~\ref{fig:3-simplex}. We
+have used the vectors $\{ \ev_1, \ev_2, \ev_3 \}$ in order to make all the
+following computations as simple as possible.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=4]
+        \node[draw, circle] (a) at (0, 0, 0) {0};
+        \node[draw, circle] (b) at (1, 0, 0) {1};
+        \node[draw, circle] (c) at (0, 1, 0) {2};
+        \node[draw, circle] (d) at (0, 0, 1) {3};
+
+        \draw (a) -- (b);
+        \draw (a) -- (c);
+        \draw (a) -- (d);
+        \draw (b) -- (c);
+        \draw (b) -- (d);
+        \draw (c) -- (d);
+    \end{tikzpicture}
+    \caption{%
+        A 3-simplex.
+    }
+    \label{fig:3-simplex}
+\end{figure}
+
+The simplex can then be written as the ordered tuple $(\vec 0, \ev_1, \ev_2,
+\ev_3)$. Now the boundary can just be computed by the formula given on the
+problem set:
+\[
+    \partial \sigma = (\ev_1, \ev_2, \ev_3) - (\vec 0, \ev_2, \ev_3) + (\vec 0,
+    \ev_1, \ev_3) - (\vec 0, \ev_1, \ev_2)
+\]
+
+\subsection{Orientation}
+
+Those four summands above are the four faces of the 3-simplex, together with an
+orientation. So the first one is the plane spanned by the points 0, 1, and 2.
+The right-hand rule will assign that an orientation, which points outward if
+you see the object like I \emph{currently} do (0 is in the back). Then the
+plane 0, 2 and 3 will have the same orientation: outwards. And so on.
+
+\subsection{Boundary of boundary}
+
+We have
+\[
+    \sigma = \del{v_i \colon i \in [1, n]}
+\]
+as the n-simplex. Then the boundary is given by:
+\[
+    \partial \sigma = \sum_{j = 0}^n [-1]^j
+    \del{v_i \colon i \in [1, n] \setminus \{j\}}
+\]
+In the $n$-simplexes which are the surface elements, the indices get
+renumbered from 0 to $n-1$. So when we take the surface again, we have to be
+careful whether the $k \geq j$, because $k$ is at a renumbered index, then.
+The boundary of is then given by:
+\[
+    \partial^2 \sigma = \sum_{k = 0}^{n-1} \sum_{j = 0}^n
+    \begin{cases}
+        [-1]^{j+k} \del{v_i \colon i \in [0, n] \setminus \{j, k\}} & k < j \\
+        [-1]^{j+k+1} \del{v_i \colon i \in [0, n] \setminus \{j, k + 1\}} & k \geq j
+    \end{cases}
+\]
+There are always two summands which remove the same two vectors from the tuple.
+One has a minus sign more, so those always cancel. Nothing remains, and
+therefore this is just zero.
+
+And $\partial^2 = 0$ is closely related to $\dif^2 = 0$, which is beautiful.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
