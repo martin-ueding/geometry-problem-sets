@@ -149,6 +149,44 @@ right antisymmetrization and a divergence.
 \section{Solid angle two-form in $\R^2$}
 \label{homework:2}
 
+\subsection{Inverse stereographic projection}
+
+The coordinate system in $\R^3$ will be denoted by 3-vectors $\vec x$. The
+coordinate system on $\R^2$ will be denoted by 2-vectors $\vec y$.
+
+\paragraph{Inverse map}
+
+The inverse stereographic projection from the south pole is given by:
+\parencite{wikipedia/stereographische_Projektion}
+\[
+    h_+\inv(y_1, \ldots, y_n) = \frac{1}{|\vec y|^2 + 1} (2 y_1, \ldots, 2y_n,
+    |\vec y|^2 - 1).
+\]
+
+\paragraph{Partial derivatives}
+
+We need the partial derivatives of the map for pullback. They are:
+\[
+    \sbr{h_+\inv}^i_{,j} = \frac{2 y_j}{\sbr{|\vec y|^2 + 1}^2}
+    (2 y_1, \ldots, 2y_n, |\vec y|^2 - 1)
+    + \frac{2}{|\vec y^2| + 1} \deltaup^i_j
+    \eqnsep
+    \sbr{h_+\inv}^{n+1}_{,j} = \frac{2 y_j}{\sbr{|\vec y|^2 + 1}^2}.
+\]
+The indices $i$ and $j$ are from the index set $\{1, 2\}$.
+
+\paragraph{Simplification of the form}
+
+The form $\omega$ is given in Equation~(3) on the problem set. Since it is
+constrained to the unit sphere $S^2$, we have
+\[
+    \sum_{i = 1}^3 [x^i]^2 = 1.
+\]
+We can therefore simplify the form to the following:
+\[
+    \omega_{ij} = \frac12 \epsilon_{ijk} x^k.
+\]
+
 \section{Simplices}
 \label{homework:3}
 
