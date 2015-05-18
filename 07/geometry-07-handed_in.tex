@@ -56,19 +56,239 @@
     \begin{tabular}{rrr}
         problem & achieved points & possible points \\
         \midrule
-        \nameref{homework:1} & & \punkte{10} \\
-        \nameref{homework:2} & & \punkte{24} \\
-        \nameref{homework:3} & & \punkte{16} \\
+        \nameref{homework:1} & & \punkte{24} \\
+        \nameref{homework:2} & & \punkte{16} \\
+        \nameref{homework:3} & & \punkte{10} \\
         \midrule
         Total & & \arabic{totalpoints}
     \end{tabular}
 \end{center}
 
+We will choose coordinates $(x, y, z)$ instead of the generic $(x^1, x^2, x^3)$
+since it is less typing and you liked it on sheet~5. When we need to use
+indices, we will still use $x^i$ and mean the same coordinates.
+Electromagnetism feels to be fundamentally connected to special relativity and
+therefore spacetime. We hence use $ct = x^0$ and Greek indices where it eases
+notation. This choice of $x^0$ also implies that $\partial_0 = \frac 1c \pd{}t$
+by virtue of the chain rule.
+
 \section{Maxwell's field equations}
 \label{homework:1}
 
+The $B_i$ seems to be somewhat strange. It suggests that $B$ is a 1-form, which
+it is not. We are fine with $B_{ij}$ and $B^k$, where the latter is the Hodge
+dual of the 2-form. We will therefore write $B^i$ here.
+
+\subsection{Faraday's lay of induction}
+
+In order so make this shorter, we rewrite the definition of the 2-form
+$\alpha$:
+\[
+    \alpha = E_i \dif x^i \wedge \dif x^0
+    + \frac12 \epsilon_{ijk} B^i \dif x^j \wedge \dif x^k.
+\]
+We have to calculate $\dif \alpha$, which we will do in components. We have:
+\[
+    [\dif \alpha]_{ij} = \frac{1}{2!} \nabla_{[i} \alpha_{j]}.
+\]
+Since there is no curvature yet, all the $\Gamma = 0$ and we have $\nabla_i =
+\partial_i$. (I know … I just could not resist.) We need to include the
+derivative with respect to time. In order to avoid all the $c$ and write it
+more compact we will use a Greek index here.
+\begin{align*}
+    \dif \alpha
+    &= \frac12 E_{i,\mu} \dif x^\mu \wedge \dif x^i \wedge \dif x^0
+    + \frac14 \epsilon_{ijk} B^i_{,\mu} \dif x^\mu \wedge \dif x^j \wedge \dif x^k
+    \intertext{%
+        We need to split up those implied sums over $\mu$ into temporal and
+        spatial parts in order to group them.
+    }
+    &= \frac12 E_{i,0} \dif x^0 \wedge \dif x^i \wedge \dif x^0
+    + \frac12 E_{i,m} \dif x^m \wedge \dif x^i \wedge \dif x^0
+    \\&\qquad
+    + \frac14 \epsilon_{ijk} B^i_{,0} \dif x^0 \wedge \dif x^j \wedge \dif x^k
+    + \frac14 \epsilon_{ijk} B^i_{,m} \dif x^m \wedge \dif x^j \wedge \dif x^k
+    \intertext{%
+        Summand 1: There is a form wedged together with itself, this term is
+        just zero. Summand 3: We to anticommutations such that the temporal
+        form is the very last one.
+    }
+    &= \frac12 E_{i,m} \dif x^m \wedge \dif x^i \wedge \dif x^0
+    + \frac14 \epsilon_{ijk} B^i_{,0} \dif x^j \wedge \dif x^k \wedge \dif x^0
+    + \frac14 \epsilon_{ijk} B^i_{,m} \dif x^m \wedge \dif x^j \wedge \dif x^k
+    \intertext{%
+        Summand 1 \& 2: We factor out the last form and rename the dummy
+        indices.
+    }
+    &= \frac12 \sbr{
+        E_{j,i} \dif x^i \wedge \dif x^j
+        + \frac12 \epsilon_{lij} B^l_{,0} \dif x^i \wedge \dif x^j
+    } \wedge \dif x^0
+    + \frac14 \epsilon_{ijk} B^i_{,m} \dif x^m \wedge \dif x^j \wedge \dif x^k
+    \intertext{%
+        Now we can factor out all the forms. To prepare the next step, we add a
+        (now pointless) bracket in the second summand.
+    }
+    &= \frac12 \sbr{ E_{j,i} + \frac12 \epsilon_{lij} B^l_{,0} }
+    \dif x^i \wedge \dif x^j \wedge \dif x^0
+    + \frac14 \sbr{\epsilon_{ijk} B^i_{,m}} \dif x^m \wedge \dif x^j \wedge \dif x^k
+\end{align*}
+When we set this to zero, both brackets have to vanish individually. This will
+give us 9 equations for the first and 27 for the second bracket. Since they are
+antisymmetrized by the forms, we can add a Levi-Civita symbol to them and
+reduce the number of equations to 3 and 1 respectively. The $9 + 27$ equations
+are:
+\begin{align*}
+    E_{j,i} + \frac12 \epsilon_{lij} B^l_{,0} &= 0
+    &
+    \epsilon_{ijk} B^i_{,m} &= 0 \\
+    \intertext{%
+        And then we have
+    }
+    \epsilon^{ijk} E_{j,i} + \frac12 \epsilon^{ijk} \epsilon_{lij} B^l_{,0} &= 0
+    &
+    \epsilon^{jkm} \epsilon_{ijk} B^i_{,m} &= 0 \\
+    \intertext{%
+        The first term is the $k$th component of the curl in three dimensions.
+        We contract the two Levi-Civita symbols in the second term and in the
+        second equation.
+    }
+    [\curl \vec E]^k + \deltaup^k_l B^l_{,0} &= 0
+    &
+    2 \deltaup^m_i B^i_{,m} &= 0 \\
+    %
+    \intertext{%
+        Contracting the indices and dropping scalar factors, we get:
+    }
+    [\curl \vec E]^k + \dot B^k &= 0
+    &
+    \divergence \vec B &= 0. \\
+    \intertext{%
+        And we can look at all the three equations at the same time and drop
+        the indices.
+    }
+    \curl \vec E + \dot{\vec B} &= 0
+    &
+    \divergence \vec B &= 0
+\end{align*}
+These are the four (or two if you count vector equations as one) homogenious
+Maxwell equations. Since those follow from $\dif F = 0$ with $F$ being the
+standard field 2-form, we think that we simply have $\alpha = F$ here.
+
+\subsection{Ampère's law and Gauss's law}
+
+We can identify $- H_i \triangleq E_i$ and $D^k \triangleq B^k$ in the above
+calculation and directly give $\dif \beta$:
+\[
+    \dif \beta
+    = \sbr{ -H_{j,i} + \frac12 \epsilon_{lij} D^l_{,0} }
+    \dif x^i \wedge \dif x^j \wedge \dif x^0
+    + \frac12 \epsilon_{ijk} D^i_{,m} \dif x^m \wedge \dif x^j \wedge \dif x^k
+\]
+We can now add the other form to that.
+\begin{align*}
+    \dif \beta + 4 \piup \gamma
+    &= \sbr{ -H_{j,i} + \frac12 \epsilon_{lij} D^l_{,0} }
+    \dif x^i \wedge \dif x^j \wedge \dif x^0
+    + \frac12 \epsilon_{ijk} D^i_{,m} \dif x^m \wedge \dif x^j \wedge \dif x^k
+    \\&\qquad
+    + \frac{4\piup}{c} \epsilon_{ijk} J^k \dif x^i \wedge \dif x^j \wedge \dif x^0
+    - 4 \piup \varrho \dif x \wedge \dif y \wedge \dif z
+    \intertext{%
+        We regroup this by the forms again. For the $D^i_{,m}$ term we use
+        perform the antisymmetrization by hand by adding another Levi-Civita
+        symbol.
+    }
+    &= \sbr{ -H_{j,i} + \frac12 \epsilon_{lij} D^l_{,0} + \frac{4\piup}{c}
+\epsilon_{ijk} J^k }
+    \dif x^i \wedge \dif x^j \wedge \dif x^0
+    \\&\qquad
+    + \sbr{\frac12 \epsilon^{mjk} \epsilon_{ijk} D^i_{,m} - 4 \piup \varrho} \dif x \wedge \dif y
+    \wedge \dif z
+    \intertext{%
+        We simplify the second term, it gives another divergence like before.
+    }
+    &= \sbr{ -H_{j,i} + \frac12 \epsilon_{lij} D^l_{,0} + \frac{4\piup}{c}
+\epsilon_{ijk} J^k }
+    \dif x^i \wedge \dif x^j \wedge \dif x^0
+    \\&\qquad
+    + \sbr{\divergence \vec D - 4 \piup \varrho} \dif x \wedge \dif y
+    \wedge \dif z
+\end{align*}
+One equation then is $\divergence \vec D = 4 \piup \varrho$. The other one (or
+rather, nine) equations has to be simplified according to the same procedure as
+before.
+\begin{align*}
+    - H_{j,i} + \frac12 \epsilon_{lij} D^l_{,0} + \frac{4\piup}{c} \epsilon_{ijk} J^k &= 0
+    \intertext{%
+        Since those nine equations they are antisymmetric in $i$ and $j$ we can
+        rewrite them as three unique equations, just like before.
+    }
+    - \epsilon^{ijm} H_{j,i} + \frac12 \epsilon^{ijm} \epsilon_{lij} D^l_{,0} +
+    \frac{4\piup}{c} \epsilon^{ijm} \epsilon_{ijk} J^k &= 0 \\
+    - \epsilon^{ijm} H_{j,i} + \deltaup^m_l D^l_{,0} +
+    \frac{8\piup}{c} \deltaup^m_k J^k &= 0 \\
+    - [\curl \vec H]^m + D^m_{,0} + \frac{8\piup}{c} J^m &= 0 \\
+    - \curl \vec H + \frac 1c \dot{\vec D} + \frac{8\piup}{c} \vec J &= 0
+\end{align*}
+
+This can be rewritten in the usual form and gives:
+\[
+    \curl \vec H - \frac 1c \dot{\vec D} = \frac{8\piup}{c} \vec J
+\]
+That is the correct result in Gaussian units.
+
+\subsection{Continuity equation}
+
+The equation $\dif b + 4 \piup \gamma = 0$ gives a physical result. Applying
+the exterior derivative again on it gives up $\dif \gamma = 0$.
+
+Using the techniques used in the previous problems we can also use the
+definition of $\gamma$ and derive that
+\[
+    \dif \gamma = \divergence \vec J + \dot\varrho.
+\]
+Setting this to zero gives the known continuity equation which tells us that
+charge is conserved, especially over time. $\int_\Sigma \dif \gamma$ then gives
+the amount of charge gained or lost in a time interval $\dif t$.
+
+\subsection{Relation of gauge freedom to Poincaré's lemma}
+
+You have shown in the exercise class on 2015-05-18 that the difference between
+two local vector potentials on a non-contractable space (like the sphere) can
+be rewritten as a gauge transformation of the form $A$ (we just try to avoid to
+write “\emph{vector} potential 1-\emph{form}”).
+
+% TODO
+
 \section{Cohomology groups of a torus}
 \label{homework:2}
+
+\subsection{Zeroth cohomology group}
+
+We are only looking at 0-forms here, plain functions. If they are closed, this
+means that
+\[
+    \dif f = f_{,i} \dif x^i = 0.
+\]
+Scalar fields where all partial derivatives vanish have only one basis, $f(x,
+y) = 1$. They are not particularly fancy, just constant fields. These forms a
+vector space over $\R$, such that $Z^0(M) = \R$. Since there are no $-1$-forms,
+$B^0(M) = \varnothing$ as given in the hint.
+
+We are not sure what it means to form the quotient set with the empty set as
+the divisor. It probably is the same as dividing through the set that only
+contains the identity, $\{ e \}$. If that is the case, we have
+\[
+    H^0(M) = \frac{Z^p(M)}{\varnothing} = \R.
+\]
+
+\subsection{Integrals}
+
+\subsection{Closed forms}
+
+Since the two dimensional torus is a two dimensional space, there are no
+3-forms. Every top dimensional forms are closed in this sense.
 
 \section{Homotopy type of a punctured plane}
 \label{homework:3}
