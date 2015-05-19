@@ -273,15 +273,19 @@ means that
 \]
 Scalar fields where all partial derivatives vanish have only one basis, $f(x,
 y) = 1$. They are not particularly fancy, just constant fields. These forms a
-vector space over $\R$, such that $Z^0(M) = \R$. Since there are no $-1$-forms,
-$B^0(M) = \varnothing$ as given in the hint.
+vector space over $\R$, such that $Z^0(T^2) = \R$. Since there are no
+$-1$-forms, $B^0(T^2) = \varnothing$ as given in the hint.
 
 We are not sure what it means to form the quotient set with the empty set as
 the divisor. It probably is the same as dividing through the set that only
 contains the identity, $\{ e \}$. If that is the case, we have
 \[
-    H^0(M) = \frac{Z^p(M)}{\varnothing} = \R.
+    H^0(T^2) = \frac{Z^p(T^2)}{\varnothing} = \R.
 \]
+
+The set $H_0(T^2)$ is given as $\Z$ and later generalized to $\R$ in the
+lecture notes. Due to the connections between $H_p$ and $H^p$, it seems that
+our result is in the right direction.
 
 \subsection{Integrals and first Cohomology group}
 
@@ -313,14 +317,92 @@ integrals are zero:
 
 \paragraph{First cohomology group}
 
+The integrals tell us that the forms $\dif \theta$ and $\dif \phi$ are not
+exact \emph{globally}. They are closed since they are exterior derivatives
+themselves. The functions $\theta$ and $\phi$ have a jump at 0, which causes
+them to be inexact globally. The 2-torus is not contractible, so it is no
+surprise that there are inexact closed forms on it.
+
+The 1-forms that are exact globally have to come from the exterior derivative
+of scalar fields that are smooth and do not have a jump anywhere. Those could
+be expanded into a Fourier series in $\theta$ and $\phi$ with products of
+Fourier coefficients. One probably has to limit this to a finite number of
+coefficients, otherwise a sawtooth like the scalar field $\theta$ would be
+allowed again.
+
+The set of exact forms can be build up from all possible smooth scalar fields
+$f$:
+\[
+    B^1(T^2) = \set{f_{,i}(\theta, \phi) \dif \Theta^i \colon f \in C^1(T^2)},
+\]
+where $C^\omega$ is the set of smooth functions that can be differentiated
+$\omega$ times.
+
+The set of closed 1-forms is really limited, they have to be linear functions.
+A general 1-form would be
+\[
+    \omega = \omega_i(\theta, \phi) \dif \Theta^i.
+\]
+Since it has to be closed, we get the following condition:
+\[
+    \dif \omega
+    = \omega_{i,j} \dif \Theta^j \wedge \dif \Theta^i
+    = \sbr{\omega_{2,1} - \omega_{1,2}} \dif \theta \wedge \dif \phi
+    = 0
+    \iff
+    \omega_{2,1} = \omega_{1,2}.
+\]
+We define this to be $\lambda := \omega_{1,2}$. This $\lambda$ also is $[\dif
+\omega]_{12} = [\dif \omega]_{21}$. Forms have to be antisymmetric, so this has
+to be zero, then. We are looking for 1-forms where we have $\omega_{i,j} = 0$,
+meaning that $\omega_i$ are just constant numbers. We can use this to build up
+a general closed 1-form:
+\[
+    Z^1(T^2) = \set{c \dif \theta + d \dif \phi + \dif f(\phi, \theta)
+    \colon c, d \in R, f \in C^1(T^2)}.
+\]
+
+The conjugacy classes with respect to $B$ are defined by the two real numbers
+$(c, d) \in \R \oplus \R$. We remove the freedom in the $f$ and therefore just
+have
+\[
+    H^1(T^2) = \set{c \dif \theta + d \dif \phi \colon c, d \in R},
+\]
+where we have chose then representative of the conjugacy class such that $f =
+0$. We therefore have $H^1(T^2) \simeq \R^2$.
+
+The lecture notes give $H_2(T^2)$ to be $\R^2$, which is also our result here.
+Our result should therefore be correct, perhaps for the wrong reasons, though.
+
 \subsection{Second cohomology group and closed forms}
+
+\paragraph{Already closed forms}
+
+Since the two dimensional torus is a two dimensional space, there are no
+3-forms. Every top dimensional form are closed in this sense.
 
 \paragraph{Second cohomology group}
 
-\paragraph{Closed forms}
+We are supposed to use that $H_2(T^2; \R) = \R$. This means that $H^(T^2)
+\simeq \R$ as well. The 2-forms on a 2-dimensional space just have one free
+component. So $\omega_{12}(\theta, \phi)$ can be any smooth function on $T^2$.
+So it seems that $Z^2(T^2) \simeq C^0(T^2; \R^2)$
 
-Since the two dimensional torus is a two dimensional space, there are no
-3-forms. Every top dimensional forms are closed in this sense.
+The exact forms have to come from $\dif \alpha$, where the components of
+$\alpha$ are two smooth functions. Since the form $\dif \alpha$ has to be
+antisymmetric, one has the condition $\alpha_{1,2} = - \alpha_{2,1}$. This
+looks a lot like the Cauchy-Riemann equation for analytic complex functions.
+These equations have to be fulfilled by a pair of functions on order to serve
+as real and imaginary part of an analytic function. We think this means that
+$B^2(T^2) \simeq C^0(T^2; \C)$
+
+Not every smooth function of two variables can be thought of as an analytic
+function. Analytic functions have the property that the real and imaginary
+parts are harmonic ($\laplace u = \laplace v = 0$), but we already knew that
+since they are top dimensional forms.
+
+We have a hunch that $B$ contains less elements than $Z$, but we do not really
+see why the quotient group should be isomorphic to $\R$.
 
 \section{Homotopy type of a punctured plane}
 \label{homework:3}
