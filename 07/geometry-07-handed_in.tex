@@ -283,9 +283,41 @@ contains the identity, $\{ e \}$. If that is the case, we have
     H^0(M) = \frac{Z^p(M)}{\varnothing} = \R.
 \]
 
-\subsection{Integrals}
+\subsection{Integrals and first Cohomology group}
 
-\subsection{Closed forms}
+\paragraph{Integrals}
+
+To integrate this, we should probably use a pullback onto the curve that we are
+interested in. Since those lines are not really fancy, we might get away with
+doing it right there in the coordinates $\theta$ and $\phi$. We can use the
+fundamental theorem of exterior calculus to compute those integrals. The
+boundary of the curves are just the points 0 and $2\piup$ with orientations
+$-$ and $+$, respectively.
+\[
+    \intop_a \frac{\dif \theta}{2\piup}
+    = \intop_{\partial a} \frac{\theta}{2\piup}
+    = \frac{1}{2\piup} [-0 + 2\piup] = 1.
+\]
+The second integral gives 1 by the exact same argument.
+
+For the mixed integrals, we chose the curves $a$ and $b$ such that they go
+through the origin. Well, since we identity the boundaries all four of them go
+through the origin. We will use the ones where one of $\theta = 0$ or $\phi =
+0$ holds. Then we can apply the Stokes's theorem like above and see that those
+integrals are zero:
+\[
+    \intop_a \frac{\dif \phi}{2\piup}
+    = \intop_{\partial a} \frac{\phi}{2\piup}
+    = \frac{1}{2\piup} [-0 + 0] = 0.
+\]
+
+\paragraph{First cohomology group}
+
+\subsection{Second cohomology group and closed forms}
+
+\paragraph{Second cohomology group}
+
+\paragraph{Closed forms}
 
 Since the two dimensional torus is a two dimensional space, there are no
 3-forms. Every top dimensional forms are closed in this sense.
@@ -293,7 +325,36 @@ Since the two dimensional torus is a two dimensional space, there are no
 \section{Homotopy type of a punctured plane}
 \label{homework:3}
 
+Since we are going to write it a lot, we define the punctured plane to be $P :=
+\R^2 \setminus \{ 0 \}$.
 
+We have the combined map:
+\[
+    \begin{matrix}
+        i \circ r \colon & P & \to & P \\
+    & x & \mapsto & \frac{x}{\| x \|}.
+    \end{matrix}
+\]
+
+To show that this map is homotopic to the identity on the space $P$, we have to
+find one smooth map $F$ which satisfies the requirements from the definition of
+the homotopy.
+
+One such map would be given by
+\[
+    F(x, t) = \frac{x}{t \| x \| + 1 - t}.
+\]
+It seems to be smooth everywhere in $P$ and gives $i \circ r$ for $t = 1$ and
+the identity for $t = 0$.
+
+Another map would be the linear interpolation between the two maps:
+\[
+    F(x, t) = t \frac{x}{\| x \|} + [1-t] x.
+\]
+This also looks smooth.
+
+Since there exists at least one mapping $F$, the two maps are homotopic to each
+other.
 
 
 \end{document}
