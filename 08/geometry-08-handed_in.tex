@@ -68,6 +68,58 @@
 \section{Poynting's theorem}
 \label{homework:1}
 
+\begin{enumerate}
+    \item
+The field $D$ is a two-form but only has one index. In this case it is the
+Hodge dual of the real thing and should have an upper index.
+\begin{align*}
+    W_\mathrm e
+    &= \frac12 E \wedge D
+    = \frac 12 E_l \dif x^l \wedge \epsilonup_{ijk} D^k \dif x^i \wedge \dif
+    x^j
+    = \frac 12 E_l D^k \epsilonup_{ijk} \dif x^l \wedge \dif x^i \wedge \dif
+    x^j \\
+    &= \frac 12 E_l D^k \epsilonup_{ijk} \epsilon^{lij} \dif x \wedge \dif y \wedge \dif
+    z
+    = E_l D^l \dif x \wedge \dif y \wedge \dif z
+\end{align*}
+And similarly we have $W_\mathrm m = H_l B^l \dif V$.
+
+\item
+
+Ampère's law is $\curl \vec H - \dot {\vec D} = \vec J_\mathrm f$. In
+components this can be written as $\epsilonup^{ijk} H_{k,j} - \dot D^i = J^i$.
+Faraday's law is $\curl \vec E + \dot{\vec B} = \vec 0$, which is
+$\epsilonup^{ijk} E_{k,j} + \dot B^i = 0$ in components. The given wedge
+product simply is $E \wedge H = E_i H_k \dif x^i \wedge \dif x^k$.
+\begin{align*}
+    \dif(E \wedge H)
+    &= \partial_\mu (E_i H_k) \dif x^\mu \wedge \dif x^i \wedge \dif x^k
+    = \sbr{E_{i,\mu} H_k + E_i H_{k,\mu}} \dif x^\mu \wedge \dif x^i \wedge
+    \dif x^k \\
+    \intertext{%
+        We can split off the time derivative.
+    }
+    &= \sbr{\dot E_i H_k + E_i \dot H_k} \dif t \wedge \dif x^i \wedge \dif x^k
+    + \sbr{E_{i,j} H_k + E_i H_{k,j}} \epsilonup^{jik} \dif x \wedge \dif y
+    \wedge \dif z \\
+    &= \sbr{\dot E_i H_k + E_i \dot H_k} \dif t \wedge \dif x^i \wedge \dif x^k
+    + \sbr{H_i \dot B^i + E_i \dot D^i} \dif x \wedge \dif y \wedge \dif z \\
+\end{align*}
+
+\item
+    $\dif \sigma$ is the time derivative of the field energy. It is a
+    three-form, which means that it takes a time-like and two space-like
+    vectors. It corresponds the Poynting vector.
+
+\item
+    The absence of charges means that all of Maxwell's equations are
+    homogeneous. Then, in the sense of vectors, $\vec E \propto \vec D$ and
+    $\vec H \propto \vec B$ which means that the wedge products are just zero.
+    That would also imply that $\sigma$ is a closed form.
+
+\end{enumerate}
+
 \section{Transformation properties of the metric}
 \label{homework:2}
 
