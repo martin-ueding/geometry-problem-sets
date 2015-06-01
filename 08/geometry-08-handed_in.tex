@@ -1,0 +1,161 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{8}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{20} \\
+        \nameref{homework:2} & & \punkte{10} \\
+        \nameref{homework:3} & & \punkte{5} \\
+        \nameref{homework:4} & & \punkte{10} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Poynting's theorem}
+\label{homework:1}
+
+\section{Transformation properties of the metric}
+\label{homework:2}
+
+\begin{enumerate}
+    \item 
+        A (mathematician's\footnote{At times it becomes a bit mixed up since
+        mathematicians call this bilinear form “metric”, whereas physicists
+        often call the metric tensor $\tens G$ which goes into the scalar
+    product “metric”: $\bracket{u, v} := \vec u^\mathrm T \tens G \vec v$. “Metric
+tensor” would be a better name for this $\tens G$.}) metric, which is a bilinear mapping of two
+vectors, has to be symmetric by definition. The matrix $\mat g$ which is
+defined by $g_{ij} := g(\ev_i, \ev_j)$ is therefore symmetric in its indices.
+
+    \item
+        The metric is defined to be non-degenerate. This prohibits an
+        eigenvalue of 0, which in turn means that $\det(\mat g - 0 \cdot \mat
+        1_2)$ cannot be zero.
+
+    \item
+        A change of basis has to leave the norm invariant. We transform the
+        basis vectors as given: $\ev_i' = \ev_j [\mat A\inv]^j{}_i$. Then the
+        components of vectors have to transform the other way around, such that
+        the vectors themselves are not altered. This means $v^{i\prime} = v^j
+        A^i{}_j$. The vector is unaltered. The transformed vector is written in
+        components: $\vec v' = v^{i\prime} \ev_i'$. Expanded, this is $v^j
+        \ev_k A^i{}_j [\mat A\inv]^k{}_i$. The inverse of the matrix time the
+        matrix is the identity, which in components is just the Kronecker
+        symbol. We therefore get $v^j \ev_j$, which is the same vector as
+        before. Extending this argument to tensors which are two times
+        covariant, we need to apply the inverse transformation twice in order
+        to preserve the action on two vectors. Writing this without indices
+        gives the expression Equation~(6) on the problem set, although one
+        should not use the indices $(ij)$ twice.
+\end{enumerate}
+
+\section{Lorentz group 1}
+\label{homework:3}
+
+We have $R$ from the three dimensional “natural” representation $\Gamma_3$ of
+$\SO(3)$. Those transformations leave the metric $\tens 1_3$ invariant. The
+group $\SO(3)$ also has the trivial $\Gamma_1$ representation where $\forall g
+\in \SO(3) \colon D^{\Gamma_1}(g) = 1$. We can now build a reducible
+representation using this: $D^\text R := D^{\Gamma_1} \oplus D^{\Gamma_3}.$ In
+this representation, we get this $\tilde R$. This still is an element of
+$\SO(3)$, albeit in a four dimensional representation.
+
+The proper orthochronous Lorentz group contains all the elements which preserve
+the orientation of time and the orientation of space. The orientation of space
+is conserved by $R$ since it is chosen from the \emph{special} orthogonal
+group. The conservation of time requires two steps. It is decoupled from space
+since we have a reducible representation which is built up such that time and
+space remain invariant subspaces in the space on which the representation acts
+on. The representation of the group element in the temporal part is given using
+the trivial representation, it therefore does not change anything.
+
+\section{Lorentz group 2}
+\label{homework:4}
+
+\begin{enumerate}
+    \item 
+        We have given $\mat A \in L$ and we may assume that $\mat A \ev_0$ is a
+        future directed time like vector. This also means that $\eta(\ev_0,
+        \mat A \ev_0) > 0$, which implies that the component of $A^0{}_0$ is
+        positive. This component decides the orientation of time. Since it is
+        positive, we have an orthochronous Lorentz transformation.
+
+    \item
+        We have to show that the set of orthochronous Lorentz transformations
+        leaves light like vectors as such. There is no way that any Lorentz
+        transformation could transform a time or space like vector into a light
+        like vector. This would require a change in norm from non-zero to zero,
+        which is not possible with an orthogonal transformation. By the same
+        argument, it is not possible to transform vectors from space to time
+        like and vice versa. A time like vector can only be transformed into
+        another such vector, although time reversal is possible by a
+        \emph{general} Lorentz transformation.
+
+        The orthochronous Lorentz group has the distinguishing property that
+        its elements do not change the time direction when applied to vectors
+        from Minkowski space. We are interested in time like vectors to begin
+        with, so the set $Z^+$ is the right choice. Since $\mat A \in L$ must
+        not change the metric, the condition $\eta(\mat A \ev_0, \mat A \ev_0)
+        > 0$ directly follows from $\eta(\ev_0, \ev_0) > 0$. The condition
+        $\eta(\ev_0, \mat A \ev_0) = A^0{}_0 > 0$ that we impose by requiring
+        that $\mat A$ maps $Z^+$ to itself ensures that we do not have a time
+        reversal. Therefore this set is the orthochronous Lorentz group.
+\end{enumerate}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79

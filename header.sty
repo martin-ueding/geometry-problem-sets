@@ -99,19 +99,11 @@
 \RequirePackage{beramono}
 \RequirePackage{berasans}
 
-% Bold, sans-serif tensors. This fragment is taken from “egreg” from
-% http://tex.stackexchange.com/a/82747/8945 and licensed under `CC-BY-SA
-% <https://creativecommons.org/licenses/by-sa/3.0/>`_.
-\if@beamer
-\else
-    \RequirePackage{bm}
-    \DeclareMathAlphabet{\mathsfit}{\encodingdefault}{\sfdefault}{m}{sl}
-    \SetMathAlphabet{\mathsfit}{bold}{\encodingdefault}{\sfdefault}{bx}{sl}
-    \newcommand{\tens}[1]{\bm{\mathsfit{#1}}}
-\fi
-
 % Bold vectors.
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\RequirePackage{isomath}
+\renewcommand{\vec}{\vectorsym}
+\newcommand{\tens}{\tensorsym}
+\newcommand{\mat}{\matrixsym}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               Input encoding                                %
@@ -201,6 +193,12 @@
 \DeclareMathOperator{\tr}{tr}
 \renewcommand{\Im}{\mathop{{}\mathrm{Im}}\nolimits}
 \renewcommand{\Re}{\mathop{{}\mathrm{Re}}\nolimits}
+
+% Groups
+\newcommand\SO{\mathrm{SO}}
+\newcommand\SU{\mathrm{SO}}
+\newcommand\so{\mathfrak{so}}
+\newcommand\su{\mathfrak{su}}
 
 % Fourier transform.
 \DeclareMathOperator{\fourier}{\ensuremath{\mathcal{F}}}
