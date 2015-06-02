@@ -110,13 +110,24 @@ product simply is $E \wedge H = E_i H_k \dif x^i \wedge \dif x^k$.
 \item
     $\dif \sigma$ is the time derivative of the field energy. It is a
     three-form, which means that it takes a time-like and two space-like
-    vectors. It corresponds the Poynting vector.
+    vectors. It corresponds to the Poynting vector, which can be thought of as
+    a Hodge dual of a three-form in four-space. $\sigma$ itself is an
+    energy-density two-form. It cannot be the energy momentum tensor since that
+    is symmetric.
 
 \item
     The absence of charges means that all of Maxwell's equations are
     homogeneous. Then, in the sense of vectors, $\vec E \propto \vec D$ and
-    $\vec H \propto \vec B$ which means that the wedge products are just zero.
-    That would also imply that $\sigma$ is a closed form.
+    $\vec H \propto \vec B$ which means that the wedge products are just the
+    scalar product of the components. Depending on the choice of unit system
+    they are even equal to each other, respectively.
+
+\item
+    We start with Equation~(4): $\dif \sigma = - \frac12 \partial_0 [E \wedge D
+    + H \wedge B]$. As mentioned before, in the absence of charge means that we
+    only have simple scalar products: $\dif \sigma = - \frac12 \partial_0 [\vec
+    E^2 + \vec B^2] \dif V$. Now one integrates over the volume $V$ and applies
+    Stokes's theorem to the left hand side. That's it.
 
 \end{enumerate}
 
