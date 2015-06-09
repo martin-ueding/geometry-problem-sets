@@ -1,0 +1,86 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{9}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:2} & & \punkte{15} \\
+        \nameref{homework:3} & & \punkte{10} \\
+        \nameref{homework:4} & & \punkte{10} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Hodge star operator}
+\label{homework:1}
+
+\section{Coderivative}
+\label{homework:2}
+
+\section{Vector calculus in $\R^3$}
+\label{homework:3}
+
+\section{Laplace}
+\label{homework:4}
+
+
+
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
