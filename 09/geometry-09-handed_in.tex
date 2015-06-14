@@ -68,11 +68,240 @@
 \section{Hodge star operator}
 \label{homework:1}
 
-\section{Coderivative}
-\label{homework:2}
+The trick is to choose $\beta$ to stamp out the components of $\alpha$ which
+are wanted. One can restrict those components to be from $1, \ldots, p$ and
+then later generalize this to all indices. We will use the index set $\{ i_k
+\}$ which contains all the indices between 1 and $n$. We chose
+\[
+    \beta = \bigwedge_{k=1}^p \dif x^{i_k},
+\]
+so all the components are one if $k \leq p$, zero otherwise. Since the
+equations are linear in $\beta$, we could also add other components
+$\beta_{i_k}$ here. Using this choice of $\beta$, we can write the scalar
+product like so, using another name for the index set with $j_k := i_k$ such
+that the Einstein summation convention still works:
+\begin{align*}
+    \bracket{\beta, \alpha}
+    &= \frac{1}{p!} \Bracket{\bigwedge_{k=1}^p \dif x^{i_k}, \bigwedge_{l=1}^p \dif x^{j_l}}
+    \alpha_{j_1 \ldots j_p} \omega.
+    \intertext{%
+        The lecture notes then give the definition of such a scalar product.
+        The indices $k$ and $l$ are not really defined, but there are curly
+        braces used. So we think that we are supposed to build a matrix where
+        each component has this scalar product as its value.
+    }
+    &= \frac{1}{p!} \det\del{\set{\bracket{\dif x^{i_k}, \dif x^{j_l}}}_{kl}}
+    \alpha_{j_1 \ldots j_p} \omega
+    \intertext{%
+        The scalar product of two simple 1-forms is (or defines?) the metric
+        tensor $\tens g$.
+    }
+    &= \frac{1}{p!} \det\del{\set{g^{i_k j_l}}_{kl}} \alpha_{j_1 \ldots j_p}
+    \omega
+    \intertext{%
+        Next we can apply the formula of the determinant using the Levi-Civita
+        symbol. We formula given in the lecture notes has the Levi-Civita
+        symbol like $\epsilonup^{i_1 \ldots i_p}_{l_1 \ldots l_p}$. This
+        Levi-Civita symbol has upper and lower indices which are atop of each
+        other. This does not make too much sense. The way it is written there,
+        the metric tensor would just raise the indices of the Levi-Civita
+        symbol giving $\epsilonup^{i_1 \ldots i_p \, j_1 \ldots j_p}$, which
+        will then create the dual of the form, but with respect to $2p$ and not
+        $n$ dimensions. Looking at the definition of the determinant by
+        \textcite[§13.2]{penrose-road_to_reality} it becomes clear that there
+        are \emph{two} Levi-Civita symbols. So the one from the lecture notes
+        might be some sort of double-Levi-Civita symbol? The problem set also
+        has this Levi-Civita symbol with upper and lower indices atop of each
+        other, but there it means $\epsilonup^{i_1 \ldots i_p}{}_{i_{p+1}
+        \ldots i_n}$. Using the two distinct symbols, we get the following:
+    }
+    &= \frac{1}{p!} \epsilonup^{i_1 \ldots i_p}
+    \sbr{\prod_{m = 1}^p g^{l_m j_m}} \epsilonup_{l_1 \ldots l_p}
+    \alpha_{j_1 \ldots j_p} \omega.
+    \intertext{%
+        Then we can raise the indices on the second symbol using all the metric
+        tensors.
+    }
+    &= \frac{1}{p!} \epsilonup^{i_1 \ldots i_p} \epsilonup^{j_1 \ldots j_p}
+    \alpha_{j_1 \ldots j_p} \omega
+    \intertext{%
+        Remember that the index names are all the same, $i_k = j_k$. They just
+        have different names such that the summation convention still works
+        out. This means that the Levi-Civita symbols do not really add
+        anything. For any unique chose of indices, both will be either zero or
+        $\pm 1$. Taking the square of this will either be zero or one. The
+        components of the $p$-form $\alpha$ are zero if there is an index
+        occurring twice. So the Levi-Civita symbols can just be dropped. Then
+        there is no summation convention and we can just rename the indices.
+        The $1/p!$ factor came from this summation, so we drop that as well.
+    }
+    &= \alpha^{i_1 \ldots i_p} \omega
+\end{align*}
+
+Now we need to approach this equation from the other side. We choose $\beta$
+the same way.
+\begin{align*}
+    \beta \wedge [\hodge \alpha]
+    &= \sbr{\bigwedge_{k = 1}^p \dif x^{i_k}} \wedge [\hodge \alpha]
+    \intertext{%
+        Only the components of $\hodge \alpha$ that do not contain any of the
+        $\{ i_k \}$ contribute to this. We can therefore use all the indices
+        $\{ i_l | l > p \}$ for $\hodge \alpha$. The summation will give us a
+        normalization factor.
+    }
+    &= \frac{1}{[n - p]!} \sbr{\bigwedge_{k = 1}^p \dif x^{i_k}} \wedge
+    \sbr{\bigwedge_{l = p+1}^n \dif x^{j_l}} [\hodge \alpha]_{j_{p+1} \ldots
+    j_n}
+    \intertext{%
+        We can join the wedging and get closer to the volume form $\omega$.
+    }
+    &= \frac{1}{[n - p]!} \sbr{\bigwedge_{k = 1}^n \dif x^{i_k}} [\hodge
+    \alpha]_{i_{p+1} \ldots i_n}
+    \intertext{%
+        The big wedge is now the volume form divided by $\sqrt{|\tens g|}$.
+        Since the volume form contains the basis elements in order, we do not
+        need the normalization factor any more.
+    }
+    &= \frac{\omega}{\sqrt{|\tens g|}} [\hodge
+    \alpha]_{i_{p+1} \ldots i_n}
+\end{align*}
+Since  $\alpha$ and  $\hodge \alpha$ are completely antisymmetric and we only
+use the last $n - p$ indices, we can use a Levi-Civita symbol to connect the
+form to its dual by equating both sides of the definition and translate between
+the first $p$ and last $n-p$ indices.
+\begin{align*}
+    \frac{\omega}{\sqrt{|\tens g|}} [\hodge \alpha]_{i_{p+1} \ldots i_n}
+    &= \frac{1}{p!} \epsilonup_{i_1 \ldots i_p i_{p+1} \ldots i_n} \alpha^{i_1 \ldots i_p} \omega
+    \intertext{%
+        We can cancel $\omega$ to get an index only expression and move the
+        other parts to one side to isolate an expression for the components of
+        the Hodge dual.
+    }
+    [\hodge \alpha]_{i_{p+1} \ldots i_n}
+    &= \frac{\sqrt{|\tens g|}}{p!}
+    \epsilonup_{i_1 \ldots i_p i_{p+1} \ldots i_n} \alpha^{i_1 \ldots i_p}
+    \intertext{%
+        This is the definition given in the lecture notes. The problem set has
+        its the other way around, it does not give the components of the Hodge
+        dual, but it shows how specific components transform under the dual.
+        All is needed is to exchange the dual with the form itself and adjust
+        the number of indices and normalization factors. Also cancel the
+        components of $\alpha$ since they are not needed in the definition.
+    }
+    \hodge \bigwedge_{k = 1}^p \dif x^{i_k}
+    &= \frac{\sqrt{|\tens g|}}{[n-1]!}
+    \epsilonup_{i_1 \ldots i_p i_{p+1} \ldots i_n} \bigwedge_{k = p+1}^n \dif x^{i_k}
+\end{align*}
+
+\section {
+     Coderivative
+ }
+ \label{homework:2}
+
+\begin{question}
+    The coderivative poses a notational problem: We have the variation which was
+    denoted with $\deltaup$. Now we have the coderivative which goes by the same
+    symbol. In general relativity, the variation is needed to derive the equations
+    of motions (geodesic equation, Maxwell's field equations, Einstein's field
+    equations). In a geometric treatment of general relativity the coderivative
+    probably plays a role as well. We only have so many variations of the lowercase
+    “delta”: $\delta \deltaup \vec\delta \tens\delta$. How can one make it clear
+    which one to use?
+\end{question}
 
 \section{Vector calculus in $\R^3$}
 \label{homework:3}
+
+We will use $\flat$ (“flat”) and $\sharp$ (“sharp”) instead of $J$ and $J\inv$
+respectively since those look cooler. Except when used as superscript and
+printed with an ink jet printer like this hardcopy. Sorry. You can get the PDF
+file online\footnote{\url{
+http://martin-ueding.de/de/studies/msc_physics/geometry/index.html}}, if you
+like.
+
+The metric tensor for spherical polar coordinates is
+\[
+    \tens g =
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & r^2 & 0 \\
+        0 & 0 & r^2 \sin(\theta)^2
+    \end{pmatrix}.
+\]
+The square root of the determinant is the well known Jacobian of spherical
+polar coordinates, $r^2 \sin(\theta)$.
+
+\paragraph{Divergence}
+
+The divergence is defined as
+\begin{align*}
+    \divergence \vec v
+    &:= - \deltaup v^\flat.
+    \intertext{%
+        Now we have a 1-form $\phi = v^\flat$ and we already know what the
+        coderivative of this thing is from Problem~\ref{homework:2}:
+        “\nameref{homework:2}”.
+    }
+    &= \frac{1}{\sqrt{|g|}} \pd{}{x_i} \sqrt{|g|} v^\flat_i
+    \intertext{%
+        We can insert the Jacobian.
+    }
+    &= \frac{1}{r^2 \sin(\theta)} \pd{}{x_i} r^2 \sin(\theta) v^\flat_i
+    \intertext{%
+        Now we have to perform the summation over the coordinates.
+    }
+    &= \frac{1}{r^2 \sin(\theta)} \sbr{
+        \pd{}{r} r^2 \sin(\theta) v^\flat_1
+        + \pd{}{\theta} r^2 \sin(\theta) v^\flat_2
+        + \pd{}{\phi} r^2 \sin(\theta) v^\flat_3
+    }
+    \intertext{%
+        We can cancel some parts since not everything is involved in the
+        product rules.
+    }
+    &= \frac{1}{r^2} \pd{}{r} r^2 v^\flat_1
+    + \frac{1}{\sin(\theta)} \pd{}{\theta} \sin(\theta) v^\flat_2
+    + \pd{}{\phi} v^\flat_3
+    \intertext{%
+        Now we apply the product rule to the terms. It does not make it more
+        clear, though.
+    }
+    &= \frac{2}{r} v^\flat_1 + v^\flat_{1,1}
+    + \cot(\theta) v^\flat_2 + v^\flat_{2,2}
+    + v^\flat_{3,3}
+\end{align*}
+That is wrong.
+
+\paragraph{Curl}
+
+\begin{align*}
+    \curl \vec v
+    &:= \sbr{\hodge \dif \vec v^\flat}^\sharp
+    \intertext{%
+        We expand the form into its components.
+    }
+    &= \sbr{\hodge \dif v^\flat_i \dif x^i}^\sharp
+    \intertext{%
+        We apply the exterior derivative. Only derivatives of $v$ contribute.
+    }
+    &= \sbr{\hodge v^\flat_{i,j} \dif x^j \wedge \dif x^i}^\sharp
+    \intertext{%
+        Next we apply the Hodge dual onto the 2-form. This will yield a 1-form.
+    }
+    &= \sbr{\frac{\sqrt{|g|}}{1!} \epsilonup^{ji}{}_{k} v^\flat_{i,j} \dif x^k}^\sharp
+    \intertext{%
+        All operators are done, we can now rewrite this in the basis of
+        vectors.
+    }
+    &= \sqrt{|g|} \epsilonup^{jik} v^\flat_{i,j} \partial_k
+    \intertext{%
+        If we look at the previous expression with Cartesian coordinates in
+        mind, one can indeed see the curl of a vector field. If we now apply
+        spherical polar coordinates, we have the following.
+    }
+    &= r^2 \sin(\theta) \epsilonup^{jik} v^\flat_{i,j} \partial_k
+\end{align*}
+That is also wrong.
 
 \section{Laplace}
 \label{homework:4}
