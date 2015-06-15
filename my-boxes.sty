@@ -1,6 +1,7 @@
 % Copyright © 2014-2015 Martin Ueding <dev@martin-ueding.de>
 
 \RequirePackage[tikz]{mdframed}
+\RequirePackage{float}
 
 %\newmdtheoremenv[%
 %    backgroundcolor=black!5,
@@ -28,7 +29,11 @@
     innertopmargin=\topskip,
     innerbottommargin=8cm,
     splittopskip=\topskip,
-    frametitle={Side question},
+    frametitle={Question},
     frametitlerule=true,
     nobreak=true,
-]{question}
+]{question-md}
+
+\newfloat{question-float}{hbt}{question}
+
+\newenvironment{question}{\begin{question-float}\begin{question-md}}{\end{question-md}\end{question-float}}

@@ -100,7 +100,7 @@ that the Einstein summation convention still works:
     \omega
     \intertext{%
         Next we can apply the formula of the determinant using the Levi-Civita
-        symbol. We formula given in the lecture notes has the Levi-Civita
+        symbol. The formula given in the lecture notes has the Levi-Civita
         symbol like $\epsilonup^{i_1 \ldots i_p}_{l_1 \ldots l_p}$. This
         Levi-Civita symbol has upper and lower indices which are atop of each
         other. This does not make too much sense. The way it is written there,
@@ -110,10 +110,12 @@ that the Einstein summation convention still works:
         $n$ dimensions. Looking at the definition of the determinant by
         \textcite[§13.2]{penrose-road_to_reality} it becomes clear that there
         are \emph{two} Levi-Civita symbols. So the one from the lecture notes
-        might be some sort of double-Levi-Civita symbol? The problem set also
-        has this Levi-Civita symbol with upper and lower indices atop of each
-        other, but there it means $\epsilonup^{i_1 \ldots i_p}{}_{i_{p+1}
-        \ldots i_n}$. Using the two distinct symbols, we get the following:
+        might be some sort of double-Levi-Civita symbol? This seems to be the
+        generalized Kronecker $\delta$ judging from its properties
+        \parencite{wikipedia/Kronecker_delta}. The problem set also has this
+        Levi-Civita symbol with upper and lower indices atop of each other, but
+        there it means $\epsilonup^{i_1 \ldots i_p}{}_{i_{p+1} \ldots i_n}$.
+        Using the two distinct symbols, we get the following:
     }
     &= \frac{1}{p!} \epsilonup^{i_1 \ldots i_p}
     \sbr{\prod_{m = 1}^p g^{l_m j_m}} \epsilonup_{l_1 \ldots l_p}
@@ -220,6 +222,54 @@ Levi-Civita symbol has indices running up to $n$:
     \epsilonup_{i_1 \ldots i_n}
     := \sbr{\prod_{k=1}^n g^{i_k j_k}} \epsilonup_{j_1 \ldots j_n}.
 \]
+
+The second hint looks strange as well. The free indices are $i$ and $i_2$ to
+$i_n$ on the first Levi-Civita symbol and $j$ and $j_2$ to $j_n$ on the second
+one. The right hand side of the equation only has $i$ and $j$ as free indices.
+The second symbol should probably have $i_2$ to $i_n$ as well, right?
+
+We now start with the actual problem. We are to compute
+\begin{align*}
+    \deltaup \phi
+    &= \sgn(\tens g) [-1]^{n[p+1]+1} \hodge \dif \hodge \phi.
+    \intertext{%
+        We may assume that $\phi$ is a 1-form and therefore $p = 1$ here.
+        The application of the right Hodge dual is first. In order to use
+        Equation~(1) from the problem set we write $\phi$ in components.
+    }
+    &= \sgn(\tens g) [-1]^{2n+1} \hodge \dif \del{\phi_i \hodge \dif x^i}
+    \intertext{%
+        For any $n$, the power of $-1$ will always be odd. We can therefore
+        just write this as a single minus sign. Now we can apply the definition
+        of the Hodge dual.
+    }
+    &= - \sgn(\tens g) \hodge \dif \frac{\sqrt{|\tens
+    g|} \phi_i}{[n-1]!} \epsilonup^{i}{}_{j_2 \ldots j_n}
+    \bigwedge_{k=2}^n \dif x^{j_k}
+    \intertext{%
+        We write the exterior derivative in terms of components.
+    }
+    &= - \sgn(\tens g) \hodge \frac{\partial_\mu \sqrt{|\tens
+    g|} \phi_i}{[n-1]!} \epsilonup^{i}{}_{j_2 \ldots j_n}
+    \dif x^\mu \wedge \bigwedge_{k=2}^n \dif x^{j_k}
+    \intertext{%
+        Then we apply the second Hodge dual which brings us back to a low-order
+        form.
+    }
+    &= - \sgn(\tens g) \frac{\sqrt{|\tens g|}}{2!}
+    \partial_\mu \sqrt{|\tens g|} \phi_i
+    \epsilonup^{i}{}_{j_2 \ldots j_n}
+    \epsilonup^{\mu j_2 \ldots j_n}
+    \intertext{%
+        The two Levi-Civita symbols can be contracted using the identity given
+        on the problem set.
+    }
+    &= - \sgn(\tens g) \frac{\sqrt{|\tens g|}}{2!}
+    \frac{\partial_\mu \sqrt{|\tens g|} \phi_i}{[n-1]!} g^{i\mu} \\
+    &= - \sgn(\tens g) \frac{\sqrt{|\tens g|}}{2!}
+    \partial_i \sqrt{|\tens g|} \phi_i
+\end{align*}
+That in the neighborhood, but not the correct result.
 
 \begin{question}
     The coderivative poses a notational problem: We have the variation which was
@@ -329,9 +379,66 @@ That is also wrong.
 \section{Laplace}
 \label{homework:4}
 
+\subsection{Laplacian}
 
+\begin{align*}
+    \laplace \alpha
+    &= - [\dif + \deltaup]^2 \alpha \\
+    &= - [\dif^2 + \dif \, \deltaup + \deltaup\dif + \deltaup^2] \alpha
+    \intertext{%
+        The outer terms will not contribute anything since $\dif^2 = 0$ and
+        $\deltaup^2$ will generate an $n+1$ form at some point. Only the mixed
+        terms contribute.
+    }
+    &= - [\dif \, \deltaup + \deltaup\dif] \alpha \\
+    \intertext{%
+        We apply the left operator of each summand to $\alpha$.
+    }
+    &= + \dif \alpha_i{}^{,i}
+    + \deltaup \alpha_{i,j} \dif x^j \wedge \dif x^i
+    \intertext{%
+        Then we apply the second operator.
+    }
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    - \hodge \dif \hodge \alpha_{i,j} \dif x^j \wedge \dif x^i \\
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    - \hodge \dif \frac{1}{[n-2]!} \alpha_{i,j}
+    \epsilonup^{ji}{}_{l_3 \ldots l_n} \bigwedge_{m=3}^n \dif x^{l_m}
+    \intertext{%
+        We apply the exterior derivative.
+    }
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    - \hodge \frac{1}{[n-2]!} \alpha_{i,j,k}
+    \epsilonup^{ji}{}_{l_3 \ldots l_n} \dif x^k \wedge \bigwedge_{m=3}^n \dif x^{l_m}
+    \intertext{%
+        And then we perform the second Hodge dual.
+    }
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    - \frac{1}{[n-2]!} \alpha_{i,j,k}
+    \epsilonup^{ji}{}_{l_3 \ldots l_n}
+    \epsilonup^{k l_3 \ldots l_n}_{\mu} \dif x^\mu
+    \intertext{%
+        We contract most of the indices of the Levi-Civita symbols.
+    }
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    - \alpha_{i,j,k}
+    \sbr{\deltaup^j_k \deltaup^i_\mu - \deltaup^j_\mu \deltaup^i_k} \dif x^\mu
+    \intertext{%
+        We expand the bracket into two terms. We need to add a minus sign to
+        the second term, otherwise it would not work out. We have no idea where
+        we missed that one.
+    }
+    &= + \alpha_i{}^{,i}{}_{,j} \dif x^j
+    + \alpha_{i,j}{}^{,j} \dif x^i - \alpha_{i,j}{}^{,i} \dif x^j
+    \intertext{%
+        Only one term remains after cheating.
+    }
+    &= \alpha_{i,j}{}^{,j} \dif x^i
+\end{align*}
 
+\subsection{Symmetric}
 
+\emph{Missing}
 
 \end{document}
 
