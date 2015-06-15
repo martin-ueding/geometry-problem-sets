@@ -116,7 +116,7 @@ We expand the inner commutator.
     \intertext{%
         We expand the outer commutator.
     }
-    = \mat A \mat B \mat C 
+    \quad = \mat A \mat B \mat C 
     - \mat A \mat C \mat B 
     - \mat B \mat C \mat A 
     + \mat C \mat B \mat A 
@@ -131,7 +131,7 @@ We expand the inner commutator.
     \intertext{%
         Then we sort the terms.
     }
-    =
+    \quad =
     \mat A \mat B \mat C 
     - \mat A \mat B \mat C 
     + \mat A \mat C \mat B 
@@ -147,7 +147,7 @@ We expand the inner commutator.
     \intertext{%
         And they all cancel each other.
     }
-    = 0
+    \quad = 0
 \end{gather*}
 
 \subsection{Cross product}
@@ -184,6 +184,59 @@ exchange the indices in the Levi-Civita symbol and therefore get a minus sign.
 \end{align*}
 
 \paragraph{Jacobi identity}
+
+We will need to write it out again here. This time we get to do some gymnastics
+with Levi-Civita symbols. We first expand everything in terms of components.
+\begin{gather*}
+    \vec a \times [\vec b \times \vec c]
+    + \vec c \times [\vec a \times \vec b]
+    + \vec b \times [\vec c \times \vec a] \\
+    \quad = \epsilon_{ijk} a^i \epsilon^j{}_{lm} b^l c^m \ev^k
+    + \epsilon_{ijk} c^i \epsilon^j{}_{lm} a^l b^m \ev^k
+    + \epsilon_{ijk} b^i \epsilon^j{}_{lm} c^l a^m \ev^k \\
+    \intertext{%
+        We can factor out the Levi-Civita symbols and the basis vector.
+    }
+    \quad = \epsilon_{ijk} \epsilon^j{}_{lm} \sbr{
+        a^i b^l c^m
+        + c^i a^l b^m
+        + b^i c^l a^m
+    } \ev^k \\
+    \intertext{%
+        Then we can contract both symbols and obtain some metric tensors.
+    }
+    \quad = \sbr{g_{kl} g_{im} - g_{km} g_{li}} \sbr{
+        a^i b^l c^m
+        + c^i a^l b^m
+        + b^i c^l a^m
+    } \ev^k \\
+    \intertext{%
+        We apply those metric tensors and lower some indices with them.
+    }
+    \quad = \sbr{
+        a^i b^k c_i
+        + c^i a^k b_i
+        + b^i c^k a_i
+        - a^i b_i c^k
+        - c^i a_i b^k
+        - b^i c_i a^k
+    } \ev_k \\
+    \intertext{%
+        The terms need to be reordered.
+    }
+    \quad = \sbr{
+        a^i b^k c_i
+        - a_i b^k c^i
+        + a^k b_i c^i
+        - a^k b^i c_i
+        + a_i b^i c^k
+        - a^i b_i c^k
+    } \ev_k \\
+    \intertext{%
+        And now the terms cancel and we get zero.
+    }
+    \quad = 0
+\end{gather*}
 
 \section{Exponential map}
 \label{homework:2}
