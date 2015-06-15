@@ -560,8 +560,8 @@ results.
         squared gives something proportional to the negative unit matrix.
         Therefore the terms in the power series of the exponential fall into
         even and odd terms and can then be grouped using sine and cosine
-        functions. The last one is easy since it is a diagonal matrix. We
-        obtain with a help from Mathematica
+        functions, see below for the detailed steps. The last one is easy since
+        it is a diagonal matrix. We obtain with a help from Mathematica
     }
     &= \begin{pmatrix}
     \cos\del{\frac{\alpha_1}2} & \iup \sin\del{\frac{\alpha_1}2} \\
@@ -593,6 +593,75 @@ big, so we list it here in components:
 
 One can check that this matrix is unitary, so we can conclude that this matrix
 comes from $\SU(2)$.
+
+\paragraph{Matrix exponentiation by hand}
+
+And to show that we only used Mathematica for convenience and that we could
+have done it by hand as well, we will show the exponentiation of $\mat S_1$
+here in detail.
+\begin{align*}
+    \exp(\alpha^1 \mat S_1)
+    &= \exp\del{\frac{\alpha^1}{2} \begin{pmatrix}
+    0 & \iup \\ \iup & 0
+    \end{pmatrix}}
+    \intertext{%
+        It becomes easier when the matrix is simpler.
+    }
+    &= \exp\del{\frac{\iup \alpha^1}{2} \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+    \end{pmatrix}}
+    \intertext{%
+        We expand the exponential into a power series.
+    }
+    &= \sum_{k = 0}^\infty \frac{1}{k!} \sbr{\frac{\iup \alpha^1}{2} \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+    \end{pmatrix}}^k
+    \intertext{%
+        Now the square of the matrix is the identity. We can therefore group
+        this into two summands.
+    }
+    &= \sum_{\text{$k$ even}} \frac{1}{k!} \sbr{\frac{\iup \alpha^1}{2}}^k \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    + \sum_{\text{$k$ odd}} \frac{1}{k!} \sbr{\frac{\iup \alpha^1}{2}}^k \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    \intertext{%
+        Then we change the index and generate even and odd numbers by hand.
+    }
+    &= \sum_{n = 0}^\infty \frac{1}{[2n]!} \sbr{\frac{\iup \alpha^1}{2}}^{2n} \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    + \sum_{n = 0}^\infty \frac{1}{[2n+1]!} \sbr{\frac{\iup
+    \alpha^1}{2}}^{2n+1} \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    \intertext{%
+        The imaginary unit can be split off and take the factor two with it.
+    }
+    &= \sum_{n = 0}^\infty \frac{[-1]^n}{[2n]!} \sbr{\frac{\alpha^1}{2}}^{2n} \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    + \iup \sum_{n = 0}^\infty \frac{[-1]^n}{[2n+1]!} \sbr{\frac{\alpha^1}{2}}^{2n+1} \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    \intertext{%
+        Those are the power series versions of cosine and sine, respectively.
+    }
+    &= \cos\del{\frac{\alpha^1}{2}}
+    \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+    + \iup \sin\del{\frac{\alpha^1}{2}}
+    \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+    \intertext{%
+        We can then combine the two matrices and obtain the same result we got
+        with Mathematica.
+    }
+    &=
+    \begin{pmatrix}
+        \cos\del{\frac{\alpha^1}{2}} & \iup \sin\del{\frac{\alpha^1}{2}} \\
+        \iup \sin\del{\frac{\alpha^1}{2}} & \cos\del{\frac{\alpha^1}{2}}
+    \end{pmatrix}
+\end{align*}
 
 \end{document}
 
