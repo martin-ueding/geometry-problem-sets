@@ -1,0 +1,286 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\usepackage{enumerate}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{10}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{10} \\
+        \nameref{homework:2} & & \punkte{20} \\
+        \nameref{homework:3} & & \punkte{20} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Lie algebra}
+\label{homework:1}
+
+\section{Exponential map}
+\label{homework:2}
+
+\begin{enumerate}[(a)]
+    \item
+        Using the chain rule and using that a matrix will commute with a smooth
+        function of itself, the desired property
+        \[
+            \od{}t \exp(t \mat A) = \mat A \exp(t \mat A)
+        \]
+        directly follows. But one can use the definition to show this as well,
+        of course:
+        \begin{align*}
+            \od{}t \exp(t \mat A)
+            &= \od{}t \sum_{k = 0}^\infty \frac{[t \mat A]^k}{k!}
+            \intertext{%
+                The differentiation with respect to $t$ is a limit, the sum is
+                also a limit. Since the exponential function is one of the
+                smoothest and most differentiable functions known to
+                Physicists, it should be possible to interchange those two
+                limits.
+            }
+            &= \sum_{k = 0}^\infty \od{}t \frac{t^k \mat A^k}{k!}
+            \intertext{%
+                We apply the derivative. The case $k = 0$ will give zero, so we
+                exclude that from the summation.
+            }
+            &= \sum_{k = 1}^\infty \frac{t^{k-1} \mat A^k}{[k-1]!}
+            \intertext{%
+                We can move one $\mat A$ to the front and relabel the summation
+                index $n = k-1$.
+            }
+            &= \mat A \sum_{n = 0}^\infty \frac{t^n \mat A^n}{n!}
+            \intertext{%
+                Now we can use the definition of the exponential function again
+                and wrap this up.
+            }
+            &= \mat A \exp(t \mat A)
+        \end{align*}
+
+    \item
+        We have $\mat A \mat B = \mat B \mat A$, they commute. To show all the
+        steps, we again start by expanding the exponential functions.
+        \begin{align*}
+            \exp(\mat A + \mat B)
+            &= \sum_{k = 0}^\infty \frac{[\mat A + \mat B]^k}{k!}
+            \intertext{%
+                Now we need to use the binomial theorem to split this sum.
+                Since $\mat A$ and $\mat B$ commute, we can actually do this
+                and do not have to carry $2^k$ individual terms.
+            }
+            &= \sum_{k = 0}^\infty \sum_{p = 0}^k \binom kp \frac{\mat A^p \mat B^{k-p}}{k!}
+            \intertext{%
+                We expand the binomial coefficient.
+            }
+            &= \sum_{k = 0}^\infty \sum_{p = 0}^k \frac{k!}{[k-p]! p!}
+            \frac{\mat A^p \mat B^{k-p}}{k!}
+            \intertext{%
+                Now we can cancel the factorial from the original exponential
+                series. Then we can write this in a suggestive way.
+            }
+            &= \sum_{k = 0}^\infty \sum_{p = 0}^k \frac{\mat A^p}{p!}
+            \frac{\mat B^{k-p}}{[k-p]!}
+            % TODO
+        \end{align*}
+
+        If $\mat A$ and $\mat B$ do not commute, this relation does not hold
+        since one could not apply the binomial theorem. There will be a third
+        exponential with the commutators and higher order commutators. That is
+        the Baker-Campbell-Hausdorff formula.
+
+    \item
+        Use the previous result with $\mat A = s \mat A$ and $\mat B = t \mat
+        A$.
+
+    \item
+        We have a matrix from $\GL(n, \R)$, so we cannot say that it can be
+        diagonalized. There always exists the Jordan form which has the
+        eigenvalues on the diagonal. Since the result will not differ, we will
+        assume that $\mat A$ is diagonalizable. Then we can find an eigenvalue
+        matrix $\mat \Lambda$ and a transform $\mat S$ such that $\mat \Lambda
+        = \mat S \mat A \mat S\inv$.
+        \begin{align*}
+            \det\del{\exp(\mat A)}
+            &= \det\del{\exp(\mat S\inv \mat \Lambda \mat S)}
+            \intertext{%
+                Using part (g) of this problem, we can pull out $\mat S$.
+            }
+            &= \det\del{\mat S\inv \exp(\mat \Lambda) \mat S}
+            \intertext{%
+                The determinant of a product is the product of the
+                determinants.
+            }
+            &= \det \mat S\inv \det\del{\exp(\mat \Lambda)} \det \mat S
+            \intertext{%
+                The determinants of the transform will just cancel.
+            }
+            &= \det\del{\exp(\mat \Lambda)}
+            \intertext{%
+                The eigenvalue matrix diagonal, so we just have a matrix with
+                the exponentiated eigenvalues on the diagonal. The determinant
+                of such a diagonal matrix is just the product of all the
+                elements on the diagonal.
+            }
+            &= \prod_i \exp(\lambda_i)
+            \intertext{%
+                We can combine those exponentials.
+            }
+            &= \exp(\sum_i \lambda_i)
+            \intertext{%
+                And that is the trace of the matrix $\mat \Lambda$.
+            }
+            &= \exp(\tr \mat \Lambda)
+            \intertext{%
+                Now we add the $\mat S$ again.
+            }
+            &= \exp\del{\tr(\mat S \mat S\inv \mat \Lambda)}
+            \intertext{%
+                The trace is cyclic, so we can move the $\mat S$ to the other
+                end.
+            }
+            &= \exp\del{\tr(\mat S\inv \mat \Lambda \mat S)}
+            \intertext{%
+                This expression is $\mat A$.
+            }
+            &= \exp(\tr \mat A)
+        \end{align*}
+        For the general case one would have to use the Jordan form and its
+        powers, but the idea is the same.
+
+    \item
+        Using the previous result, having $\det\del{\exp(\mat A)} = 0$ would
+        mean that $\exp(\tr \mat A) = 0$. However, the real matrix cannot have
+        a trace such that the exponential of it would be zero. This would not
+        even work with a complex matrix.
+
+    \item
+        We start with the definition of the inverse in general.
+        \begin{align*}
+            \exp(\mat A) \exp(\mat A)\inv &= \mat 1
+            \intertext{%
+                Then we write the unit matrix as an exponentiated zero matrix.
+                With the exponential map of the Lie algebra in mind this just
+                means that we take an arbitrary generator and set the parameter
+                vector to zero.
+            }
+            \exp(\mat A) \exp(\mat A)\inv &= \exp(\mat 0)
+            \intertext{%
+                Now we just use the definition of the additive inverse.
+            }
+            \exp(\mat A) \exp(\mat A)\inv &= \exp(\mat A - \mat A)
+            \intertext{%
+                As we have shown in (a), we can split the sum inside the
+                exponential into the product of two exponentials.
+            }
+            \exp(\mat A) \exp(\mat A)\inv &= \exp(\mat A) \exp(- \mat A)
+            \intertext{%
+                And then we cancel the first exponential and get the desired
+                expression.
+            }
+            \exp(\mat A)\inv &= \exp(- \mat A)
+        \end{align*}
+
+    \item
+        We can move the $\mat S$ and $\mat S\inv$ into the power since the
+        $\mat S\inv S$ pairs in between the $\mat A$ will just cancel. See
+        $[\mat S \mat A \mat S\inv]^2 = \mat S \mat A \mat S\inv \mat S \mat A
+        \mat S\inv = \mat S \mat A^2 \mat S\inv$.
+        \[
+            \mat S \exp(\mat A) \mat S\inv
+            = \sum_{k = 0}^\infty \mat S \frac{\mat A^k}{k!} \mat S\inv
+            = \sum_{k = 0}^\infty \frac{[\mat S \mat A \mat S\inv]^k}{k!}
+            = \exp(\mat S \mat A \mat S\inv)
+        \]
+        This would break if $\mat S$ would be singular, so we needed to have
+        $\det(\mat S) \neq 0$.
+
+    \item
+        The transpose changes the order in a product, but that does not hurt
+        since we only have powers of $\mat A$ here:
+        \begin{align*}
+            \exp(\mat A^\T)
+            &= \sbr{\sum_{k = 0}^\infty \frac{[\mat A^\T]^k}{k!}}
+            \intertext{%
+                We can move the transpose outside of the bracket since the
+                reversal in the order of the $k$ factors of $\mat A$ does not
+                change anything.
+            }
+            &= \sbr{\sum_{k = 0}^\infty \frac{[\mat A^k]^\T}{k!}}
+            \intertext{%
+                We can then use the linearity of the transpose and move it out
+                of the sum.
+            }
+            &= \sbr{\sum_{k = 0}^\infty \frac{\mat A^k}{k!}}^\T
+            \intertext{%
+                And then we recover the other side of the desired equation.
+            }
+            &= \sbr{\exp(\mat A)}^\T
+        \end{align*}
+
+    \item
+        This is very similar to (d). We can just diagonalize the matrix $\mat
+        A$ in the exponential and have a diagonal eigenvalue matrix $\mat
+        \Lambda$, where $\exp(\mat \Lambda)$ then contains the exponentiated
+        eigenvalues of $\mat A$. And any matrix can be diagonalized over the
+        complex numbers.
+\end{enumerate}
+
+\section{Lie algebra 2}
+\label{homework:3}
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
