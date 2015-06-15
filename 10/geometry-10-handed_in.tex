@@ -69,6 +69,122 @@
 \section{Lie algebra}
 \label{homework:1}
 
+\subsection{Matrix commutator}
+
+\paragraph{Linearity}
+
+The matrix group $\GL(n, \R)$ where we get our matrices from is a vector space.
+The commutator of matrices therefore is linear in the arguments:
+\begin{align*}
+    [\lambda \mat A + \mu \mat B, \mat C]
+    &= [\lambda \mat A + \mu \mat B] \mat C - \mat C [\lambda \mat A + \mu \mat B]
+    \intertext{%
+        The matrix multiplication is associative and also has the distributive
+        laws.
+    }
+    &= \lambda \mat A \mat C + \mu \mat B \mat C - \mat C \mu \mat B
+    - \mat C \lambda \mat A
+    \intertext{%
+        Then we move the factors up front and reorder the summands.
+    }
+    &= \lambda \mat A \mat C - \lambda \mat C \mat A
+    + \mu \mat B \mat C - \mu \mat C \mat B
+    \intertext{%
+        We can factor out the factors and get recognize the matrix commutators
+        again.
+    }
+    &= \lambda [\mat A, \mat C] + \mu [\mat B, \mat C]
+\end{align*}
+The linearity in the second argument follows from the anti-commutativity of the
+matrix commutator.
+
+\paragraph{Anti-commutativity}
+
+The way the commutator is defined it is easy to see that it is anti-symmetric
+in its arguments.
+
+\paragraph{Jacobi identity}
+
+We expand the inner commutator.
+\begin{gather*}
+    [\mat A, [\mat B, \mat C]]
+    + [\mat C, [\mat A, \mat B]]
+    + [\mat B, [\mat C, \mat A]]
+    = [\mat A , \mat B \mat C -\mat C \mat B ]
+    + [\mat C , \mat A \mat B -\mat B \mat A ]
+    + [\mat B , \mat C \mat A -\mat A \mat C ]
+    \intertext{%
+        We expand the outer commutator.
+    }
+    = \mat A \mat B \mat C 
+    - \mat A \mat C \mat B 
+    - \mat B \mat C \mat A 
+    + \mat C \mat B \mat A 
+    + \mat C \mat A \mat B 
+    - \mat C \mat B \mat A 
+    - \mat A \mat B \mat C 
+    + \mat B \mat A \mat C 
+    + \mat B \mat C \mat A 
+    - \mat B \mat A \mat C 
+    - \mat C \mat A \mat B 
+    + \mat A \mat C \mat B 
+    \intertext{%
+        Then we sort the terms.
+    }
+    =
+    \mat A \mat B \mat C 
+    - \mat A \mat B \mat C 
+    + \mat A \mat C \mat B 
+    - \mat A \mat C \mat B 
+    + \mat B \mat A \mat C 
+    - \mat B \mat A \mat C 
+    + \mat B \mat C \mat A 
+    - \mat B \mat C \mat A 
+    + \mat C \mat A \mat B 
+    - \mat C \mat A \mat B 
+    + \mat C \mat B \mat A 
+    - \mat C \mat B \mat A 
+    \intertext{%
+        And they all cancel each other.
+    }
+    = 0
+\end{gather*}
+
+\subsection{Cross product}
+
+\paragraph{Linearity}
+
+Using components one can lead this back to the linearity of a bilinear form:
+\[
+    \vec a \times \vec b = \epsilon_{ijk} a^i b^j \ev^k.
+\]
+This expression is linear in $a^i$ and $b^j$ each.
+
+\paragraph{Anti-commutativity}
+
+If we exchange $\vec a$ and $\vec b$ in the above expression, we have to
+exchange the indices in the Levi-Civita symbol and therefore get a minus sign.
+\begin{align*}
+    \vec a \times \vec b
+    &= \epsilon_{ijk} a^i b^j \ev^k
+    \intertext{%
+        We exchange the indices of the Levi-Civita symbol.
+    }
+    &= - \epsilon_{jik} a^i b^j \ev^k
+    \intertext{%
+        For consistency, we can also exchange the components of $\vec a$ and
+        $\vec b$ here. Those are just regular numbers and therefore do not
+        cause a change in sign.
+    }
+    &= - \epsilon_{jik} b^j a^i \ev^k
+    \intertext{%
+        By the definition, this is a cross product in the other order.
+    }
+    &= - \vec b \times \vec a
+\end{align*}
+
+\paragraph{Jacobi identity}
+
 \section{Exponential map}
 \label{homework:2}
 
