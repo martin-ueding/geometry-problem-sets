@@ -384,6 +384,234 @@ And that is the Einstein-Lorentz equation.
 
 \subsection{Hamiltonian}
 
+The canonical momenta are
+\[
+    \pi_i = \pd{L}{\dot x^i} = \dot x_i + A_i(\vec x, t).
+\]
+We assemble the Hamiltonian using the Legendre transformation.
+\begin{align*}
+    H &= \pi_i \dot x^i - L \\
+    &= \pi_i \dot x^i - \frac12 \dot x_i \dot x^i - \phi(\vec x, t) + \dot
+    x^i A_i(\vec x, t) \\
+    &= \pi_i \sbr{\pi^i - A^i(\vec x, t)}
+    - \frac12 \sbr{\pi_i - A_i(\vec x, t)} \sbr{\pi^i - A^i(\vec x, t)}
+    + \phi(\vec x, t)
+    - \sbr{\pi^i - A^i(\vec x, t)} A_i(\vec x, t) \\
+    \intertext{%
+        We can factor the first and last term together and have two times the
+        second term. Together we only have the positive second term left.
+    }
+    &= \frac12 \sbr{\pi_i - A_i} \sbr{\pi^i - A^i} + \phi
+\end{align*}
+
+\subsection{Gauge transformation}
+
+The time dependant Schrödinger equation is
+\[
+    \iup \pd{}t \psi(\vec x, t) = H(\vec x, t) \psi(\vec x, t).
+\]
+Inserting our expression from the previous part and replacing $\pi_i$ with $-
+\iup \pd{}t$, we arrive at the given Schrödinger equation.
+
+We start with the transformation of the magnetic potential.
+\begin{align*}
+    \iup \dot\psi
+    &= \sbr{\frac12 \sbr{- \iup \partial_i - A_i' + \theta_{,i}} \sbr{- \iup
+    \partial^i - A^{i\prime} + \theta^{,i}} + \phi' + \dot\theta} \psi(\vec x, t) \\
+    \intertext{%
+        The terms with $\theta$ get factored out. 
+    }
+    &= \sbr{
+        \frac12
+        \sbr{
+            \sbr{- \iup \partial_i - A_i'}
+            \sbr{- \iup \partial^i - A^{i\prime}}
+            +
+            \sbr{- \iup \partial_i - A_i'}
+            \theta^{,i}
+            +
+            \theta_{,i}
+            \sbr{- \iup \partial^i - A^{i\prime}}
+            +
+            \theta_{,i}
+            \theta^{,i}
+        }
+        + \phi' + \dot\theta
+    } \psi
+    \intertext{%
+        We extract the original Hamiltonian.
+    }
+    &= \sbr{
+        H' +
+        \frac12
+        \sbr{
+            \sbr{- \iup \partial_i - A_i'}
+            \theta^{,i}
+            +
+            \theta_{,i}
+            \sbr{- \iup \partial^i - A^{i\prime}}
+            +
+            \theta_{,i}
+            \theta^{,i}
+        }
+        + \dot\theta
+    } \psi \\
+    \intertext{%
+        The remaining inner brackets are expanded, keeping the product rule in
+        mind.
+    }
+    &= \sbr{
+        H' +
+        \frac12
+        \sbr{
+            - \iup \theta^{,i}{}_{,i} - A_i' \theta^{,i}
+            - \iup \theta^{,i} \partial_i
+            - \iup \theta_{,i} \partial^i
+            - \theta_{,i} A^{i\prime}
+            + \theta_{,i} \theta^{,i}
+        }
+        + \dot\theta
+    } \psi \\
+    \intertext{%
+        Two terms occur twice, we group them.
+    }
+    &= \sbr{
+        H' +
+        \frac12
+        \sbr{
+            - \iup \theta^{,i}{}_{,i}
+            - 2 A_i' \theta^{,i}
+            - 2 \iup \theta^{,i} \partial_i
+            + \theta_{,i} \theta^{,i}
+        }
+        + \dot\theta
+    } \psi
+\end{align*}
+There are terms left that we cannot get rid of. They prevent a form-invariance
+of the Schrödinger equation.
+
+The solution is to add the phase transformation to the wave function. So we
+replace $\psi$ by $\exp(-\iup \theta) \psi'$. First we compute the commutator
+of $H'$ with $\exp(-\iup \theta)$.
+\begin{gather*}
+    \sbr{H', \exp(-\iup \theta)} \psi
+    = \sbr{\sbr{\frac12 \sbr{- \iup \partial_i - A_i'} \sbr{- \iup
+    \partial^i - A^{\prime i}} + \phi'}, \exp(-\iup \theta)} \psi
+    \intertext{%
+        Every summand which does not contain a differential operator will not
+        contribute to the commutator. We can therefore already eliminate
+        $\phi'$.
+    }
+    \quad= \frac12 \sbr{\sbr{- \iup \partial_i - A_i'} \sbr{- \iup
+    \partial^i - A^{\prime i}}, \exp(-\iup \theta)} \psi
+    \intertext{%
+        Then we expand the brackets.
+    }
+    \quad= \frac12 \sbr{
+        - \partial_i \partial^i
+        - \iup \partial_i A^{\prime i}
+        - \iup A_i' \partial^i
+        + A_i'A^{i\prime}
+    , \exp(-\iup \theta)} \psi
+    \intertext{%
+        We apply the product rule in the second term.
+    }
+    \quad= \frac12 \sbr{
+        - \partial_i \partial^i
+        - \iup A^{\prime i}{}_{,i}
+        - \iup A^{i\prime} \partial_i
+        - \iup A_i' \partial^i
+        + A_i'A^{i\prime}
+    , \exp(-\iup \theta)} \psi
+    \intertext{%
+        Again, everything without differential operators does not contribute.
+    }
+    \quad= \frac12 \sbr{
+        - \partial_i \partial^i
+        - 2 \iup A_i' \partial^i
+    , \exp(-\iup \theta)} \psi \\
+    \intertext{%
+        We write out the commutator in full.
+    }
+    \quad= - \frac12 \sbr{
+        \sbr{
+            \partial_i \partial^i
+            + 2 \iup A_i' \partial^i
+        }
+        \exp(-\iup \theta) \psi
+        -
+        \exp(-\iup \theta)
+        \sbr{
+            \partial_i \partial^i
+            + 2 \iup A_i' \partial^i
+        }
+        \psi
+    } \\
+    \intertext{%
+        We apply the product rule for the first partial derivative.
+    }
+    \quad= - \frac12 \left[
+        \sbr{
+            - \iup \partial_i \exp(-\iup \theta) \theta^{,i} \psi
+            + \partial_i \exp(-\iup \theta) \partial^i \psi
+            - \iup 2 A_i' \exp(-\iup \theta) \theta^{,i} \psi
+            + 2 \iup A_i' \exp(-\iup \theta) \partial^i \psi
+        }
+        \right.\\\qquad\left.
+        -
+        \exp(-\iup \theta)
+        \sbr{
+            \partial_i \partial^i
+            + 2 \iup A_i' \partial^i
+        }
+        \psi
+    \right]
+    \intertext{%
+        One term can already be cancelled.
+    }
+    \quad= - \frac12 \left[
+        \sbr{
+            - \iup \partial_i \exp(-\iup \theta) \theta^{,i} \psi
+            + \partial_i \exp(-\iup \theta) \partial^i \psi
+            - \iup 2 A_i' \exp(-\iup \theta) \theta^{,i} \psi
+        }
+        - \exp(-\iup \theta) \partial_i \partial^i \psi
+    \right] \\
+    \quad= - \frac12 \exp(-\iup \theta) \sbr{
+        - \theta_{,i} \theta^{,i}
+        - \iup \theta^{,i}{}_{,i}
+        - \iup \theta^{,i} \partial_i
+        + \iup \theta_{,i} \partial^i
+        + \partial_i \partial^i
+        - 2 \iup A_i' \theta^{,i}
+        - \partial_i \partial^i
+    } \psi
+    \intertext{%
+        We can cancel several more terms here.
+    }
+    \quad= - \frac12 \exp(-\iup \theta) \sbr{
+        - \theta_{,i} \theta^{,i}
+        - \iup \theta^{,i}{}_{,i}
+        - 2 \iup A_i' \theta^{,i}
+    } \psi
+\end{gather*}
+
+These terms almost match up with the extra terms we have in the Schrödinger
+equation. The time derivative on the other side will give us the $- \dot
+\theta$ term that we also need to cancel it in the Schrödinger equation.
+
+\subsection{Comparison}
+
+From what we have heard before this lecture, we would identify:
+
+\begin{itemize}
+    \item Bundle of vector spaces: Phase space
+    \item Gauge group: $\mathrm U(1)$
+    \item Lie algebra: $\mathfrak u(1) \simeq \R$
+    \item Matter field: Particle $(\vec x, t)$
+    \item Connection: Magnetic potential $\vec A$
+\end{itemize}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
