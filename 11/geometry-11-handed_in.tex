@@ -1,0 +1,348 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\usepackage{enumerate}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{11}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{30} \\
+        \nameref{homework:2} & & \punkte{20} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Lie algebra of matrix groups}
+\label{homework:1}
+
+Are we talking about the abstract algebra of the groups or rather a matrix
+representation in a given dimension? The groups we look at are matrix groups of
+a given dimension. They have a “natural” matrix representation, which is the
+one used before generalizing those matrices to a group. The algebra can be
+written down in terms of those matrices as well. We will start with the matrix
+representation in $n$ dimensions of the groups as well.
+
+The basis of the Lie algebra are the generators, and we will take the
+physicist's convention of hermitian generators for compact groups here. We
+assume that the elements of the group are always exponentiated from some
+algebra element, i.e. that they are connected to the identity element $e$. Then
+we can just take the first order derivative at the identity, which means that
+we look at $T_e G$ which will give us $\mathfrak g$.
+
+\subsection{General linear group}
+
+The general linear group contains literally all matrices with $n$ dimensions
+over the given field, which is $\R$ here. We can parameterize any matrix by its
+components. The matrix is given by:
+\[
+    \mat A\del{\{ \alpha^{i}{}_{j} \}_{ij}} = \{ \alpha^{i}{}_{j} \}_{ij}.
+\]
+The matrix is just given by the matrix of the parameters.
+
+We can obtain the generators:
+\[
+    \mat T_{i}{}^{j}
+    = - \iup \pd{\mat A\del{\{ \alpha^{i}{}_{j} \}_{ij}}}{\alpha^{i}{}_{j}}(\tens 0)
+    = - \iup \ev_i \otimes \ev^j,
+\]
+where we have used the explicit form of the matrices in the last step, of
+course. Those generators are not hermitian. The group in question is not
+compact, so this is normal.
+
+The matrices only depend linearly on the parameters, so the generators already
+form the basis for the whole group as well. The algebra can then be written as
+\[
+    \mathfrak{gl}(n, \R) =
+    \cbr{
+        - \iup \alpha^{i}{}_{j} \ev_i \otimes \ev^j
+        \colon
+        \alpha^{i}{}_{j} \in \R
+    }.
+\]
+
+From here, we can reach all the elements of the group with the exponential map:
+\[
+    g(\mat\alpha) = \exp\del{\iup \alpha^i{}_j \mat T_i{}^j}.
+\]
+
+\subsection{Special linear group}
+
+The special linear group has the constraint that the determinant has to be one.
+On the previous exercise sheet we derived the useful relation $\det\exp(\mat A)
+= \exp(\tr \mat A)$. In our case we can take $\mat A \in \mathfrak{sl}$ and see
+that $\exp(\mat A) \in \mathrm{GL}$, then. A unit determinant then corresponds
+to generators which do not have a trace.
+
+We remove the trace from the generators that we had before by just changing the
+parametrization a bit. All the generators which have an entry on the diagonal
+will get an additional $-1$ in the very first element. They now look like this:
+\[
+    \mat T_{i}{}^{j}
+    = - \iup \sbr{\ev_i \otimes \ev^j - \deltaup_i^j \ev_1 \otimes \ev^1}.
+\]
+This makes the generator $\mat T_1{}^1$ useless. The unit determinant gave us
+one constraint, so the group now has one dimension less and therefore also
+needs one generator less.
+
+\subsection{Special orthogonal group}
+
+Special orthogonal matrices are such that $\mat O\inv = \mat O^\mathrm T$. Here
+the exponential map is of great help.
+Let the algebra element $\mat o$ be the generator of the group element $\mat
+O$. Then we can rewrite the defining property.
+\begin{align*}
+    \mat O\inv &= \mat O^\mathrm T \\
+    \exp(\iup \mat o)\inv &= \exp(\iup \mat o)^\mathrm T \\
+    \exp(-\iup \mat o) &= \exp(\iup \mat o^\mathrm T) \\
+    -\mat o &= \mat o^\mathrm T
+\end{align*}
+We now want antisymmetric generators. The group is a compact lie group because
+the parameters which we are going to introduce later are defined on compact
+support. Compact groups can have hermitian generators. This is the first
+compact group, so the generators actually are hermitian and purely imaginary,
+therefore antisymmetric.
+
+Rotations can be parametrized by angles around all the axes in the space. One
+such active rotation around $\Theta^i$ can be written as such:
+\[
+    \mat O(\Theta^i) =
+    \begin{pmatrix}
+        1 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 & 0 \\
+        0 & 1 & \cdots & 0 & \cdots & 0 & \cdots & 0 & 0 \\
+        0 & 0 & \ddots & \cos(\Theta^i) & \cdots & -\sin(\Theta^i) & \cdots & 0 & 0 \\
+        0 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 & 0 \\
+        0 & 0 & \cdots & \sin(\Theta^i) & \cdots & \cos(\Theta^i) & \ddots & 0 & 0 \\
+        0 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 1 & 0 \\
+        0 & 0 & \cdots & 0 & \cdots & 0 & \cdots & 0 & 1 \\
+    \end{pmatrix},
+\]
+there are ones on the diagonal except for the elements where the actual
+rotation takes place. The generators of this group are then simply
+\[
+    \mat T_{ij} = -\iup \ev_{[i} \otimes \ev_{j]}.
+\]
+In three dimensions, there are only three distinct rotations. In four
+dimensions there are already six possible rotations, which we know from the
+Lorentz group with its six (pseudo-)rotations. The rotation angles should be
+given as an antisymmetric matrix instead of a vector. We regularly use a vector
+in three dimensions, which is again a hidden Hodge dual nobody told us about
+before.
+
+The components of the generators can be written as
+\[
+    \sbr{T_{ij}}^{ab} = - \iup \deltaup^a_{[i} \deltaup^b_{j]}
+\]
+or alternatively
+\[
+    \sbr{T_{ij}}_{ab} = - \iup \sbr{
+        \eta_{ai} \eta_{bj} - \eta_{aj} \eta_{bi}
+    }
+\]
+which can be generalized to any matrix group $\mathrm{SO}(n-p, p, \R)$ if the
+correct signature of the metric tensor is inserted. The first version is also
+given similarly by \textcite[(3.18)]{Peskin/QFT/1995}.
+
+\subsection{Unitary group}
+
+Unitary matrices $\mat U$ have the property $\mat U^\dagger = \mat U\inv$. This
+can be used with the exponential map like with the orthogonal matrices to give
+a constraint for the generator $\mat u$.
+\begin{align*}
+    \mat U^\dagger &= \mat U\inv \\
+    \exp(\iup \mat u)^\dagger &= \exp(\iup \mat u)\inv \\
+    \exp(- \iup \mat u^\dagger) &= \exp(- \iup \mat u) \\
+    \mat u^\dagger &= \mat u
+\end{align*}
+So again we have have hermitian generators for this group. The group itself is
+not compact though, as can be seen later when parametrizing it.
+
+We know that the Pauli matrices are one basis for the \emph{special} unitary
+algebra in the two dimensional representation and the Gell-Mann matrices the
+basis in the three dimensional representation. Since we regard the general
+unitary group, we need one additional real parameters such that the determinant
+can have any argument, while the modulus is still 1. Adding the identity matrix
+(or in physicist's convention the matrix $- \iup \mat 1_n$) to the generators
+will basically give us $\SU(n) \times \mathrm U(1) = \mathrm U(n)$.
+
+The real part of the trace of the generator does not have to be zero as we are
+allowing a complex phase for this group. This means that our generators fall in
+three categories.
+
+\begin{description}
+    \item[Imaginary off-diagonal]
+        There are generators which looks like these:
+        \[
+            \begin{pmatrix}
+                0 & - \iup \alpha & 0 \\
+                \iup \alpha & 0 & 0 \\
+                0 & 0 & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 & 0 & - \iup \alpha \\
+                0 & 0 & 0 \\
+                \iup \alpha & 0 & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & - \iup \alpha \\
+                0 & \iup \alpha & 0 \\
+            \end{pmatrix}
+            .
+        \]
+        There are $n[n-1]/2$ of those. This can be seen since a $n \times n$
+        matrix has $n^2$ elements. We take away the diagonal and are at
+        $n[n-1]$. Then only the upper or lower elements are unique, the other
+        half is determined since the matrix is supposed to be hermitian.
+
+    \item[Real on-diagonal]
+        Since we do not have to take care of the trace, we can add $n$
+        generators of the form
+        \[
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+            \end{pmatrix}
+            \eqnsep
+            \begin{pmatrix}
+                0 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 0
+            \end{pmatrix}
+            \eqnsep
+            \begin{pmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 1
+            \end{pmatrix}
+            .
+        \]
+
+    \item[Real off-diagonal]
+        And there are another $n[n-1]/2$ generators for the real off-diagonal
+        entries.
+        \[
+            \begin{pmatrix}
+                0 & 1 & 0 \\
+                1 & 0 & 0 \\
+                0 & 0 & 0
+            \end{pmatrix}
+            \eqnsep
+            \begin{pmatrix}
+                0 & 0 & 1 \\
+                0 & 0 & 0 \\
+                1 & 0 & 0
+            \end{pmatrix}
+            \eqnsep
+            \begin{pmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+            \end{pmatrix}
+        \]
+\end{description}
+
+Together we have $n^2$ generators with real parameters. This means that the
+dimension of the algebra $\mathfrak u(n)$ has half the dimension compared to
+$\gl(n, \R)$. The group $\SU(n)$ has $n^2 - 1$ generators, which fits with the
+three Pauli and eight Gell-Mann matrices. As always, the algebra is the space
+spanned by those $n^2$ generators.
+
+\subsection{Lorentz group}
+
+With the introduction of the metric tensor for the special orthogonal group, we
+already derived this for the Lorentz group as well. Just set the metric tensor
+to $\mat\eta = \diag(1, -1, -1, -1)$.
+
+Using Greek indices we have the six generators
+\[
+    \sbr{T^{\mu\nu}}^{\rho\lambda} = - \iup \sbr{
+        \eta^{\rho\mu} \eta^{\lambda\nu} - \eta^{\rho\nu} \eta^{\lambda\mu}
+    }.
+\]
+The corresponding angles go into an angle two-form $\omega$. The elements
+$\omega_{0i}$ correspond to pseudo-rotations or boosts, whereas the elements
+$\omega_{ij}$ correspond to rotations about the axes $k$ (with $\epsilon_{ijk}$
+in mind).
+
+\subsection{Heisenberg group}
+
+Thankfully the Heisenberg group is already given with parameters. So we can
+just write down the generators:
+\[
+    \mat T_1 = - \iup \ev_1 \otimes \ev^2
+    \eqnsep
+    \mat T_3 = - \iup \ev_1 \otimes \ev^3
+    \eqnsep
+    \mat T_3 = - \iup \ev_2 \otimes \ev^3
+\]
+And then the algebra simply is
+\[
+    \mathfrak h =
+    \cbr{
+        - \iup \alpha^{i} \mat T_i
+        \colon
+        \alpha^i \in \R, i \in \{ 1, 2, 3 \}
+    }
+\]
+
+
+\section{Field matter coupling in quantum mechanics}
+\label{homework:2}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
