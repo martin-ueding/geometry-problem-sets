@@ -343,6 +343,47 @@ And then the algebra simply is
 \section{Field matter coupling in quantum mechanics}
 \label{homework:2}
 
+\subsection{Einstein-Lorentz force}
+
+The Lagrangian with all explicit functional dependence written down is
+\[
+    L(\vec x, \dot{\vec x}) = \frac12 \eta_{ij} \dot x^i \dot x^j
+    - \phi(\vec x, t) + \dot x^i A_i(\vec x, t).
+\]
+We use $\tens \eta$ instead of $\tens g$ as long as we are in coordinate frame
+without curvature.
+
+The Euler-Lagrange equation for this is $\deltaup L = 0$ where $\deltaup$ means
+the variation. We have
+\begin{align*}
+    0 &= \pd{L}{x^i} - \od{}t \pd{L}{\dot x^i} \\
+    \intertext{%
+        We compute the partial derivatives.
+    }
+    0 &= - \phi_{,i} + \dot x^j A_{j,i} - \od{}t \sbr{\dot x_i + A_i(\vec x, t)} \\
+    \intertext{%
+        The total time derivative will lead to a chain rule in $\dot x$.
+    }
+    0 &= - \phi_{,i} + \dot x^j A_{j,i} - \ddot x_i - A_{i,j} \dot x^j - \dot
+    A_i \\
+    \intertext{%
+        We move $\ddot x_i$ to the other side.
+    }
+    \ddot x_i &= - \phi_{,i} + \dot x^j A_{j,i} - A_{i,j} \dot x^j - \dot
+    A_i \\
+    \intertext{%
+        With a bit of vector calculus magic we can regroup those terms. It is
+        easiest to start with the result and check using the Levi-Civita
+        symbols that it matches the expression in the line above.
+    }
+    \ddot x_i &= \underbrace{- \vnabla \phi}_{\vec E} + \dot{\vec x} \times
+    \underbrace{[\vnabla \times \vec A]}_{\vec B} \\
+    \ddot x_i &= \vec E + \dot{\vec x} \times \vec B
+\end{align*}
+And that is the Einstein-Lorentz equation.
+
+\subsection{Hamiltonian}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
