@@ -77,6 +77,65 @@
 \section{Lie groups}
 \label{homework:1}
 
+For these problems, we are not really sure how to show those things. The first
+two are fields already and we just limit it a bit. We will check for the group
+axioms.
+
+\subsection{Positive reals}
+
+The identity is 1. The inverse inverse element is $x\inv = 1/x$ and exists for
+every element (Archimedes's axiom). Multiplication is associative. And the
+multiplication is closed.
+
+The generator of this is $- \iup$ in the physicist's convention, the range for
+the parameter $\alpha$ is $\R$ itself. And $\exp(\R) = \R^+$, so we can go from
+the algebra to the group with the exponential map.
+
+\subsection{Reals}
+
+We can write the addition as a multiplication and use the usual matrix
+representation theory of Lie algebras. So we represent the element $x \in R$
+from the group by the matrix
+\[
+    \begin{pmatrix}
+        1 & x \\ 0 & 1
+    \end{pmatrix}
+\]
+Then the addition can be just represented by matrix multiplication. We have an
+inverse element, $x\inv = -x$ for every element. The neutral element is 0. This
+group is also closed under addition.
+
+The generator is
+\[
+    \begin{pmatrix}
+        - \iup
+        \begin{pmatrix}
+            0 & 1 \\ 0 & 0
+        \end{pmatrix}
+    \end{pmatrix}.
+\]
+We can use an $\R$ parameter to get any group element out of this,
+continuously.
+
+\subsection{Plane}
+
+We have $\R^2 = \R \times \R = \R \oplus \R$. So we just take the previous
+group twice with “$\otimes$” which poses the least problems when we take the
+two dimensional matrix representation we used above.
+
+\subsection{Unit circle}
+
+Generator is 1 here. So it is hermitian and therefore a compact Lie group. We
+have an inverse element, $\eup^0$. The inverse is $x\inv = x^*$ and it is also
+closed.
+
+\subsection{Linear groups}
+
+The generators are $- \iup \cdot \mathrm{GL}(n, \R)$. There are $n^2$
+generators. For $\mathrm{SL}(n, \R)$, the generators must not have a trace as
+shown on one of the previous sheets. This is a subgroup and it only has $n^2 -
+1$ generators.
+
 \section{Lie braket}
 \label{homework:2}
 
