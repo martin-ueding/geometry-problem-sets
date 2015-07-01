@@ -1,0 +1,239 @@
+% Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\usepackage{enumerate}
+\usepackage{lastpage}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{12}
+
+\subject{Geometry in Physics}
+\ihead{Geometry in Physics -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Jens Boos}
+\ofoot{Group 1 -- Jens Boos}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\href{mailto:paul.manz@dreiacht.de}{paul.manz@dreiacht.de}}
+}
+\ifoot{Martin Ueding, Paul Manz}
+
+\ohead{\rightmark}
+
+\usepackage{multicol}
+
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{30} \\
+        \nameref{homework:2} & & \punkte{20} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Lie groups}
+\label{homework:1}
+
+\section{Lie braket}
+\label{homework:2}
+
+\subsection{Lie derivative}
+
+We write this with a test function $f$ to make the product rule more clear.
+\begin{align*}
+    [v, w]f
+    &= v(w(f)) - w(v(f)) \\
+    \intertext{%
+        We expand the two vector fields.
+    }
+    &= v^i \partial_i w^j \partial_j f - w^j \partial_j v^i \partial_i f \\
+    \intertext{%
+        Now we apply the product rule.
+    }
+    &= v^i w^j{}_{,i} \partial_j f
+    + v^i w^j \partial_i \partial_j f
+    - w^j v^i{}_{,j} \partial_i f
+    - w^j v^i \partial_j \partial_i f \\
+    \intertext{%
+        The partial derivatives commute, so the second and third term cancel.
+    }
+    &= v^i w^j{}_{,i} \partial_j f - w^j v^i{}_{,j} \partial_i f \\
+\end{align*}
+Extracting $f$ will give the desired result.
+
+\subsection{Properties}
+
+\begin{enumerate}
+    \item
+        The derivates are linear operators. So the bilinearity follows from
+        that.
+
+    \item
+        The skew-symmetry can be seen from Equation~(2), just add a minus sign
+        to change the order of $v$ and $w$.
+
+    \item
+        The Jacoby identity can be shown by plugging in and seeing all the
+        terms cancel. We are not going to do that, though.
+\end{enumerate}
+
+\subsection{Lie derivative}
+
+We either have to apply a test function ore keep the product rule in mind. We
+do it without an explicit test function.
+\begin{align*}
+    \mathscr L_{fv} w
+    &= [fv, w] \\
+    &= fv(w) - w(fv)
+    \intertext{%
+        We expand the vector fields.
+    }
+    &= f v^i \partial_i w^j \partial_j - w^j \partial_j f v^i \partial_i
+    \intertext{%
+        We apply the product rule.
+    }
+    &= f v^i w^j{}_{,i} \partial_j + f v^i w^j \partial_i \partial_j
+    - w^j f_{,j} v^i \partial_i - w^j f v^i{}_{,j} \partial_i - w^j f v^i
+    \partial_j \partial_i
+    \intertext{%
+        The second and last term cancel each other.
+    }
+    &= f v^i w^j{}_{,i} \partial_j
+    - w^j f_{,j} v^i \partial_i - w^j f v^i{}_{,j} \partial_i
+    \intertext{%
+        We swap the second and third term.
+    }
+    &= f v^i w^j{}_{,i} \partial_j
+    - w^j f v^i{}_{,j} \partial_i
+    - w^j f_{,j} v^i \partial_i
+    \intertext{%
+        Then we can write the first two terms as a Lie bracket. The last term
+        can be written without indices again.
+    }
+    &= f [v, w]
+    - w(f) \, v
+\end{align*}
+
+The second identity follows from the skew-symmetry.
+\[
+    \mathcal L_v(fw)
+    = [v, fw]
+    = - [fw, v]
+    = - f[w, v] + v(f) \, w
+    = f[v, w] + v(f) \, w
+\]
+
+\subsection{Pushforward}
+
+In this part we have the following definitions:
+
+\begin{itemize}
+    \item Differentiable manifolds $M$, $N$
+    \item Point $p \in M$
+    \item Point $q \in N$
+    \item Smooth map $f \colon M \to N$
+    \item Pushforward $f_* \colon T_p M \to T_{f(p)} M$
+    \item Test function $g \colon N \to \R$ and $g \in C^\infty(N)$.
+    \item Vector fields $v, w \in TM$.
+\end{itemize}
+
+The pushforward is given as
+\[
+    [f_* v](g) = v(g \circ f).
+\]
+Since $g$ takes an argument from the space $N$, we can write
+\[
+    [f_* v](g)(p) = v(g(f(p))) = [v \circ g \circ f](p).
+\]
+
+We start by applying the pushforward to the Lie bracket as a whole.
+\begin{align*}
+    \sbr{f_* [v, w]}(g)(p)
+    &= [v, w](g \circ f)(p)
+    \intertext{%
+        Then we expand the Lie bracket, leaving the evaluation with $p$ on the
+        outside.
+    }
+    &= \sbr{v(w(g \circ f)) - w(v(g \circ f))}(p)
+    \intertext{%
+        We can write it with less parentheses using the concatenation symbol.
+    }
+    &= [v \circ w \circ g \circ f - w \circ v \circ g \circ f](p)
+    \intertext{%
+        To ease the notation, we introduce a notation similar to “$+ \cc$” and
+        “$+ \hc$” where we write “swapped” to mean the same terms with $v$ and
+        $w$ swapped.
+    }
+    &= [v \circ w \circ g \circ f - \text{swapped}](p)
+    \intertext{%
+        We apply both terms to $p$ individually.
+    }
+    &= [v \circ w \circ g \circ f](p) - \text{swapped} \\
+    \intertext{%
+        The terms inside of the bracket are a pushforward.
+    }
+    &= \sbr{v \circ [f_* w](g)}(p) - \text{swapped} \\
+    \intertext{%
+        This is the point in the derivation where both ends are glued together
+        with black magic. In order to get two pullbacks out, we need another
+        $f$ somewhere. That does not makes sense, though, since $p \in M$ and
+        $f(p) \in N$. We cannot apply $f$ twice. We probably have a mistake
+        somewhere else such that this does not work out nicely here.
+    }
+    &= \sbr{v \circ [f_* w](g)}(f(p)) - \text{swapped} \\
+    \intertext{%
+        This is another pushforward, this time for $v$.
+    }
+    &= \sbr{[f_* v]\del{[f_* w](g)}}(p) - \text{swapped} \\
+    \intertext{%
+        Taking both terms together, we get another Lie bracket.
+    }
+    &= [f_* v, f_* w](g)(p)
+\end{align*}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
